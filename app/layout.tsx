@@ -19,7 +19,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "AURA - Alliance for Understanding Recovery & Awareness",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.jpg",
   },
   description:
     "Mental wellness for all. Building understanding, supporting recovery, and raising awareness about mental health in Ethiopian communities.",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: "en_US",
   },
 
-  generator: "v0.dev",
+  generator: "Yihun-shekuri",
 };
 
 export default function RootLayout({
