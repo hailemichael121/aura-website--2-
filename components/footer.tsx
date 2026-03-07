@@ -1,133 +1,46 @@
-import Link from "next/link"
-import { Instagram, MessageCircle, Linkedin, Mail, MapPin } from "lucide-react"
+import Link from "next/link";
+import { Instagram, Linkedin, Mail, MapPin, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#00B089] to-[#3284FC] rounded-lg flex items-center justify-center">
-                <div className="text-white font-bold text-lg">A</div>
-              </div>
-              <div>
-                <div className="font-bold text-xl text-[#00B089]">AURA</div>
-                <div className="text-sm text-gray-400">Alliance for Understanding Recovery & Awareness</div>
-              </div>
-            </div>
-            <p className="text-gray-300 mb-4 max-w-md">
-              Mental wellness is a right, not a luxury. We foster open conversations and accessible support for all
-              Ethiopians.
-            </p>
-            <div className="bg-gradient-to-r from-[#00B089] to-[#3284FC] p-4 rounded-lg">
-              <h4 className="font-semibold mb-2">Safe Space Pledge</h4>
-              <p className="text-sm">
-                We commit to zero judgment. Your voice matters here. This is a space for healing, growth, and authentic
-                connection.
-              </p>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-[#00B089] transition-colors">
-                  About AURA
-                </Link>
-              </li>
-              <li>
-                <Link href="/programs" className="text-gray-300 hover:text-[#00B089] transition-colors">
-                  Programs
-                </Link>
-              </li>
-              <li>
-                <Link href="/resources" className="text-gray-300 hover:text-[#00B089] transition-colors">
-                  Resources
-                </Link>
-              </li>
-              <li>
-                <Link href="/forum" className="text-gray-300 hover:text-[#00B089] transition-colors">
-                  Community Forum
-                </Link>
-              </li>
-              <li>
-                <Link href="/get-involved" className="text-gray-300 hover:text-[#00B089] transition-colors">
-                  Get Involved
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4 text-[#00B089]" />
-                <span className="text-gray-300 text-sm">Bole, Addis Ababa, Ethiopia</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-[#00B089]" />
-                <span className="text-gray-300 text-sm">hello@auraethiopia.org</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MessageCircle className="w-4 h-4 text-[#00B089]" />
-                <span className="text-gray-300 text-sm">@AURA_MHP</span>
-              </div>
-            </div>
-
-            {/* Team Contacts */}
-            <div className="mt-6">
-              <h4 className="font-medium mb-2">Team</h4>
-              <div className="space-y-1 text-sm text-gray-300">
-                <div>Rediet Feleke - @red8_fe</div>
-                <div>Simret G. Dessie - @lunashine12</div>
-                <div>Messeret Gossa - @mesigosa</div>
-              </div>
-            </div>
-          </div>
+    <footer className="border-t border-[#d2e1d7] bg-[#0f241a] text-[#e8f1ec]">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-4 md:px-6 lg:px-8">
+        <div className="md:col-span-2">
+          <h3 className="text-2xl font-semibold">AURA</h3>
+          <p className="mt-2 text-sm text-[#c4d5cb]">Alliance for Understanding Recovery & Awareness</p>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#d0dfd7]">
+            AURA is a mental health awareness and support organization in Addis Ababa, creating safe spaces for conversation, healing, and community care.
+          </p>
+          <p className="mt-4 text-xs text-[#aac0b5]">Team credits: Rediet Feleke, Simret G. Dessie, Messeret Gossa.</p>
         </div>
 
-        {/* Social Links & Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex space-x-4 mb-4 md:mb-0">
-            <a
-              href="https://www.instagram.com/red8_fe"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#00B089] transition-colors"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a
-              href="https://t.me/AURA_MHP"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#00B089] transition-colors"
-            >
-              <MessageCircle className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#00B089] transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-          </div>
-          <div className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} AURA - Alliance for Understanding Recovery & Awareness. All rights reserved.
+        <div>
+          <h4 className="text-sm font-semibold uppercase tracking-wide text-[#d7e5dd]">Quick links</h4>
+          <ul className="mt-3 space-y-2 text-sm text-[#c4d5cb]">
+            <li><Link href="/about" className="hover:text-white">About</Link></li>
+            <li><Link href="/get-help" className="hover:text-white">Get Help</Link></li>
+            <li><Link href="/community" className="hover:text-white">Community</Link></li>
+            <li><Link href="/programs" className="hover:text-white">Programs</Link></li>
+            <li><Link href="/get-involved" className="hover:text-white">Get Involved</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-sm font-semibold uppercase tracking-wide text-[#d7e5dd]">Contact</h4>
+          <ul className="mt-3 space-y-3 text-sm text-[#c4d5cb]">
+            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4" />Bole, Addis Ababa, Ethiopia</li>
+            <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4" />hello@auraethiopia.org</li>
+            <li className="flex items-start gap-2"><MessageCircle className="mt-0.5 h-4 w-4" />@AURA_MHP</li>
+          </ul>
+          <div className="mt-4 flex gap-3 text-[#d5e4db]">
+            <a href="https://www.instagram.com/red8_fe" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram className="h-4 w-4" /></a>
+            <a href="https://t.me/AURA_MHP" target="_blank" rel="noreferrer" aria-label="Telegram"><MessageCircle className="h-4 w-4" /></a>
+            <a href="#" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
-// Named export for compatibility
-export { Footer }
+export { Footer };
