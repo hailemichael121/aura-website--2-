@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    --background: 150 20% 98%;
-    --foreground: 150 14% 8%;
+    --background: 150 30% 98%;
+    --foreground: 218 22% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 150 14% 8%;
+    --card-foreground: 218 22% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 150 14% 8%;
-    --primary: 147 55% 27%;
+    --popover-foreground: 218 22% 12%;
+    --primary: 124 49% 46%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 144 22% 94%;
-    --secondary-foreground: 150 14% 8%;
-    --muted: 146 20% 95%;
-    --muted-foreground: 153 11% 35%;
-    --accent: 146 20% 93%;
-    --accent-foreground: 150 14% 8%;
+    --secondary: 145 20% 94%;
+    --secondary-foreground: 218 22% 12%;
+    --muted: 160 17% 95%;
+    --muted-foreground: 215 11% 40%;
+    --accent: 205 100% 95%;
+    --accent-foreground: 218 22% 12%;
     --destructive: 0 70% 43%;
     --destructive-foreground: 0 0% 100%;
-    --border: 146 18% 86%;
-    --input: 146 18% 86%;
-    --ring: 147 55% 27%;
+    --border: 146 16% 84%;
+    --input: 146 16% 84%;
+    --ring: 124 49% 46%;
     --radius: 0.85rem;
   }
 
   .dark {
-    --background: 149 35% 8%;
-    --foreground: 0 0% 97%;
-    --card: 149 32% 11%;
-    --card-foreground: 0 0% 97%;
-    --popover: 149 32% 11%;
-    --popover-foreground: 0 0% 97%;
-    --primary: 146 45% 50%;
-    --primary-foreground: 149 35% 8%;
-    --secondary: 149 20% 18%;
-    --secondary-foreground: 0 0% 97%;
-    --muted: 149 18% 18%;
-    --muted-foreground: 147 10% 74%;
-    --accent: 149 18% 18%;
-    --accent-foreground: 0 0% 97%;
+    --background: 220 20% 7%;
+    --foreground: 210 20% 94%;
+    --card: 220 20% 10%;
+    --card-foreground: 210 20% 94%;
+    --popover: 220 20% 11%;
+    --popover-foreground: 210 20% 94%;
+    --primary: 124 43% 52%;
+    --primary-foreground: 220 20% 7%;
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 210 20% 94%;
+    --muted: 220 14% 15%;
+    --muted-foreground: 214 12% 70%;
+    --accent: 208 38% 17%;
+    --accent-foreground: 210 20% 94%;
     --destructive: 0 64% 45%;
     --destructive-foreground: 0 0% 97%;
-    --border: 149 16% 24%;
-    --input: 149 16% 24%;
-    --ring: 146 45% 50%;
+    --border: 220 15% 23%;
+    --input: 220 15% 24%;
+    --ring: 124 43% 52%;
   }
 
   * {
@@ -57,7 +57,22 @@
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-[#1f6b48] ring-offset-2;
+    @apply outline-none ring-2 ring-[#3CB043] ring-offset-2;
+  }
+}
+
+@layer utilities {
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(0, 150, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(60, 176, 67, 0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .dark .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(0, 150, 255, 0.14) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(60, 176, 67, 0.14) 1px, transparent 1px);
   }
 }
 

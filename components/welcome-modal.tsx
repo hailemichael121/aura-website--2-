@@ -1,99 +1,75 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
+import { HeartHandshake, ShieldCheck, Sparkles, Users, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { X, Heart, Users, Shield } from "lucide-react"
 
 export default function WelcomeModal() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    // Check if modal has been shown in this session
     const hasShownWelcome = sessionStorage.getItem("aura-welcome-shown")
-
     if (!hasShownWelcome) {
-      // Show modal after a short delay
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-      }, 1500)
-
+      const timer = setTimeout(() => setIsOpen(true), 1200)
       return () => clearTimeout(timer)
     }
   }, [])
 
   const handleClose = () => {
     setIsOpen(false)
-    // Mark as shown for this session
     sessionStorage.setItem("aura-welcome-shown", "true")
   }
 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-lg bg-white dark:bg-gray-800 border-0 shadow-2xl animate-fade-in">
-        <CardHeader className="text-center relative">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleClose}
-            className="absolute right-2 top-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-          >
-            <X className="w-4 h-4" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+      <Card className="w-full max-w-xl border-border bg-card shadow-2xl">
+        <CardHeader className="relative space-y-4 pb-2 text-center">
+          <Button variant="ghost" size="sm" onClick={handleClose} className="absolute right-2 top-2 text-muted-foreground hover:text-foreground">
+            <X className="size-4" />
           </Button>
-          <div className="w-16 h-16 bg-gradient-to-br from-[#31960F] to-[#3284FC] rounded-full flex items-center justify-center mx-auto mb-4">
-            <Heart className="w-8 h-8 text-white" />
+          <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Sparkles className="size-7" />
           </div>
-          <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">Welcome to AURA</CardTitle>
-          <p className="text-gray-600 dark:text-gray-300">Alliance for Understanding Recovery & Awareness</p>
+          <CardTitle className="text-2xl font-bold">Welcome to AURA</CardTitle>
+          <p className="text-sm text-muted-foreground">Alliance for Understanding Recovery & Awareness</p>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="text-center">
-            <p className="text-gray-700 dark:text-gray-300 mb-6">
-              We're here to support your mental wellness journey. Our community provides safe spaces, professional
-              resources, and peer support for everyone.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 gap-4">
-            <div className="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-              <Shield className="w-6 h-6 text-green-600 dark:text-green-400" />
-              <div>
-                <h4 className="font-semibold text-green-900 dark:text-green-100">Safe & Confidential</h4>
-                <p className="text-sm text-green-800 dark:text-green-200">Your privacy is our priority</p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <Users className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-              <div>
-                <h4 className="font-semibold text-blue-900 dark:text-blue-100">Community Support</h4>
-                <p className="text-sm text-blue-800 dark:text-blue-200">Connect with others who understand</p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-              <Heart className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-              <div>
-                <h4 className="font-semibold text-purple-900 dark:text-purple-100">Professional Care</h4>
-                <p className="text-sm text-purple-800 dark:text-purple-200">Access to licensed therapists</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex space-x-3">
-            <Button onClick={handleClose} variant="outline" className="flex-1 bg-transparent dark:bg-gray-700">
-              Explore Later
-            </Button>
-            <Button onClick={handleClose} className="flex-1 bg-[#31960F] hover:bg-[#2A7F0C] text-white">
-              Get Started
-            </Button>
-          </div>
-
-          <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            This message will only show once per session
+        <CardContent className="space-y-5">
+          <p className="text-center text-muted-foreground">
+            We provide safe spaces, practical tools, and trusted support for your mental wellness journey.
           </p>
+
+          <div className="grid gap-3">
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-background p-3">
+              <ShieldCheck className="mt-0.5 size-5 text-primary" />
+              <div>
+                <p className="font-medium text-foreground">Private and respectful</p>
+                <p className="text-sm text-muted-foreground">Your privacy and wellbeing are protected.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-background p-3">
+              <Users className="mt-0.5 size-5 text-primary" />
+              <div>
+                <p className="font-medium text-foreground">Peer community support</p>
+                <p className="text-sm text-muted-foreground">Connect with people who understand your experience.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-background p-3">
+              <HeartHandshake className="mt-0.5 size-5 text-primary" />
+              <div>
+                <p className="font-medium text-foreground">Professional resources</p>
+                <p className="text-sm text-muted-foreground">Access trusted guidance from trained contributors.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <Button onClick={handleClose} variant="outline" className="flex-1">Explore Later</Button>
+            <Button onClick={handleClose} className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90">Get Started</Button>
+          </div>
         </CardContent>
       </Card>
     </div>
