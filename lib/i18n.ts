@@ -4,6 +4,7 @@ export const translations = {
     nav: {
       home: "Home",
       about: "About",
+      community: "Community",
       programs: "Programs",
       resources: "Resources",
       forum: "Forum",
@@ -12,6 +13,7 @@ export const translations = {
       stories: "Stories",
       contact: "Contact",
       getHelp: "Get Help",
+      getInvolved: "Get Involved",
       joinUs: "Join Us",
     },
     // Common
@@ -65,6 +67,7 @@ export const translations = {
     nav: {
       home: "መነሻ",
       about: "ስለ እኛ",
+      community: "ማህበረሰብ",
       programs: "ፕሮግራሞች",
       resources: "ሀብቶች",
       forum: "መድረክ",
@@ -73,6 +76,7 @@ export const translations = {
       stories: "ታሪኮች",
       contact: "ያግኙን",
       getHelp: "እርዳታ ያግኙ",
+      getInvolved: "ተሳትፎ ያድርጉ",
       joinUs: "ይቀላቀሉን",
     },
     // Common - Amharic
@@ -125,6 +129,7 @@ export const translations = {
     nav: {
       home: "Mana",
       about: "Waa'ee Keenya",
+      community: "Hawaasa",
       programs: "Sagantaalee",
       resources: "Qabeenya",
       forum: "Waldaa",
@@ -133,6 +138,7 @@ export const translations = {
       stories: "Seenaalee",
       contact: "Nu Quunnamaa",
       getHelp: "Gargaarsa Argadhu",
+      getInvolved: "Hirmaadhu",
       joinUs: "Nu Makamaa",
     },
     // Common - Afan Oromo

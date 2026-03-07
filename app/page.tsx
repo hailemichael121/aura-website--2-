@@ -29,38 +29,39 @@ const focusAreas = [
 
 export default function HomePage() {
   return (
-    <div className="bg-[#f8fbf9] text-[#111827]">
-      <section className="relative overflow-hidden border-b border-[#d9e6de] bg-[linear-gradient(180deg,#f8fbf9_0%,#eef5f1_100%)] pt-28 pb-16 md:pt-32 md:pb-24">
+    <div className="bg-background text-foreground">
+      <section className="relative overflow-hidden border-b border-border bg-[radial-gradient(circle_at_top_left,rgba(60,176,67,0.18),transparent_52%),radial-gradient(circle_at_bottom_right,rgba(0,150,255,0.16),transparent_40%)] pt-28 pb-16 md:pt-32 md:pb-24">
         <div className="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-[#2f6f53]/10 blur-3xl" aria-hidden />
         <div className="absolute right-0 top-20 h-64 w-64 rounded-full bg-[#9eb9a8]/20 blur-3xl" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-2 md:px-6 lg:px-8">
           <div className="space-y-6">
-            <p className="inline-flex items-center rounded-full border border-[#c6d8cd] bg-white/80 px-4 py-1 text-sm text-[#295942]">
+            <p className="inline-flex items-center rounded-full border border-border bg-card/80 px-4 py-1 text-sm text-muted-foreground">
               Addis Ababa, Ethiopia · Alliance for Understanding Recovery & Awareness
             </p>
             <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
               Mental Wellness is a Right, Not a Luxury
             </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-[#31483d]">
+            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
               AURA creates safe spaces for open conversation, recovery support, and mental wellness awareness across Ethiopian communities.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button asChild className="bg-[#1f6b48] px-6 py-6 text-base text-white hover:bg-[#18583b]">
+              <Button asChild className="bg-[#3CB043] px-6 py-6 text-base text-white hover:bg-[#2f9238]">
                 <Link href="/get-help">Get Help <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
-              <Button asChild variant="outline" className="border-[#1f6b48] bg-transparent px-6 py-6 text-base text-[#1f6b48] hover:bg-[#eaf3ee]">
+              <Button asChild variant="outline" className="border-[#0096FF] bg-transparent px-6 py-6 text-base text-[#0096FF] hover:bg-[#0096FF]/10">
                 <Link href="/community">Join the Community</Link>
               </Button>
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-lg">
-            <div className="rounded-3xl border border-[#d7e4dc] bg-white p-4 shadow-sm">
+            <div className="relative rounded-3xl border border-border bg-card p-4 shadow-sm">
+              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[linear-gradient(rgba(17,24,39,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(17,24,39,0.04)_1px,transparent_1px)] bg-[size:24px_24px]" />
               <Image
                 src="/images/community-support.png"
                 alt="Community members supporting each other in a calm group setting"
                 width={700}
                 height={540}
-                className="h-auto w-full rounded-2xl object-cover"
+                className="h-auto w-full rounded-2xl object-cover shadow-[0_24px_50px_-36px_rgba(17,24,39,0.65)]"
                 priority
               />
             </div>
