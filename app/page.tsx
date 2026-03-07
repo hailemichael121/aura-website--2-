@@ -29,32 +29,30 @@ const focusAreas = [
 
 export default function HomePage() {
   return (
-    <div className="bg-[#f8fbf9] text-[#111827]">
-      <section className="relative overflow-hidden border-b border-[#d9e6de] bg-[linear-gradient(180deg,#f8fbf9_0%,#eef5f1_100%)] pt-28 pb-16 md:pt-32 md:pb-24">
-        <div className="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-[#2f6f53]/10 blur-3xl" aria-hidden />
-        <div className="absolute right-0 top-20 h-64 w-64 rounded-full bg-[#9eb9a8]/20 blur-3xl" aria-hidden />
+    <div className="bg-background text-foreground">
+      <section className="relative overflow-hidden border-b border-border bg-[radial-gradient(circle_at_top_left,rgba(60,176,67,0.16),transparent_42%),radial-gradient(circle_at_95%_20%,rgba(0,150,255,0.14),transparent_35%),linear-gradient(180deg,hsl(var(--background))_0%,hsl(146_26%_95%)_100%)] pt-28 pb-16 md:pt-32 md:pb-24 dark:bg-[linear-gradient(180deg,hsl(220_20%_6%)_0%,hsl(220_18%_8%)_100%)]">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-2 md:px-6 lg:px-8">
           <div className="space-y-6">
-            <p className="inline-flex items-center rounded-full border border-[#c6d8cd] bg-white/80 px-4 py-1 text-sm text-[#295942]">
+            <p className="inline-flex items-center rounded-full border border-border bg-card/90 px-4 py-1 text-sm text-muted-foreground">
               Addis Ababa, Ethiopia · Alliance for Understanding Recovery & Awareness
             </p>
             <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
               Mental Wellness is a Right, Not a Luxury
             </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-[#31483d]">
+            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
               AURA creates safe spaces for open conversation, recovery support, and mental wellness awareness across Ethiopian communities.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button asChild className="bg-[#1f6b48] px-6 py-6 text-base text-white hover:bg-[#18583b]">
+              <Button asChild className="bg-[#3CB043] px-6 py-6 text-base text-white hover:bg-[#2f9038]">
                 <Link href="/get-help">Get Help <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
-              <Button asChild variant="outline" className="border-[#1f6b48] bg-transparent px-6 py-6 text-base text-[#1f6b48] hover:bg-[#eaf3ee]">
+              <Button asChild variant="outline" className="border-[#0096FF] bg-transparent px-6 py-6 text-base text-[#0073c2] hover:bg-[#0096FF]/10 dark:text-[#7ac8ff]">
                 <Link href="/community">Join the Community</Link>
               </Button>
             </div>
           </div>
-          <div className="relative mx-auto w-full max-w-lg">
-            <div className="rounded-3xl border border-[#d7e4dc] bg-white p-4 shadow-sm">
+          <div className="relative mx-auto w-full max-w-lg [perspective:1200px]">
+            <div className="grid-bg rounded-3xl border border-border bg-card p-4 shadow-2xl shadow-black/20 transition-transform duration-500 hover:[transform:rotateY(-6deg)_rotateX(4deg)_translateZ(20px)]">
               <Image
                 src="/images/community-support.png"
                 alt="Community members supporting each other in a calm group setting"
@@ -72,24 +70,24 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold md:text-3xl">How AURA supports mental wellness</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {focusAreas.map((item) => (
-            <article key={item.title} className="rounded-2xl border border-[#d6e4db] bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-              <item.icon className="mb-4 h-8 w-8 text-[#1f6b48]" aria-hidden />
+            <article key={item.title} className="rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+              <item.icon className="mb-4 h-8 w-8 text-primary" aria-hidden />
               <h3 className="text-xl font-medium">{item.title}</h3>
-              <p className="mt-3 leading-relaxed text-[#425b4f]">{item.text}</p>
+              <p className="mt-3 leading-relaxed text-muted-foreground">{item.text}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="border-y border-[#d9e6de] bg-[#f3f8f4] py-14">
+      <section className="border-y border-border bg-muted/35 py-14">
         <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold md:text-3xl">Community impact</h2>
-          <p className="mt-3 max-w-2xl text-[#41574b]">Each number represents people, stories, and healing journeys. We measure impact with care and accountability.</p>
+          <p className="mt-3 max-w-2xl text-muted-foreground">Each number represents people, stories, and healing journeys. We measure impact with care and accountability.</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {impactStats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-[#cfe0d6] bg-white p-6 text-center">
-                <p className="text-3xl font-semibold text-[#1f6b48]">{stat.value}</p>
-                <p className="mt-2 text-sm text-[#50665b]">{stat.label}</p>
+              <div key={stat.label} className="rounded-2xl border border-border bg-card p-6 text-center">
+                <p className="text-3xl font-semibold text-primary">{stat.value}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -97,23 +95,23 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-14 md:grid-cols-3 md:px-6 lg:px-8">
-        <div className="rounded-2xl border border-[#d7e5dc] bg-white p-6">
-          <ShieldCheck className="h-7 w-7 text-[#1f6b48]" />
+        <div className="rounded-2xl border border-border bg-card p-6">
+          <ShieldCheck className="h-7 w-7 text-primary" />
           <h3 className="mt-4 text-xl font-medium">Need support right now?</h3>
-          <p className="mt-2 text-[#486154]">Visit our Get Help page for immediate support options, peer listening, and trusted referrals.</p>
-          <Link href="/get-help" className="mt-4 inline-block text-[#1f6b48] underline-offset-4 hover:underline">Go to Get Help</Link>
+          <p className="mt-2 text-muted-foreground">Visit our Get Help page for immediate support options, peer listening, and trusted referrals.</p>
+          <Link href="/get-help" className="mt-4 inline-block text-primary underline-offset-4 hover:underline">Go to Get Help</Link>
         </div>
-        <div className="rounded-2xl border border-[#d7e5dc] bg-white p-6">
-          <CalendarHeart className="h-7 w-7 text-[#1f6b48]" />
+        <div className="rounded-2xl border border-border bg-card p-6">
+          <CalendarHeart className="h-7 w-7 text-primary" />
           <h3 className="mt-4 text-xl font-medium">Join a program</h3>
-          <p className="mt-2 text-[#486154]">Workshops, youth-focused sessions, and awareness campaigns are open to students, families, and volunteers.</p>
-          <Link href="/programs" className="mt-4 inline-block text-[#1f6b48] underline-offset-4 hover:underline">Explore programs</Link>
+          <p className="mt-2 text-muted-foreground">Workshops, youth-focused sessions, and awareness campaigns are open to students, families, and volunteers.</p>
+          <Link href="/programs" className="mt-4 inline-block text-primary underline-offset-4 hover:underline">Explore programs</Link>
         </div>
-        <div className="rounded-2xl border border-[#d7e5dc] bg-white p-6">
-          <Users className="h-7 w-7 text-[#1f6b48]" />
+        <div className="rounded-2xl border border-border bg-card p-6">
+          <Users className="h-7 w-7 text-primary" />
           <h3 className="mt-4 text-xl font-medium">Build community with us</h3>
-          <p className="mt-2 text-[#486154]">You are not alone. Our circles are built on privacy, safety, and shared understanding.</p>
-          <Link href="/community" className="mt-4 inline-block text-[#1f6b48] underline-offset-4 hover:underline">Visit community page</Link>
+          <p className="mt-2 text-muted-foreground">You are not alone. Our circles are built on privacy, safety, and shared understanding.</p>
+          <Link href="/community" className="mt-4 inline-block text-primary underline-offset-4 hover:underline">Visit community page</Link>
         </div>
       </section>
     </div>
