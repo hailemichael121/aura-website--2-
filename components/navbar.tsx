@@ -54,23 +54,23 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 z-50 w-full">
-      <div className="mx-auto max-w-7xl px-3 pt-3 md:px-6">
+      <div className="mx-auto max-w-[90rem] px-3 pt-3 md:px-6">
         <div
-          className={`flex items-center justify-between rounded-[2rem] border px-4 py-3 transition-all duration-300 md:px-5 ${
+          className={`flex items-center justify-between border transition-all duration-300 ${
             isScrolled
-              ? "mx-auto max-w-5xl border-border/80 bg-card/90 shadow-xl shadow-black/10 backdrop-blur-xl dark:shadow-black/40"
+              ? "mx-auto w-full max-w-7xl rounded-[2rem] border-border/80 bg-card/90 px-4 py-3 shadow-xl shadow-black/10 backdrop-blur-xl dark:shadow-black/40 md:px-5"
               : "w-full rounded-none border-transparent bg-transparent px-1 py-2"
           }`}
         >
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex min-w-0 items-center gap-3">
             <Image src="/images/aura-logo.jpg" alt="AURA logo" width={42} height={42} className="rounded-lg object-cover" />
-            <div className="hidden sm:block">
-              <p className="text-lg font-semibold text-foreground">AURA</p>
-              <p className="text-xs text-muted-foreground">Alliance for Understanding Recovery & Awareness</p>
+            <div className="min-w-0">
+              <p className="text-lg font-semibold leading-none text-foreground">AURA</p>
+              <p className="mt-1 hidden truncate text-xs text-muted-foreground xl:block">Alliance for Understanding Recovery & Awareness</p>
             </div>
           </Link>
 
-          <div className="hidden items-center gap-1 lg:flex">
+          <div className="hidden items-center gap-1 xl:flex">
             {navigation.map((item) => {
               const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
@@ -79,7 +79,7 @@ export default function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`rounded-full px-4 py-2 text-sm transition ${
+                    className={`rounded-full px-3 py-2 text-sm transition ${
                       active
                         ? "bg-primary text-white"
                         : "text-foreground/90 hover:bg-muted hover:text-foreground"
@@ -95,7 +95,7 @@ export default function Navbar() {
                   <DropdownMenuTrigger asChild>
                     <button
                       type="button"
-                      className={`inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+                      className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition ${
                         active
                           ? "bg-primary text-white"
                           : "text-foreground/90 hover:bg-muted hover:text-foreground"
@@ -120,21 +120,21 @@ export default function Navbar() {
             })}
           </div>
 
-          <div className="hidden items-center gap-1 lg:flex">
-          <a
-            href="https://t.me/AURA_MHP"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Join AURA on Telegram"
-            className="inline-flex items-center justify-center rounded-full p-2 text-foreground/80 hover:bg-muted hover:text-foreground"
-          >
-            <Send className="h-4 w-4" />
-          </a>
+          <div className="hidden items-center gap-1 xl:flex">
+            <a
+              href="https://t.me/AURA_MHP"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Join AURA on Telegram"
+              className="inline-flex items-center justify-center rounded-full p-2 text-foreground/80 hover:bg-muted hover:text-foreground"
+            >
+              <Send className="h-4 w-4" />
+            </a>
             <LanguageSwitcher />
             <ThemeSwitcher />
           </div>
 
-          <div className="flex items-center gap-1 lg:hidden">
+          <div className="flex items-center gap-1 xl:hidden">
             <a
               href="https://t.me/AURA_MHP"
               target="_blank"

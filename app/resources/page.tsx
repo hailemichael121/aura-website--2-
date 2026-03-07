@@ -215,6 +215,42 @@ export default function ResourcesPage() {
           </Tabs>
         </div>
       </section>
+      <section className="border-t border-border/60 bg-card/20 py-14">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+          <Card className="border-border bg-card shadow-sm lg:col-span-8">
+            <CardContent className="p-7">
+              <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Get Involved</Badge>
+              <h2 className="text-3xl font-semibold text-foreground">Be Part of the Movement</h2>
+              <p className="mt-3 max-w-3xl text-muted-foreground">
+                Whether you're a volunteer, donor, mental health professional, or just a caring soul — there's space for you at AURA.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Link href="/get-involved">Explore ways to contribute</Link>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full">
+                  <Link href="/contact">Partner With Us</Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border bg-card shadow-sm lg:col-span-4">
+            <CardContent className="space-y-3 p-7">
+              <h3 className="text-lg font-semibold text-foreground">Quick actions</h3>
+              <Button asChild variant="outline" className="w-full rounded-full">
+                <Link href="/get-involved">Volunteer</Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full rounded-full">
+                <Link href="/get-involved">Donate</Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full rounded-full">
+                <Link href="/get-involved">Join Events</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
     </div>
   )
 }
