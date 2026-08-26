@@ -31,7 +31,6 @@ export default function BreathingExercise({ isOpen, onClose }: BreathingExercise
       interval = setInterval(() => {
         setTimeLeft((prev) => {
           if (prev <= 1) {
-            // Move to next phase
             if (phase === "inhale") {
               setPhase("hold")
               return phaseDurations.hold
@@ -64,13 +63,8 @@ export default function BreathingExercise({ isOpen, onClose }: BreathingExercise
     setProgress(totalProgress)
   }, [phase, timeLeft])
 
-  const handleStart = () => {
-    setIsActive(true)
-  }
-
-  const handlePause = () => {
-    setIsActive(false)
-  }
+  const handleStart = () => setIsActive(true)
+  const handlePause = () => setIsActive(false)
 
   const handleReset = () => {
     setIsActive(false)
@@ -80,29 +74,12 @@ export default function BreathingExercise({ isOpen, onClose }: BreathingExercise
     setProgress(0)
   }
 
-  const getPhaseColor = () => {
+  const getPhaseLabel = () => {
     switch (phase) {
-      case "inhale":
-        return "from-blue-400 to-blue-600"
-      case "hold":
-        return "from-yellow-400 to-orange-500"
-      case "exhale":
-        return "from-green-400 to-green-600"
-      default:
-        return "from-gray-400 to-gray-600"
-    }
-  }
-
-  const getPhaseInstruction = () => {
-    switch (phase) {
-      case "inhale":
-        return "Breathe In"
-      case "hold":
-        return "Hold"
-      case "exhale":
-        return "Breathe Out"
-      default:
-        return "Ready"
+      case "inhale": return "Breathe In"
+      case "hold": return "Hold"
+      case "exhale": return "Breathe Out"
+      default: return "Ready"
     }
   }
 
@@ -110,88 +87,80 @@ export default function BreathingExercise({ isOpen, onClose }: BreathingExercise
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-white dark:bg-gray-800 border-0 shadow-2xl">
+      <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center relative">
           <Button
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="absolute right-2 top-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="absolute right-2 top-2 text-muted-foreground hover:text-foreground"
           >
             <X className="w-4 h-4" />
           </Button>
-          <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">4-7-8 Breathing</CardTitle>
-          <p className="text-gray-600 dark:text-gray-300">A calming breathing technique</p>
+          <CardTitle className="text-xl font-semibold">4-7-8 Breathing</CardTitle>
+          <p className="text-sm text-muted-foreground">A calming breathing technique</p>
         </CardHeader>
-        <CardContent className="space-y-8">
-          {/* Breathing Circle */}
+        <CardContent className="space-y-6">
           <div className="flex justify-center">
             <div className="relative">
               <div
-                className={`w-48 h-48 rounded-full bg-gradient-to-br ${getPhaseColor()} flex items-center justify-center transition-all duration-1000 ${
-                  isActive ? "scale-110" : "scale-100"
-                } shadow-2xl`}
+                className="w-40 h-40 rounded-full bg-primary flex items-center justify-center transition-all duration-1000"
                 style={{
                   transform: `scale(${isActive ? (phase === "inhale" ? 1.2 : phase === "exhale" ? 0.9 : 1.1) : 1})`,
                 }}
               >
-                <div className="text-center text-white">
-                  <div className="text-4xl font-bold mb-2">{timeLeft}</div>
-                  <div className="text-lg font-medium">{getPhaseInstruction()}</div>
+                <div className="text-center text-primary-foreground">
+                  <div className="text-3xl font-bold mb-1">{timeLeft}</div>
+                  <div className="text-sm font-medium">{getPhaseLabel()}</div>
                 </div>
               </div>
-              <div className="absolute inset-0 rounded-full border-4 border-white/30"></div>
             </div>
           </div>
 
-          {/* Progress Bar */}
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
+            <div className="flex justify-between text-sm text-muted-foreground">
               <span>Cycle Progress</span>
               <span>{Math.round(progress)}%</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{cycle}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">Cycles</div>
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div className="rounded-md border border-border bg-muted/50 p-2">
+              <div className="text-lg font-semibold text-primary">{cycle}</div>
+              <div className="text-xs text-muted-foreground">Cycles</div>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">{phase}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">Phase</div>
+            <div className="rounded-md border border-border bg-muted/50 p-2">
+              <div className="text-lg font-semibold">{phase}</div>
+              <div className="text-xs text-muted-foreground">Phase</div>
             </div>
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{cycle * 19}s</div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">Total</div>
+            <div className="rounded-md border border-border bg-muted/50 p-2">
+              <div className="text-lg font-semibold">{cycle * 19}s</div>
+              <div className="text-xs text-muted-foreground">Total</div>
             </div>
           </div>
 
-          {/* Controls */}
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-3">
             {!isActive ? (
-              <Button onClick={handleStart} className="bg-[#31960F] hover:bg-[#2A7F0C] text-white px-8">
+              <Button onClick={handleStart} className="px-6">
                 <Play className="w-4 h-4 mr-2" />
                 Start
               </Button>
             ) : (
-              <Button onClick={handlePause} variant="outline" className="px-8 bg-transparent dark:bg-gray-700">
+              <Button onClick={handlePause} variant="outline" className="px-6">
                 <Pause className="w-4 h-4 mr-2" />
                 Pause
               </Button>
             )}
-            <Button onClick={handleReset} variant="outline" className="px-8 bg-transparent dark:bg-gray-700">
+            <Button onClick={handleReset} variant="outline" className="px-6">
               <RotateCcw className="w-4 h-4 mr-2" />
               Reset
             </Button>
           </div>
 
-          {/* Instructions */}
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-            <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">How it works:</h4>
-            <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+          <div className="rounded-md border border-border bg-muted/50 p-4">
+            <h4 className="font-medium text-sm mb-2">How it works:</h4>
+            <ul className="text-sm text-muted-foreground space-y-1">
               <li>• Inhale for 4 seconds</li>
               <li>• Hold your breath for 7 seconds</li>
               <li>• Exhale slowly for 8 seconds</li>

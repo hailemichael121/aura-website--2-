@@ -111,17 +111,13 @@ export default function MentalHealthQuiz({ isOpen, onClose }: MentalHealthQuizPr
     setIsComplete(false)
   }
 
-  const getTotalScore = () => {
-    return answers.reduce((sum, answer) => sum + answer, 0)
-  }
+  const getTotalScore = () => answers.reduce((sum, answer) => sum + answer, 0)
 
   const getResultInfo = () => {
     const score = getTotalScore()
     if (score <= 6) {
       return {
         level: "Low",
-        color: "text-green-600 dark:text-green-400",
-        bgColor: "bg-green-50 dark:bg-green-900/20",
         description: "Your responses suggest you're managing well overall.",
         recommendations: [
           "Continue your current self-care practices",
@@ -132,8 +128,6 @@ export default function MentalHealthQuiz({ isOpen, onClose }: MentalHealthQuizPr
     } else if (score <= 12) {
       return {
         level: "Moderate",
-        color: "text-yellow-600 dark:text-yellow-400",
-        bgColor: "bg-yellow-50 dark:bg-yellow-900/20",
         description: "You may be experiencing some challenges that could benefit from attention.",
         recommendations: [
           "Consider talking to a counselor or therapist",
@@ -144,8 +138,6 @@ export default function MentalHealthQuiz({ isOpen, onClose }: MentalHealthQuizPr
     } else {
       return {
         level: "High",
-        color: "text-red-600 dark:text-red-400",
-        bgColor: "bg-red-50 dark:bg-red-900/20",
         description: "Your responses suggest you may benefit from professional support.",
         recommendations: [
           "Consider seeking professional help immediately",
@@ -162,36 +154,32 @@ export default function MentalHealthQuiz({ isOpen, onClose }: MentalHealthQuizPr
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-2xl bg-white dark:bg-gray-800 border-0 shadow-2xl">
+      <Card className="w-full max-w-2xl shadow-lg max-h-[90vh] overflow-y-auto">
         <CardHeader className="text-center relative">
           <Button
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="absolute right-2 top-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="absolute right-2 top-2 text-muted-foreground hover:text-foreground"
           >
             <X className="w-4 h-4" />
           </Button>
-          <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">Mental Health Check-In</CardTitle>
-          <p className="text-gray-600 dark:text-gray-300">A brief assessment to understand how you're feeling</p>
+          <CardTitle className="text-xl font-semibold">Mental Health Check-In</CardTitle>
+          <p className="text-sm text-muted-foreground">A brief assessment to understand how you&apos;re feeling</p>
         </CardHeader>
         <CardContent className="space-y-6">
           {!isComplete ? (
             <>
-              {/* Progress */}
               <div className="space-y-2">
-                <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300">
-                  <span>
-                    Question {currentQuestion + 1} of {questions.length}
-                  </span>
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>Question {currentQuestion + 1} of {questions.length}</span>
                   <span>{Math.round(progress)}%</span>
                 </div>
                 <Progress value={progress} className="h-2" />
               </div>
 
-              {/* Question */}
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-medium">
                   {questions[currentQuestion].question}
                 </h3>
 
@@ -205,11 +193,10 @@ export default function MentalHealthQuiz({ isOpen, onClose }: MentalHealthQuizPr
                       <RadioGroupItem
                         value={option.value.toString()}
                         id={`option-${option.value}`}
-                        className="border-gray-300 dark:border-gray-600"
                       />
                       <Label
                         htmlFor={`option-${option.value}`}
-                        className="text-gray-700 dark:text-gray-300 cursor-pointer flex-1 py-2"
+                        className="cursor-pointer flex-1 py-2"
                       >
                         {option.label}
                       </Label>
@@ -218,52 +205,41 @@ export default function MentalHealthQuiz({ isOpen, onClose }: MentalHealthQuizPr
                 </RadioGroup>
               </div>
 
-              {/* Navigation */}
               <div className="flex justify-between">
-                <Button
-                  onClick={handlePrevious}
-                  disabled={currentQuestion === 0}
-                  variant="outline"
-                  className="bg-transparent dark:bg-gray-700"
-                >
+                <Button onClick={handlePrevious} disabled={currentQuestion === 0} variant="outline">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Previous
                 </Button>
-                <Button
-                  onClick={handleNext}
-                  disabled={currentAnswer === null}
-                  className="bg-[#31960F] hover:bg-[#2A7F0C] text-white"
-                >
+                <Button onClick={handleNext} disabled={currentAnswer === null}>
                   {currentQuestion === questions.length - 1 ? "Finish" : "Next"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
             </>
           ) : (
-            /* Results */
             <div className="space-y-6">
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Your Results</h3>
-                <p className="text-gray-600 dark:text-gray-300">Based on your responses</p>
+                <h3 className="text-xl font-semibold mb-1">Your Results</h3>
+                <p className="text-sm text-muted-foreground">Based on your responses</p>
               </div>
 
               {(() => {
                 const result = getResultInfo()
                 return (
-                  <div className={`${result.bgColor} rounded-lg p-6 space-y-4`}>
+                  <div className="rounded-md border border-border bg-muted/50 p-6 space-y-4">
                     <div className="text-center">
-                      <div className={`text-3xl font-bold ${result.color} mb-2`}>{result.level} Concern Level</div>
-                      <div className={`text-lg ${result.color} mb-2`}>Score: {getTotalScore()}/18</div>
-                      <p className="text-gray-700 dark:text-gray-300">{result.description}</p>
+                      <div className="text-2xl font-semibold mb-1">{result.level} Concern Level</div>
+                      <div className="text-sm text-muted-foreground mb-2">Score: {getTotalScore()}/18</div>
+                      <p className="text-sm text-muted-foreground">{result.description}</p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Recommendations:</h4>
+                      <h4 className="font-medium text-sm mb-2">Recommendations:</h4>
                       <ul className="space-y-2">
                         {result.recommendations.map((rec, index) => (
                           <li key={index} className="flex items-start space-x-2">
-                            <div className="w-2 h-2 bg-[#31960F] rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-gray-700 dark:text-gray-300">{rec}</span>
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0"></div>
+                            <span className="text-sm text-muted-foreground">{rec}</span>
                           </li>
                         ))}
                       </ul>
@@ -272,19 +248,19 @@ export default function MentalHealthQuiz({ isOpen, onClose }: MentalHealthQuizPr
                 )
               })()}
 
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">Important Note:</h4>
-                <p className="text-sm text-blue-800 dark:text-blue-200">
-                  This is a screening tool and not a diagnostic assessment. If you're experiencing thoughts of self-harm
+              <div className="rounded-md border border-border bg-muted/50 p-4">
+                <h4 className="font-medium text-sm mb-1">Important Note:</h4>
+                <p className="text-sm text-muted-foreground">
+                  This is a screening tool and not a diagnostic assessment. If you&apos;re experiencing thoughts of self-harm
                   or suicide, please seek immediate professional help or contact emergency services.
                 </p>
               </div>
 
               <div className="flex space-x-3">
-                <Button onClick={handleReset} variant="outline" className="flex-1 bg-transparent dark:bg-gray-700">
+                <Button onClick={handleReset} variant="outline" className="flex-1">
                   Take Again
                 </Button>
-                <Button onClick={onClose} className="flex-1 bg-[#31960F] hover:bg-[#2A7F0C] text-white">
+                <Button onClick={onClose} className="flex-1">
                   Get Support
                 </Button>
               </div>

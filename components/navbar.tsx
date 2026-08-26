@@ -54,35 +54,48 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 z-50 w-full">
-      <div className="mx-auto max-w-[90rem] px-3 pt-3 md:px-6">
-        <div
-          className={`flex items-center justify-between border transition-all duration-300 ${
-            isScrolled
-              ? "mx-auto w-full max-w-7xl rounded-[2rem] border-border/80 bg-card/90 px-4 py-3 shadow-xl shadow-black/10 backdrop-blur-xl dark:shadow-black/40 md:px-5"
-              : "w-full rounded-none border-transparent bg-transparent px-1 py-2"
-          }`}
-        >
+      <div
+        className={`border-b transition-all duration-200 ${
+          isScrolled
+            ? "border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+            : "border-transparent bg-background"
+        }`}
+      >
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
           <Link href="/" className="flex min-w-0 items-center gap-3">
-            <Image src="/images/aura-logo.jpg" alt="AURA logo" width={42} height={42} className="rounded-lg object-cover" />
+            <Image
+              src="/images/aura-logo.jpg"
+              alt="AURA logo"
+              width={36}
+              height={36}
+              className="rounded object-cover"
+            />
             <div className="min-w-0">
-              <p className="text-lg font-semibold leading-none text-foreground">AURA</p>
-              <p className="mt-1 hidden truncate text-xs text-muted-foreground xl:block">Alliance for Understanding Recovery & Awareness</p>
+              <p className="text-base font-semibold leading-none text-foreground">
+                AURA
+              </p>
+              <p className="mt-0.5 hidden text-xs text-muted-foreground xl:block">
+                Alliance for Understanding Recovery &amp; Awareness
+              </p>
             </div>
           </Link>
 
           <div className="hidden items-center gap-1 xl:flex">
             {navigation.map((item) => {
-              const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+              const active =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
 
               if (!item.children?.length) {
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`rounded-full px-3 py-2 text-sm transition ${
+                    className={`rounded-md px-3 py-2 text-sm transition ${
                       active
-                        ? "bg-primary text-white"
-                        : "text-foreground/90 hover:bg-muted hover:text-foreground"
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >
                     {item.name}
@@ -95,17 +108,17 @@ export default function Navbar() {
                   <DropdownMenuTrigger asChild>
                     <button
                       type="button"
-                      className={`inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition ${
+                      className={`inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm transition ${
                         active
-                          ? "bg-primary text-white"
-                          : "text-foreground/90 hover:bg-muted hover:text-foreground"
+                          ? "bg-primary/10 text-primary font-medium"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
                       }`}
                     >
                       {item.name}
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className="h-3.5 w-3.5" />
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="center" className="rounded-2xl">
+                  <DropdownMenuContent align="center">
                     <DropdownMenuItem asChild>
                       <Link href={item.href}>{item.name} overview</Link>
                     </DropdownMenuItem>
@@ -126,7 +139,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join AURA on Telegram"
-              className="inline-flex items-center justify-center rounded-full p-2 text-foreground/80 hover:bg-muted hover:text-foreground"
+              className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
             >
               <Send className="h-4 w-4" />
             </a>
@@ -140,7 +153,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join AURA on Telegram"
-              className="inline-flex items-center justify-center rounded-full p-2 text-foreground/80 hover:bg-muted hover:text-foreground"
+              className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-muted hover:text-foreground"
             >
               <Send className="h-4 w-4" />
             </a>
@@ -149,21 +162,24 @@ export default function Navbar() {
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" aria-label="Open menu">
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="bg-background">
-                <div className="mt-10 space-y-2">
+                <div className="mt-10 space-y-1">
                   {navigation.map((item) => (
-                    <div key={item.name} className="space-y-2">
-                      <Link href={item.href} className="block rounded-lg px-4 py-3 text-foreground hover:bg-muted">
+                    <div key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="block rounded-md px-3 py-2.5 text-foreground hover:bg-muted"
+                      >
                         {item.name}
                       </Link>
                       {item.children?.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="ml-3 block rounded-lg px-4 py-2 text-sm text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                          className="ml-3 block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                         >
                           {child.name}
                         </Link>

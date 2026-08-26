@@ -54,9 +54,9 @@ const stories = [
 export default function StoriesPage() {
   return (
     <div className="min-h-screen bg-background pt-20">
-      <section className="border-b border-border/60 bg-card/30 py-14">
+      <section className="border-b border-border bg-muted/50 py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <Badge variant="outline" className="w-fit border-primary/30 text-primary">Community Stories</Badge>
+          <Badge variant="outline" className="w-fit">Community Stories</Badge>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">Stories That Heal</h1>
           <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
             Real voices from our community sharing recovery journeys, setbacks, and practical hope.
@@ -69,10 +69,10 @@ export default function StoriesPage() {
           <h2 className="mb-6 text-2xl font-semibold text-foreground">Featured stories</h2>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {stories.filter((story) => story.featured).map((story) => (
-              <Card key={story.id} className="border-border bg-card shadow-sm">
+              <Card key={story.id} className="border-border">
                 <CardHeader>
                   <div className="mb-3 flex items-center justify-between">
-                    <Badge className="bg-primary text-primary-foreground">{story.category}</Badge>
+                    <Badge>{story.category}</Badge>
                     <span className="flex items-center text-sm text-muted-foreground"><Calendar className="mr-1 size-4" />{story.publishedAt}</span>
                   </div>
                   <CardTitle className="text-2xl leading-tight"><Link href={`/stories/${story.id}`} className="hover:text-primary">{story.title}</Link></CardTitle>
@@ -91,11 +91,11 @@ export default function StoriesPage() {
         </div>
       </section>
 
-      <section className="border-y border-border/60 bg-card/20 py-14">
+      <section className="border-y border-border py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 flex flex-wrap gap-2">
             {["All", "Depression", "Anxiety", "Family", "Addiction"].map((category) => (
-              <Button key={category} variant={category === "All" ? "default" : "outline"} className="rounded-full">
+              <Button key={category} variant={category === "All" ? "default" : "outline"}>
                 {category}
               </Button>
             ))}
@@ -103,7 +103,7 @@ export default function StoriesPage() {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {stories.map((story) => (
-              <Card key={story.id} className="border-border bg-card shadow-sm">
+              <Card key={story.id} className="border-border">
                 <CardHeader>
                   <div className="mb-2 flex items-center justify-between">
                     <Badge variant="outline">{story.category}</Badge>
@@ -120,7 +120,7 @@ export default function StoriesPage() {
                       <span className="inline-flex items-center"><MessageCircle className="mr-1 size-3" />{story.comments}</span>
                     </div>
                   </div>
-                  <Button asChild variant="outline" className="w-full rounded-full">
+                  <Button asChild variant="outline" className="w-full">
                     <Link href={`/stories/${story.id}`}>Read story</Link>
                   </Button>
                 </CardContent>
@@ -132,13 +132,13 @@ export default function StoriesPage() {
 
       <section className="section-padding">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardHeader>
               <CardTitle className="text-2xl">Share your story</CardTitle>
               <CardDescription>Your experience may help someone take their next healthy step.</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button asChild>
                 <Link href="/contact">Submit a story safely</Link>
               </Button>
             </CardContent>

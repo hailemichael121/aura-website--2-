@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Bot, BookOpen, Clock, Download, Headphones, Search, User, Video } from "lucide-react"
+import { BookOpen, Clock, Download, Headphones, Search, User, Video } from "lucide-react"
 import { resourceArticles, resourcePodcasts } from "@/lib/content/resources"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -64,9 +64,9 @@ const toolkits = [
 export default function ResourcesPage() {
   return (
     <div className="min-h-screen bg-background pt-20">
-      <section className="border-b border-border/60 bg-card/40 py-16">
+      <section className="border-b border-border bg-muted/50 py-16">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6 lg:px-8">
-          <Badge variant="outline" className="w-fit border-primary/40 text-primary">
+          <Badge variant="outline" className="w-fit">
             Resource Hub
           </Badge>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-foreground md:text-5xl">Read. Watch. Grow.</h1>
@@ -76,9 +76,9 @@ export default function ResourcesPage() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <div className="relative flex-1 max-w-2xl">
               <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Search articles, videos, podcasts..." className="h-12 rounded-full border-border pl-12" />
+              <Input placeholder="Search articles, videos, podcasts..." className="h-12 pl-12" />
             </div>
-            <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button asChild>
               <Link href="/resources">View resource library</Link>
             </Button>
           </div>
@@ -88,20 +88,20 @@ export default function ResourcesPage() {
       <section className="section-padding">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="articles" className="w-full space-y-8">
-            <TabsList className="grid w-full grid-cols-2 rounded-2xl bg-muted p-1 md:grid-cols-4">
-              <TabsTrigger value="articles" className="rounded-xl"><BookOpen className="mr-2 size-4" />Articles</TabsTrigger>
-              <TabsTrigger value="podcasts" className="rounded-xl"><Headphones className="mr-2 size-4" />Podcast</TabsTrigger>
-              <TabsTrigger value="videos" className="rounded-xl"><Video className="mr-2 size-4" />Videos</TabsTrigger>
-              <TabsTrigger value="toolkits" className="rounded-xl"><Download className="mr-2 size-4" />Toolkits</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 rounded-lg bg-muted p-1 md:grid-cols-4">
+              <TabsTrigger value="articles" className="rounded-md"><BookOpen className="mr-2 size-4" />Articles</TabsTrigger>
+              <TabsTrigger value="podcasts" className="rounded-md"><Headphones className="mr-2 size-4" />Podcast</TabsTrigger>
+              <TabsTrigger value="videos" className="rounded-md"><Video className="mr-2 size-4" />Videos</TabsTrigger>
+              <TabsTrigger value="toolkits" className="rounded-md"><Download className="mr-2 size-4" />Toolkits</TabsTrigger>
             </TabsList>
 
             <TabsContent value="articles" className="space-y-8">
               <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 {resourceArticles.filter((article) => article.featured).map((article) => (
-                  <Card key={article.id} className="border-border bg-card shadow-sm">
+                  <Card key={article.id} className="border-border">
                     <CardHeader className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <Badge className="bg-primary text-primary-foreground">{article.category}</Badge>
+                        <Badge>{article.category}</Badge>
                         <span className="flex items-center text-sm text-muted-foreground"><Clock className="mr-1 size-4" />{article.readTime}</span>
                       </div>
                       <CardTitle className="text-xl leading-snug">
@@ -114,7 +114,7 @@ export default function ResourcesPage() {
                         <span className="flex items-center"><User className="mr-1 size-4" />{article.author}</span>
                         <span>{article.publishedAt}</span>
                       </div>
-                      <Button asChild className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                      <Button asChild className="w-full">
                         <Link href={`/resources/articles/${article.id}`}>Read Article</Link>
                       </Button>
                     </CardContent>
@@ -124,7 +124,7 @@ export default function ResourcesPage() {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {resourceArticles.map((article) => (
-                  <Card key={article.id} className="border-border bg-card shadow-sm">
+                  <Card key={article.id} className="border-border">
                     <CardHeader>
                       <div className="mb-2 flex items-center justify-between">
                         <Badge variant="outline">{article.category}</Badge>
@@ -134,7 +134,7 @@ export default function ResourcesPage() {
                       <CardDescription className="line-clamp-2">{article.excerpt}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <Button asChild variant="outline" className="w-full rounded-full">
+                      <Button asChild variant="outline" className="w-full">
                         <Link href={`/resources/articles/${article.id}`}>Read More</Link>
                       </Button>
                     </CardContent>
@@ -144,22 +144,22 @@ export default function ResourcesPage() {
             </TabsContent>
 
             <TabsContent value="podcasts" className="space-y-8">
-              <Card className="border-border bg-card shadow-sm">
+              <Card className="border-border">
                 <CardContent className="flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
                   <div>
                     <h2 className="text-2xl font-semibold text-foreground">Voices of Recovery Podcast</h2>
                     <p className="text-muted-foreground">Listen to stories, education, and practical support episodes.</p>
                   </div>
-                  <Button variant="outline" className="w-full rounded-full md:w-auto">
-                    <Bot className="mr-2 size-4" />Ask Help Bot for episode suggestions
+                  <Button variant="outline">
+                    Find episodes
                   </Button>
                 </CardContent>
               </Card>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {resourcePodcasts.map((podcast) => (
-                  <Card key={podcast.id} className="border-border bg-card shadow-sm">
+                  <Card key={podcast.id} className="border-border">
                     <CardHeader>
-                      <div className="mb-3 flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary"><Headphones className="size-5" /></div>
+                      <div className="mb-3 flex size-10 items-center justify-center rounded-md bg-muted text-muted-foreground"><Headphones className="size-5" /></div>
                       <Badge variant="outline" className="w-fit">{podcast.category}</Badge>
                       <CardTitle className="text-lg leading-snug">{podcast.title}</CardTitle>
                       <CardDescription>{podcast.description}</CardDescription>
@@ -169,7 +169,7 @@ export default function ResourcesPage() {
                         <span>{podcast.duration}</span>
                         <span>{podcast.publishedAt}</span>
                       </div>
-                      <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90">Listen Now</Button>
+                      <Button className="w-full">Listen Now</Button>
                     </CardContent>
                   </Card>
                 ))}
@@ -178,16 +178,16 @@ export default function ResourcesPage() {
 
             <TabsContent value="videos" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {videos.map((video) => (
-                <Card key={video.id} className="border-border bg-card shadow-sm">
+                <Card key={video.id} className="border-border">
                   <CardHeader>
-                    <div className="mb-4 flex h-40 items-center justify-center rounded-xl border border-border bg-muted"><Video className="size-12 text-primary" /></div>
+                    <div className="mb-4 flex h-40 items-center justify-center rounded-md border border-border bg-muted"><Video className="size-12 text-muted-foreground" /></div>
                     <Badge variant="outline" className="w-fit">{video.category}</Badge>
                     <CardTitle className="text-lg">{video.title}</CardTitle>
                     <CardDescription>{video.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="mb-4 flex items-center justify-between text-sm text-muted-foreground"><span>{video.views} views</span><span>{video.duration}</span></div>
-                    <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90">Watch Now</Button>
+                    <Button className="w-full">Watch Now</Button>
                   </CardContent>
                 </Card>
               ))}
@@ -195,9 +195,9 @@ export default function ResourcesPage() {
 
             <TabsContent value="toolkits" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {toolkits.map((toolkit) => (
-                <Card key={toolkit.id} className="border-border bg-card shadow-sm">
+                <Card key={toolkit.id} className="border-border">
                   <CardHeader>
-                    <div className="mb-4 flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary"><Download className="size-5" /></div>
+                    <div className="mb-4 flex size-10 items-center justify-center rounded-md bg-muted text-muted-foreground"><Download className="size-5" /></div>
                     <CardTitle className="text-lg">{toolkit.title}</CardTitle>
                     <CardDescription>{toolkit.description}</CardDescription>
                   </CardHeader>
@@ -207,7 +207,7 @@ export default function ResourcesPage() {
                       <div className="flex justify-between"><span>File Size</span><span>{toolkit.fileSize}</span></div>
                       <div className="flex justify-between"><span>Format</span><span>{toolkit.format}</span></div>
                     </div>
-                    <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90">Download Free</Button>
+                    <Button className="w-full">Download Free</Button>
                   </CardContent>
                 </Card>
               ))}
@@ -215,36 +215,36 @@ export default function ResourcesPage() {
           </Tabs>
         </div>
       </section>
-      <section className="border-t border-border/60 bg-card/20 py-14">
+      <section className="border-t border-border py-14">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
-          <Card className="border-border bg-card shadow-sm lg:col-span-8">
+          <Card className="border-border lg:col-span-8">
             <CardContent className="p-7">
-              <Badge variant="outline" className="mb-4 border-primary/30 text-primary">Get Involved</Badge>
+              <Badge variant="outline" className="mb-4">Get Involved</Badge>
               <h2 className="text-3xl font-semibold text-foreground">Be Part of the Movement</h2>
               <p className="mt-3 max-w-3xl text-muted-foreground">
-                Whether you're a volunteer, donor, mental health professional, or just a caring soul — there's space for you at AURA.
+                Whether you&apos;re a volunteer, donor, mental health professional, or just a caring soul &mdash; there&apos;s space for you at AURA.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button asChild>
                   <Link href="/get-involved">Explore ways to contribute</Link>
                 </Button>
-                <Button asChild variant="outline" className="rounded-full">
+                <Button asChild variant="outline">
                   <Link href="/contact">Partner With Us</Link>
                 </Button>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card shadow-sm lg:col-span-4">
+          <Card className="border-border lg:col-span-4">
             <CardContent className="space-y-3 p-7">
               <h3 className="text-lg font-semibold text-foreground">Quick actions</h3>
-              <Button asChild variant="outline" className="w-full rounded-full">
+              <Button asChild variant="outline" className="w-full">
                 <Link href="/get-involved">Volunteer</Link>
               </Button>
-              <Button asChild variant="outline" className="w-full rounded-full">
+              <Button asChild variant="outline" className="w-full">
                 <Link href="/get-involved">Donate</Link>
               </Button>
-              <Button asChild variant="outline" className="w-full rounded-full">
+              <Button asChild variant="outline" className="w-full">
                 <Link href="/get-involved">Join Events</Link>
               </Button>
             </CardContent>

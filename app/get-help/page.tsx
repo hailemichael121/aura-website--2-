@@ -25,9 +25,9 @@ const immediate = [
 export default function GetHelpPage() {
   return (
     <div className="min-h-screen bg-background pt-24">
-      <section className="border-b border-border/60 bg-card/30 py-14">
+      <section className="border-b border-border bg-muted/50 py-14">
         <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-          <Badge variant="outline" className="w-fit border-primary/30 text-primary">Get Help</Badge>
+          <Badge variant="outline" className="w-fit">Get Help</Badge>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">You are not alone</h1>
           <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
             Whether you need support right now or long-term guidance, AURA can help you take the next step safely.
@@ -37,15 +37,15 @@ export default function GetHelpPage() {
 
       <section id="immediate" className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:px-8">
         <div className="mb-6 flex items-center gap-3">
-          <AlertTriangle className="size-6 text-primary" />
+          <AlertTriangle className="size-6 text-muted-foreground" />
           <h2 className="text-2xl font-semibold text-foreground md:text-3xl">If you need support right now</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {immediate.map((item) => (
-            <Card key={item.label} className="border-border bg-card shadow-sm">
+            <Card key={item.label} className="border-border">
               <CardHeader>
                 <CardTitle className="text-lg">{item.label}</CardTitle>
-                <CardDescription className="font-medium text-primary">{item.contact}</CardDescription>
+                <CardDescription className="font-medium text-foreground">{item.contact}</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
@@ -55,11 +55,11 @@ export default function GetHelpPage() {
         </div>
       </section>
 
-      <section className="border-y border-border/60 bg-card/20 py-12">
+      <section className="border-y border-border py-12">
         <div className="mx-auto grid max-w-7xl gap-5 px-4 md:grid-cols-2 md:px-6 lg:px-8">
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardHeader>
-              <MessageSquareHeart className="size-7 text-primary" />
+              <MessageSquareHeart className="size-7 text-muted-foreground" />
               <CardTitle className="mt-2 text-2xl">Peer support</CardTitle>
               <CardDescription>Join calm circles where trained listeners offer understanding and privacy.</CardDescription>
             </CardHeader>
@@ -72,9 +72,9 @@ export default function GetHelpPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardHeader>
-              <UserRoundCheck className="size-7 text-primary" />
+              <UserRoundCheck className="size-7 text-muted-foreground" />
               <CardTitle className="mt-2 text-2xl">Professional help</CardTitle>
               <CardDescription>Connect with trusted counselors, psychologists, and partner clinics.</CardDescription>
             </CardHeader>
@@ -90,9 +90,9 @@ export default function GetHelpPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:px-8">
-        <Card className="border-border bg-card shadow-sm">
+        <Card className="border-border">
           <CardHeader>
-            <BookText className="size-7 text-primary" />
+            <BookText className="size-7 text-muted-foreground" />
             <CardTitle className="mt-2 text-2xl">Resources</CardTitle>
             <CardDescription>
               Explore practical tools for stress regulation, grounding, emotional communication, and family conversations.
@@ -100,8 +100,8 @@ export default function GetHelpPage() {
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-3">
-              <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90"><Link href="/resources">View resource library</Link></Button>
-              <Button asChild variant="outline" className="rounded-full"><Link href="/contact"><PhoneCall className="mr-2 size-4" />Talk to our team</Link></Button>
+              <Button asChild><Link href="/resources">View resource library</Link></Button>
+              <Button asChild variant="outline"><Link href="/contact"><PhoneCall className="mr-2 size-4" />Talk to our team</Link></Button>
             </div>
           </CardContent>
         </Card>

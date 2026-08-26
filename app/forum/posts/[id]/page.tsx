@@ -43,17 +43,11 @@ export default function ForumPostPage({ params }: { params: { id: string } }) {
   const [isLiked, setIsLiked] = useState(false)
 
   useEffect(() => {
-    // Simulate fetching post data
     const fetchPost = async () => {
-      // Mock data - replace with actual API call
       const mockPost: ForumPost = {
         id: Number.parseInt(params.id),
         title: "How do I talk to my parents about therapy?",
-        content: `I've been struggling with anxiety for months and I know I need help, but I'm scared to tell my parents. They come from a generation where mental health wasn't really discussed, and I'm worried they'll think I'm weak or that there's something seriously wrong with me.
-
-I've been having panic attacks more frequently, especially before exams, and I can't concentrate on my studies. I know therapy could help, but I need my parents' support (and honestly, their financial help too since I'm still a student).
-
-Has anyone else been in a similar situation? How did you approach this conversation with your family? Any advice would be really appreciated.`,
+        content: `I've been struggling with anxiety for months and I know I need help, but I'm scared to tell my parents. They come from a generation where mental health wasn't really discussed, and I'm worried they'll think I'm weak or that there's something seriously wrong with me.\n\nI've been having panic attacks more frequently, especially before exams, and I can't concentrate on my studies. I know therapy could help, but I need my parents' support (and honestly, their financial help too since I'm still a student).\n\nHas anyone else been in a similar situation? How did you approach this conversation with your family? Any advice would be really appreciated.`,
         author: "Anonymous",
         category: "Youth Corner",
         replies: 12,
@@ -85,7 +79,6 @@ Has anyone else been in a similar situation? How did you approach this conversat
         },
       ]
 
-      // Check if post exists
       if (Number.parseInt(params.id) > 100) {
         notFound()
       }
@@ -127,10 +120,10 @@ Has anyone else been in a similar situation? How did you approach this conversat
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FFFFF8] flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#31960F] mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading discussion...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading discussion...</p>
         </div>
       </div>
     )
@@ -141,26 +134,24 @@ Has anyone else been in a similar situation? How did you approach this conversat
   }
 
   return (
-    <div className="min-h-screen bg-[#FFFFF8] pt-20">
+    <div className="min-h-screen bg-background pt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
-        <Link href="/forum" className="inline-flex items-center text-[#31960F] hover:text-[#2A7F0C] mb-6">
+        <Link href="/forum" className="inline-flex items-center text-primary hover:underline mb-6">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Forum
         </Link>
 
-        {/* Main Post */}
-        <Card className="border-0 shadow-xl rounded-3xl bg-white mb-8">
+        <Card className="mb-8">
           <CardHeader>
             <div className="flex items-center justify-between mb-4">
-              <Badge className="bg-[#31960F] text-white">{post.category}</Badge>
-              <div className="flex items-center text-sm text-gray-500">
+              <Badge>{post.category}</Badge>
+              <div className="flex items-center text-sm text-muted-foreground">
                 <Clock className="w-4 h-4 mr-1" />
                 {post.timeAgo}
               </div>
             </div>
             <CardTitle className="text-2xl">{post.title}</CardTitle>
-            <div className="flex items-center space-x-4 text-sm text-gray-600">
+            <div className="flex items-center space-x-4 text-sm text-muted-foreground">
               <div className="flex items-center">
                 <User className="w-4 h-4 mr-1" />
                 {post.author}
@@ -173,32 +164,31 @@ Has anyone else been in a similar situation? How did you approach this conversat
             </div>
           </CardHeader>
           <CardContent>
-            <div className="prose max-w-none mb-6">
-              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{post.content}</p>
+            <div className="mb-6">
+              <p className="text-foreground leading-relaxed whitespace-pre-wrap">{post.content}</p>
             </div>
 
-            {/* Post Actions */}
-            <div className="flex items-center justify-between pt-6 border-t border-gray-200">
+            <div className="flex items-center justify-between pt-6 border-t border-border">
               <div className="flex items-center space-x-4">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={handleLike}
-                  className={`${isLiked ? "text-red-500" : "text-gray-500"} hover:text-red-600`}
+                  className={isLiked ? "text-primary" : "text-muted-foreground"}
                 >
                   <Heart className={`w-4 h-4 mr-1 ${isLiked ? "fill-current" : ""}`} />
                   {post.likes}
                 </Button>
-                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-blue-600">
+                <Button variant="ghost" size="sm" className="text-muted-foreground">
                   <MessageCircle className="w-4 h-4 mr-1" />
                   {post.replies}
                 </Button>
-                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-green-600">
+                <Button variant="ghost" size="sm" className="text-muted-foreground">
                   <Share2 className="w-4 h-4 mr-1" />
                   Share
                 </Button>
               </div>
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-red-600">
+              <Button variant="ghost" size="sm" className="text-muted-foreground">
                 <Flag className="w-4 h-4 mr-1" />
                 Report
               </Button>
@@ -206,66 +196,59 @@ Has anyone else been in a similar situation? How did you approach this conversat
           </CardContent>
         </Card>
 
-        {/* Comments Section */}
-        <Card className="border-0 shadow-lg rounded-3xl bg-white">
+        <Card>
           <CardHeader>
             <CardTitle className="text-xl">Replies ({comments.length})</CardTitle>
           </CardHeader>
           <CardContent>
-            {/* Comment Form */}
             <form onSubmit={handleCommentSubmit} className="mb-8">
               <Textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Share your thoughts and support..."
-                className="mb-4 rounded-2xl"
+                className="mb-4"
                 rows={4}
               />
               <div className="flex justify-between items-center">
                 <div className="flex items-center space-x-2">
                   <input type="checkbox" id="anonymous" className="rounded" />
-                  <label htmlFor="anonymous" className="text-sm text-gray-600">
+                  <label htmlFor="anonymous" className="text-sm text-muted-foreground">
                     Post anonymously
                   </label>
                 </div>
-                <Button
-                  type="submit"
-                  disabled={!newComment.trim()}
-                  className="bg-[#31960F] hover:bg-[#2A7F0C] text-white rounded-full"
-                >
+                <Button type="submit" disabled={!newComment.trim()}>
                   <Send className="w-4 h-4 mr-2" />
                   Reply
                 </Button>
               </div>
             </form>
 
-            {/* Comments List */}
             <div className="space-y-6">
               {comments.map((comment) => (
-                <div key={comment.id} className="border-l-4 border-[#31960F] pl-6">
+                <div key={comment.id} className="border-l-2 border-primary pl-6">
                   <div className="flex items-start space-x-4">
-                    <Avatar className="w-10 h-10">
-                      <AvatarFallback className="bg-[#31960F] text-white">
+                    <Avatar className="w-9 h-9">
+                      <AvatarFallback className="bg-primary text-primary-foreground text-sm">
                         {comment.isAnonymous ? "A" : comment.author[0]}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="font-medium text-gray-900">{comment.author}</span>
+                        <span className="font-medium text-foreground">{comment.author}</span>
                         {comment.isAnonymous && (
                           <Badge variant="secondary" className="text-xs">
                             Anonymous
                           </Badge>
                         )}
-                        <span className="text-sm text-gray-500">{comment.timeAgo}</span>
+                        <span className="text-sm text-muted-foreground">{comment.timeAgo}</span>
                       </div>
-                      <p className="text-gray-700 leading-relaxed mb-3">{comment.content}</p>
+                      <p className="text-foreground leading-relaxed mb-3">{comment.content}</p>
                       <div className="flex items-center space-x-4">
-                        <Button variant="ghost" size="sm" className="text-gray-500 hover:text-red-600">
+                        <Button variant="ghost" size="sm" className="text-muted-foreground">
                           <Heart className="w-3 h-3 mr-1" />
                           {comment.likes}
                         </Button>
-                        <Button variant="ghost" size="sm" className="text-gray-500 hover:text-blue-600">
+                        <Button variant="ghost" size="sm" className="text-muted-foreground">
                           Reply
                         </Button>
                       </div>

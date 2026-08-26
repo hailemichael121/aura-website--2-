@@ -44,21 +44,21 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#00B089] to-[#3284FC] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-muted/30 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center text-white hover:text-white/80 transition-colors mb-6">
+          <Link href="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-6">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
           </Link>
-          <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <div className="text-[#00B089] font-bold text-2xl">A</div>
+          <div className="w-14 h-14 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span className="text-primary-foreground font-bold text-xl">A</span>
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-white/80">Sign in to your AURA account</p>
+          <h1 className="text-2xl font-semibold mb-1">Welcome Back</h1>
+          <p className="text-muted-foreground">Sign in to your AURA account</p>
         </div>
 
-        <Card className="border-0 shadow-2xl">
+        <Card>
           <CardHeader>
             <CardTitle>Sign In</CardTitle>
             <CardDescription>Enter your credentials to access your account</CardDescription>
@@ -74,7 +74,7 @@ export default function SignInPage() {
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="email"
                     type="email"
@@ -90,7 +90,7 @@ export default function SignInPage() {
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="password"
                     type="password"
@@ -103,19 +103,15 @@ export default function SignInPage() {
                 </div>
               </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-gradient-to-r from-[#00B089] to-[#3284FC] hover:from-[#00957A] hover:to-[#2A73E3]"
-                disabled={loading}
-              >
+              <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? "Signing In..." : "Sign In"}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
-                Don't have an account?{" "}
-                <Link href="/auth/signup" className="text-[#00B089] hover:underline font-medium">
+              <p className="text-sm text-muted-foreground">
+                Don&apos;t have an account?{" "}
+                <Link href="/auth/signup" className="text-primary hover:underline font-medium">
                   Sign up
                 </Link>
               </p>

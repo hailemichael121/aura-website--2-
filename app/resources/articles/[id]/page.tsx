@@ -26,7 +26,7 @@ export default async function ResourceArticlePage({ params }: Props) {
             <ArrowLeft className="mr-2 size-4" />Back to resources
           </Link>
           <div className="mb-8 space-y-4">
-            <Badge className="bg-primary text-primary-foreground">{article.category}</Badge>
+            <Badge>{article.category}</Badge>
             <h1 className="text-3xl font-bold text-foreground md:text-4xl">{article.title}</h1>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
               <span className="flex items-center"><User className="mr-1 size-4" />{article.author}</span>
@@ -35,7 +35,7 @@ export default async function ResourceArticlePage({ params }: Props) {
             </div>
           </div>
 
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardContent className="space-y-5 p-6 text-base leading-7 text-muted-foreground md:p-8">
               {article.content.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
@@ -45,7 +45,7 @@ export default async function ResourceArticlePage({ params }: Props) {
         </article>
 
         <aside className="space-y-5 lg:col-span-4">
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardContent className="space-y-4 p-6">
               <h2 className="text-lg font-semibold">Article tags</h2>
               <div className="flex flex-wrap gap-2">
@@ -53,17 +53,17 @@ export default async function ResourceArticlePage({ params }: Props) {
                   <Badge key={tag} variant="secondary">{tag}</Badge>
                 ))}
               </div>
-              <Button variant="outline" className="w-full rounded-full">
+              <Button variant="outline" className="w-full">
                 <Share2 className="mr-2 size-4" />Share article
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardContent className="space-y-4 p-6">
               <h2 className="text-lg font-semibold">Need direct support?</h2>
               <p className="text-sm text-muted-foreground">If this topic feels personal right now, reach out and get guided support from our team.</p>
-              <Button asChild className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button asChild className="w-full">
                 <Link href="/get-help">Get Help</Link>
               </Button>
             </CardContent>

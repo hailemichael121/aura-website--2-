@@ -42,9 +42,9 @@ const programs = [
 export default function ProgramsPage() {
   return (
     <div className="min-h-screen bg-background pt-24">
-      <section className="border-b border-border/60 bg-card/30 py-14">
+      <section className="border-b border-border bg-muted/50 py-14">
         <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-          <Badge variant="outline" className="w-fit border-primary/30 text-primary">Programs</Badge>
+          <Badge variant="outline" className="w-fit">Programs</Badge>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">Community-centered programs</h1>
           <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
             AURA programs are practical and accessible, designed to make mental wellness support more visible and actionable across Ethiopia.
@@ -55,9 +55,9 @@ export default function ProgramsPage() {
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8">
         <div className="grid gap-5 md:grid-cols-2">
           {programs.map((program) => (
-            <Card key={program.name} className="border-border bg-card shadow-sm">
+            <Card key={program.name} className="border-border">
               <CardHeader>
-                <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <div className="flex size-10 items-center justify-center rounded-md bg-muted text-muted-foreground">
                   <program.icon className="size-5" />
                 </div>
                 <CardTitle className="pt-3 text-2xl text-foreground">{program.name}</CardTitle>
@@ -67,7 +67,7 @@ export default function ProgramsPage() {
                 <p><span className="font-semibold text-foreground">Impact:</span> {program.impact}</p>
                 <p><span className="font-semibold text-foreground">How to participate:</span> {program.join}</p>
                 <div className="pt-4">
-                  <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button asChild>
                     <Link href={`/programs/${program.id}`}>View program details</Link>
                   </Button>
                 </div>
@@ -76,17 +76,17 @@ export default function ProgramsPage() {
           ))}
         </div>
 
-        <Card className="mt-10 border-border bg-card/70 shadow-sm">
+        <Card className="mt-10 border-border">
           <CardContent className="flex flex-col gap-5 p-6 md:flex-row md:items-center md:justify-between">
             <div>
               <h3 className="text-2xl font-medium text-foreground">Ready to join a program?</h3>
               <p className="mt-2 text-muted-foreground">We welcome participants, volunteers, schools, and partners.</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button asChild>
                 <Link href="/programs/register">Register interest</Link>
               </Button>
-              <Button asChild variant="outline" className="rounded-full border-primary/40 hover:bg-primary/10">
+              <Button asChild variant="outline">
                 <Link href="/contact">Contact team</Link>
               </Button>
             </div>

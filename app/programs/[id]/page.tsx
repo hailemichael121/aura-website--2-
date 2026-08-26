@@ -69,14 +69,14 @@ export default function ProgramDetailPage({ params }: { params: { id: string } }
   return (
     <div className="min-h-screen bg-background pt-24">
       <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
-        <Link href="/programs" className="mb-6 inline-flex items-center text-primary hover:text-primary/80">
+        <Link href="/programs" className="mb-6 inline-flex items-center text-sm text-primary hover:text-primary/80">
           <ArrowLeft className="mr-2 size-4" />Back to Programs
         </Link>
 
-        <Card className="mb-8 border-border bg-card shadow-sm">
+        <Card className="mb-8 border-border">
           <CardHeader>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-              <Badge className="bg-primary text-primary-foreground">{program.category}</Badge>
+              <Badge>{program.category}</Badge>
               <span className="inline-flex items-center text-sm text-muted-foreground"><Clock className="mr-1 size-4" />{program.duration}</span>
             </div>
             <CardTitle className="text-3xl text-foreground">{program.title}</CardTitle>
@@ -84,16 +84,16 @@ export default function ProgramDetailPage({ params }: { params: { id: string } }
           </CardHeader>
           <CardContent>
             <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-3 text-sm text-muted-foreground">
-              <div className="inline-flex items-center"><Calendar className="mr-2 size-4 text-primary" />{program.frequency} · {program.nextSession}</div>
-              <div className="inline-flex items-center"><MapPin className="mr-2 size-4 text-primary" />{program.location}</div>
-              <div className="inline-flex items-center"><Users className="mr-2 size-4 text-primary" />{program.participants}</div>
+              <div className="inline-flex items-center"><Calendar className="mr-2 size-4" />{program.frequency} &middot; {program.nextSession}</div>
+              <div className="inline-flex items-center"><MapPin className="mr-2 size-4" />{program.location}</div>
+              <div className="inline-flex items-center"><Users className="mr-2 size-4" />{program.participants}</div>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Button className="flex-1 rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button className="flex-1">
                 <Video className="mr-2 size-4" />Register Now
               </Button>
-              <Button variant="outline" className="rounded-full border-primary/40 text-foreground hover:bg-primary/10">
+              <Button variant="outline">
                 <MessageSquare className="mr-2 size-4" />Ask Questions
               </Button>
             </div>
@@ -101,21 +101,21 @@ export default function ProgramDetailPage({ params }: { params: { id: string } }
         </Card>
 
         <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardHeader><CardTitle>About this program</CardTitle></CardHeader>
             <CardContent><p className="leading-relaxed text-muted-foreground">{program.fullDescription}</p></CardContent>
           </Card>
 
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardHeader><CardTitle>Session schedule</CardTitle></CardHeader>
             <CardContent className="space-y-3">
               {program.schedule.map((session) => (
-                <div key={`${session.day}-${session.time}`} className="flex items-center justify-between rounded-xl border border-border bg-background p-3">
+                <div key={`${session.day}-${session.time}`} className="flex items-center justify-between rounded-lg border border-border bg-background p-3">
                   <div>
                     <p className="font-medium text-foreground">{session.day}</p>
                     <p className="text-sm text-muted-foreground">{session.activity}</p>
                   </div>
-                  <p className="text-sm font-medium text-primary">{session.time}</p>
+                  <p className="text-sm font-medium text-muted-foreground">{session.time}</p>
                 </div>
               ))}
             </CardContent>
@@ -123,34 +123,34 @@ export default function ProgramDetailPage({ params }: { params: { id: string } }
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <Card className="border-border bg-card shadow-sm">
+          <Card className="border-border">
             <CardHeader><CardTitle>Requirements</CardTitle></CardHeader>
             <CardContent>
               <ul className="space-y-2 text-muted-foreground">
-                {program.requirements.map((item) => <li key={item}>• {item}</li>)}
+                {program.requirements.map((item) => <li key={item}>&bull; {item}</li>)}
               </ul>
             </CardContent>
           </Card>
 
-          <Card className="border-border bg-card shadow-sm">
-            <CardHeader><CardTitle>What you’ll gain</CardTitle></CardHeader>
+          <Card className="border-border">
+            <CardHeader><CardTitle>What you&apos;ll gain</CardTitle></CardHeader>
             <CardContent>
               <ul className="space-y-2 text-muted-foreground">
-                {program.benefits.map((item) => <li key={item}>• {item}</li>)}
+                {program.benefits.map((item) => <li key={item}>&bull; {item}</li>)}
               </ul>
             </CardContent>
           </Card>
         </div>
 
-        <Card className="mt-8 border-border bg-card/70 shadow-sm">
+        <Card className="mt-8 border-border">
           <CardContent className="p-7 text-center">
             <h3 className="text-2xl font-semibold text-foreground">Ready to join?</h3>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
               Take the next step toward healing and growth. Our community is here to support your journey.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90">Register for this program</Button>
-              <Button variant="outline" className="rounded-full border-primary/40 hover:bg-primary/10">Contact us first</Button>
+              <Button>Register for this program</Button>
+              <Button variant="outline">Contact us first</Button>
             </div>
           </CardContent>
         </Card>

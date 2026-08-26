@@ -76,19 +76,19 @@ export default function SignUpPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#00B089] to-[#3284FC] flex items-center justify-center p-4">
-        <Card className="w-full max-w-md border-0 shadow-2xl">
+      <div className="min-h-screen bg-muted/30 flex items-center justify-center p-4">
+        <Card className="w-full max-w-md">
           <CardContent className="p-8 text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#00B089] to-[#3284FC] rounded-full flex items-center justify-center mx-auto mb-6">
-              <Mail className="w-8 h-8 text-white" />
+            <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center mx-auto mb-5">
+              <Mail className="w-7 h-7 text-primary-foreground" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Check Your Email</h2>
-            <p className="text-gray-600 mb-6">
-              We've sent you a confirmation link at <strong>{formData.email}</strong>. Please check your email and click
+            <h2 className="text-xl font-semibold mb-3">Check Your Email</h2>
+            <p className="text-muted-foreground mb-6">
+              We&apos;ve sent you a confirmation link at <strong>{formData.email}</strong>. Please check your email and click
               the link to activate your account.
             </p>
             <Link href="/">
-              <Button className="bg-gradient-to-r from-[#00B089] to-[#3284FC]">Return to Home</Button>
+              <Button>Return to Home</Button>
             </Link>
           </CardContent>
         </Card>
@@ -97,21 +97,21 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#00B089] to-[#3284FC] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-muted/30 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center text-white hover:text-white/80 transition-colors mb-6">
+          <Link href="/" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors mb-6">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
           </Link>
-          <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <div className="text-[#00B089] font-bold text-2xl">A</div>
+          <div className="w-14 h-14 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span className="text-primary-foreground font-bold text-xl">A</span>
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Join AURA</h1>
-          <p className="text-white/80">Create your account and be part of the movement</p>
+          <h1 className="text-2xl font-semibold mb-1">Join AURA</h1>
+          <p className="text-muted-foreground">Create your account and be part of the movement</p>
         </div>
 
-        <Card className="border-0 shadow-2xl">
+        <Card>
           <CardHeader>
             <CardTitle>Create Account</CardTitle>
             <CardDescription>Join our community of mental health advocates</CardDescription>
@@ -127,7 +127,7 @@ export default function SignUpPage() {
               <div className="space-y-2">
                 <Label htmlFor="fullName">Full Name</Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="fullName"
                     name="fullName"
@@ -144,7 +144,7 @@ export default function SignUpPage() {
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="email"
                     name="email"
@@ -161,7 +161,7 @@ export default function SignUpPage() {
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="password"
                     name="password"
@@ -178,7 +178,7 @@ export default function SignUpPage() {
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="confirmPassword"
                     name="confirmPassword"
@@ -200,29 +200,25 @@ export default function SignUpPage() {
                 />
                 <Label htmlFor="terms" className="text-sm">
                   I agree to the{" "}
-                  <Link href="/terms" className="text-[#00B089] hover:underline">
-                    Terms & Conditions
+                  <Link href="/terms" className="text-primary hover:underline">
+                    Terms &amp; Conditions
                   </Link>{" "}
                   and{" "}
-                  <Link href="/privacy" className="text-[#00B089] hover:underline">
+                  <Link href="/privacy" className="text-primary hover:underline">
                     Privacy Policy
                   </Link>
                 </Label>
               </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-gradient-to-r from-[#00B089] to-[#3284FC] hover:from-[#00957A] hover:to-[#2A73E3]"
-                disabled={loading}
-              >
+              <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 Already have an account?{" "}
-                <Link href="/auth/signin" className="text-[#00B089] hover:underline font-medium">
+                <Link href="/auth/signin" className="text-primary hover:underline font-medium">
                   Sign in
                 </Link>
               </p>

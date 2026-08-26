@@ -33,9 +33,7 @@ export default function AdminLayout({
 
       setUser(user)
 
-      // Check if user is admin (you can implement your own admin check logic)
-      // For now, we'll check if the user's email is in a list of admin emails
-      const adminEmails = ["admin@auraethiopia.org", "red8_fe@example.com"] // Add actual admin emails
+      const adminEmails = ["admin@auraethiopia.org", "red8_fe@example.com"]
       setIsAdmin(adminEmails.includes(user.email || ""))
 
       setLoading(false)
@@ -57,7 +55,7 @@ export default function AdminLayout({
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-[#00B089]" />
+        <Loader2 className="w-6 h-6 animate-spin text-primary" />
       </div>
     )
   }
@@ -67,16 +65,16 @@ export default function AdminLayout({
       <div className="min-h-screen flex items-center justify-center p-4">
         <Card className="max-w-md">
           <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h2>
-            <p className="text-gray-600 mb-6">You don't have permission to access the admin panel.</p>
-            <Button onClick={() => router.push("/")} className="bg-gradient-to-r from-[#00B089] to-[#3284FC]">
-              Return to Home
-            </Button>
+            <h2 className="text-xl font-semibold mb-3">Access Denied</h2>
+            <p className="text-muted-foreground mb-6">
+              You don&apos;t have permission to access the admin panel.
+            </p>
+            <Button onClick={() => router.push("/")}>Return to Home</Button>
           </CardContent>
         </Card>
       </div>
     )
   }
 
-  return <div className="min-h-screen bg-gray-50">{children}</div>
+  return <div className="min-h-screen bg-muted/20">{children}</div>
 }

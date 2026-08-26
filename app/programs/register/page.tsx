@@ -31,7 +31,6 @@ export default function ProgramRegistrationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
   const searchParams = useSearchParams()
-  const programId = searchParams.get("program")
 
   const programs = [
     "Community Therapy Circles",
@@ -54,39 +53,33 @@ export default function ProgramRegistrationPage() {
     if (!formData.fullName.trim() || !formData.email.trim() || !formData.program || !formData.agreedToTerms) return
 
     setIsSubmitting(true)
-
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    // Redirect with success message
     router.push("/programs?registered=true")
   }
 
   return (
-    <div className="min-h-screen bg-[#FFFFF8] pt-20">
+    <div className="min-h-screen bg-background pt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back Button */}
-        <Link href="/programs" className="inline-flex items-center text-[#31960F] hover:text-[#2A7F0C] mb-6">
+        <Link href="/programs" className="inline-flex items-center text-primary hover:underline mb-6">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Programs
         </Link>
 
-        <Card className="border-0 shadow-2xl rounded-3xl bg-white">
+        <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-playfair">Program Registration</CardTitle>
-            <CardDescription className="text-lg">
+            <CardTitle className="text-2xl">Program Registration</CardTitle>
+            <CardDescription>
               Join our mental health programs and start your journey towards wellness
             </CardDescription>
           </CardHeader>
-          <CardContent className="p-8">
+          <CardContent className="p-6 md:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Personal Information */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-gray-900 border-b border-gray-200 pb-2">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b border-border pb-2">
                   Personal Information
                 </h3>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="fullName">Full Name *</Label>
                     <Input
@@ -95,7 +88,6 @@ export default function ProgramRegistrationPage() {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="Your full name"
-                      className="rounded-full"
                       required
                     />
                   </div>
@@ -108,13 +100,12 @@ export default function ProgramRegistrationPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="your@email.com"
-                      className="rounded-full"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input
@@ -123,7 +114,6 @@ export default function ProgramRegistrationPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="+251-xxx-xxx-xxx"
-                      className="rounded-full"
                     />
                   </div>
                   <div className="space-y-2">
@@ -135,15 +125,13 @@ export default function ProgramRegistrationPage() {
                       value={formData.age}
                       onChange={handleInputChange}
                       placeholder="Your age"
-                      className="rounded-full"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Program Selection */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-gray-900 border-b border-gray-200 pb-2">Program Selection</h3>
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b border-border pb-2">Program Selection</h3>
 
                 <div className="space-y-2">
                   <Label htmlFor="program">Which program would you like to join? *</Label>
@@ -152,7 +140,7 @@ export default function ProgramRegistrationPage() {
                     name="program"
                     value={formData.program}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-full"
+                    className="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground"
                     required
                   >
                     <option value="">Select a program</option>
@@ -173,7 +161,6 @@ export default function ProgramRegistrationPage() {
                     onChange={handleInputChange}
                     placeholder="Tell us about any previous therapy, counseling, or support group experience..."
                     rows={3}
-                    className="rounded-2xl"
                   />
                 </div>
 
@@ -186,16 +173,14 @@ export default function ProgramRegistrationPage() {
                     onChange={handleInputChange}
                     placeholder="Share your goals and expectations..."
                     rows={3}
-                    className="rounded-2xl"
                   />
                 </div>
               </div>
 
-              {/* Emergency Contact */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-gray-900 border-b border-gray-200 pb-2">Emergency Contact</h3>
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b border-border pb-2">Emergency Contact</h3>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="emergencyContact">Emergency Contact Name</Label>
                     <Input
@@ -204,7 +189,6 @@ export default function ProgramRegistrationPage() {
                       value={formData.emergencyContact}
                       onChange={handleInputChange}
                       placeholder="Full name"
-                      className="rounded-full"
                     />
                   </div>
                   <div className="space-y-2">
@@ -215,15 +199,13 @@ export default function ProgramRegistrationPage() {
                       value={formData.emergencyPhone}
                       onChange={handleInputChange}
                       placeholder="+251-xxx-xxx-xxx"
-                      className="rounded-full"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Medical Information */}
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-gray-900 border-b border-gray-200 pb-2">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold border-b border-border pb-2">
                   Medical Information (Optional)
                 </h3>
 
@@ -238,13 +220,11 @@ export default function ProgramRegistrationPage() {
                     onChange={handleInputChange}
                     placeholder="This information helps us provide better support and ensure your safety..."
                     rows={3}
-                    className="rounded-2xl"
                   />
                 </div>
               </div>
 
-              {/* Agreements */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-start space-x-2">
                   <Checkbox
                     id="terms"
@@ -253,11 +233,11 @@ export default function ProgramRegistrationPage() {
                   />
                   <Label htmlFor="terms" className="text-sm leading-relaxed">
                     I agree to the{" "}
-                    <Link href="/terms" className="text-[#31960F] hover:underline">
-                      Terms & Conditions
+                    <Link href="/terms" className="text-primary hover:underline">
+                      Terms &amp; Conditions
                     </Link>{" "}
                     and{" "}
-                    <Link href="/privacy" className="text-[#31960F] hover:underline">
+                    <Link href="/privacy" className="text-primary hover:underline">
                       Privacy Policy
                     </Link>
                     . I understand that this program is for support and education, not a substitute for professional
@@ -278,12 +258,11 @@ export default function ProgramRegistrationPage() {
                 </div>
               </div>
 
-              {/* Privacy Notice */}
-              <div className="bg-blue-50 rounded-2xl p-6">
+              <div className="rounded-md border border-border bg-muted/50 p-4">
                 <div className="flex items-start space-x-3">
-                  <Shield className="w-5 h-5 text-blue-600 mt-0.5" />
-                  <div className="text-sm text-blue-800">
-                    <p className="font-medium mb-2">Your Privacy Matters</p>
+                  <Shield className="w-5 h-5 text-primary mt-0.5" />
+                  <div className="text-sm text-muted-foreground">
+                    <p className="font-medium text-foreground mb-1">Your Privacy Matters</p>
                     <p>
                       All information provided will be kept strictly confidential and used only for program coordination
                       and support. We follow strict privacy protocols to protect your personal information.
@@ -292,7 +271,6 @@ export default function ProgramRegistrationPage() {
                 </div>
               </div>
 
-              {/* Submit Button */}
               <Button
                 type="submit"
                 disabled={
@@ -302,11 +280,11 @@ export default function ProgramRegistrationPage() {
                   !formData.program ||
                   !formData.agreedToTerms
                 }
-                className="w-full bg-gradient-to-r from-[#31960F] to-[#3284FC] hover:from-[#2A7F0C] hover:to-[#2A73E3] text-white rounded-full py-4 font-semibold text-lg"
+                className="w-full py-6 text-base"
               >
                 {isSubmitting ? (
                   <div className="flex items-center">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-foreground mr-2"></div>
                     Submitting Registration...
                   </div>
                 ) : (

@@ -64,7 +64,7 @@ export default function NewPostPage() {
           <ArrowLeft className="mr-2 size-4" />Back to Forum
         </Link>
 
-        <Card className="border-border bg-card shadow-sm">
+        <Card className="border-border">
           <CardHeader>
             <CardTitle className="text-3xl">Start a New Discussion</CardTitle>
             <CardDescription>Share your thoughts, ask questions, or support the community in a respectful way.</CardDescription>
@@ -73,7 +73,7 @@ export default function NewPostPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="title">Discussion title *</Label>
-                <Input id="title" name="title" value={formData.title} onChange={handleInputChange} placeholder="What would you like to discuss?" className="rounded-xl" required />
+                <Input id="title" name="title" value={formData.title} onChange={handleInputChange} placeholder="What would you like to discuss?" required />
               </div>
 
               <div className="space-y-2">
@@ -83,7 +83,7 @@ export default function NewPostPage() {
                   name="category"
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="h-11 w-full rounded-xl border border-input bg-background px-3 text-sm"
+                  className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm"
                   required
                 >
                   <option value="">Select a category</option>
@@ -102,7 +102,6 @@ export default function NewPostPage() {
                   onChange={handleInputChange}
                   placeholder="Share your experience or question. Keep details safe and avoid posting personal identifiers."
                   rows={8}
-                  className="rounded-xl"
                   maxLength={2000}
                   required
                 />
@@ -114,9 +113,9 @@ export default function NewPostPage() {
                 <Label htmlFor="anonymous" className="text-sm">Post anonymously (your identity will be hidden)</Label>
               </div>
 
-              <div className="rounded-xl border border-primary/20 bg-primary/5 p-5">
+              <div className="rounded-lg border border-border p-5">
                 <div className="flex items-start gap-3">
-                  <Shield className="mt-0.5 size-5 text-primary" />
+                  <Shield className="mt-0.5 size-5 text-muted-foreground" />
                   <div className="space-y-1 text-sm text-muted-foreground">
                     <p className="font-medium text-foreground">Community safety reminder</p>
                     <p>Be respectful, avoid personal attacks, and do not share sensitive personal information.</p>
@@ -130,7 +129,7 @@ export default function NewPostPage() {
                 </div>
               )}
 
-              <Button type="submit" disabled={isSubmitting} className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button type="submit" disabled={isSubmitting} className="w-full">
                 {isSubmitting ? "Posting discussion..." : <span className="inline-flex items-center"><Send className="mr-2 size-4" />Post Discussion</span>}
               </Button>
             </form>
