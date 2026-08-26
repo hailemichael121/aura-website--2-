@@ -70,7 +70,11 @@ export default function GetInvolvedPage() {
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {ways.map((way) => (
-            <Card key={way.title} className="border-border">
+            <Card
+              key={way.title}
+              id={way.title === "Donate" ? "donate" : undefined}
+              className={`border-border ${way.title === "Donate" ? "scroll-mt-24" : ""}`}
+            >
               <CardHeader className="space-y-4">
                 <div className="flex size-10 items-center justify-center rounded-md bg-muted text-muted-foreground">
                   <way.icon className="size-5" />
@@ -120,7 +124,46 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8">
+      <section id="membership" className="scroll-mt-24 mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8">
+        <Card className="mb-8 border-border">
+          <CardHeader>
+            <CardTitle className="text-2xl">Membership</CardTitle>
+            <CardDescription>
+              How to become a member, membership benefits, and membership tiers.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Membership is how neighbours, students, practitioners, and
+              partners stay connected to AURA programs. Complete an application
+              when registration reopens; our team reviews each request before
+              onboarding.
+            </p>
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="rounded-lg border border-border p-4">
+                <h3 className="font-medium">Community Friend</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Newsletter, public events, and open dialogues.
+                </p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <h3 className="font-medium">Volunteer Member</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Circle support, outreach, and training invitations.
+                </p>
+              </div>
+              <div className="rounded-lg border border-border p-4">
+                <h3 className="font-medium">Institutional Partner</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Referral pathways, co-hosted programs, and shared resources.
+                </p>
+              </div>
+            </div>
+            <Button disabled className="whitespace-nowrap">
+              Register Here — Application is closed for now
+            </Button>
+          </CardContent>
+        </Card>
         <Card className="border-border">
           <CardContent className="flex flex-col gap-5 p-7 md:flex-row md:items-center md:justify-between">
             <div>

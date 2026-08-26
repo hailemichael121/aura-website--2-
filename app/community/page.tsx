@@ -55,33 +55,43 @@ export default function CommunityPage() {
         </div>
 
         <div className="mt-10 rounded-lg border border-border bg-muted/40 p-6 md:p-8">
-          <h2 className="text-xl font-medium">Community safety commitments</h2>
+          <h2 className="text-xl font-medium">Safety &amp; Code of Conduct</h2>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-muted-foreground">
             <li>
-              Confidentiality and respectful listening are expected in every
-              gathering.
+              <span className="font-medium text-foreground">Strict confidentiality:</span>{" "}
+              What is shared in AURA spaces stays in AURA spaces.
             </li>
             <li>
-              No shaming, no hate speech, no pressure to share personal details.
+              <span className="font-medium text-foreground">Non-judgmental respect:</span>{" "}
+              Valuing every individual&apos;s unique story without bias.
             </li>
             <li>
-              When urgent risks appear, we prioritize immediate professional or
-              emergency referrals.
+              <span className="font-medium text-foreground">Empathetic listening:</span>{" "}
+              Focus on active support rather than unsolicited advice.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">Safety first:</span>{" "}
+              Immediate warm handoffs for acute clinical needs.
             </li>
           </ul>
-          <div className="mt-6 flex flex-wrap gap-4 text-sm">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/forum"
-              className="inline-flex items-center text-primary hover:underline"
+              href="/auth/signin"
+              className="inline-flex items-center whitespace-nowrap rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
             >
-              Visit discussion forum{" "}
-              <ArrowRight className="ml-1 h-4 w-4" />
+              Sign in
             </Link>
             <Link
-              href="/get-involved"
-              className="inline-flex items-center text-primary hover:underline"
+              href="/auth/signup"
+              className="inline-flex items-center whitespace-nowrap rounded-full border border-border px-4 py-2 text-sm font-medium hover:bg-muted"
             >
-              Become a volunteer{" "}
+              Sign up
+            </Link>
+            <Link
+              href="/forum"
+              className="inline-flex items-center text-sm text-primary hover:underline"
+            >
+              Visit discussion forum{" "}
               <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </div>

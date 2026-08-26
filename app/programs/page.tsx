@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { GraduationCap, HeartPulse, Megaphone, UsersRound } from "lucide-react"
+import { CalendarDays, GraduationCap, HeartPulse, Laptop, Megaphone, UsersRound, Users } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -53,6 +53,22 @@ export default function ProgramsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8">
+        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: Users, label: "Weekly Family Time" },
+            { icon: Laptop, label: "Virtual Trainings" },
+            { icon: GraduationCap, label: "In-Person trainings" },
+            { icon: CalendarDays, label: "Events" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4"
+            >
+              <item.icon className="h-5 w-5 shrink-0 text-primary" />
+              <p className="text-sm font-medium">{item.label}</p>
+            </div>
+          ))}
+        </div>
         <div className="grid gap-5 md:grid-cols-2">
           {programs.map((program) => (
             <Card key={program.name} className="border-border">

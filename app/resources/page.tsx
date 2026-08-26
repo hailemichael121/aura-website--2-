@@ -78,8 +78,11 @@ export default function ResourcesPage() {
               <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
               <Input placeholder="Search articles, videos, podcasts..." className="h-12 pl-12" />
             </div>
-            <Button asChild>
-              <Link href="/resources">View resource library</Link>
+            <Button asChild className="whitespace-nowrap">
+              <Link href="/auth/signin">Sign in for access</Link>
+            </Button>
+            <Button asChild variant="outline" className="whitespace-nowrap">
+              <Link href="/auth/signup">Sign up</Link>
             </Button>
           </div>
         </div>

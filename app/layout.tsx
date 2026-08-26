@@ -8,6 +8,7 @@ import WelcomeModal from "@/components/welcome-modal";
 import { LanguageProvider } from "@/contexts/language-context";
 import { ThemeProvider } from "@/contexts/theme-context";
 import ErrorBoundary from "@/components/error-boundary";
+import { BrandDockProvider } from "@/hooks/use-brand-dock";
 
 export const metadata: Metadata = {
   title: "AURA - Alliance for Understanding Recovery & Awareness",
@@ -40,6 +41,7 @@ export default function RootLayout({
         <ErrorBoundary>
           <ThemeProvider>
             <LanguageProvider>
+              <BrandDockProvider>
               <div className="flex min-h-screen flex-col">
                 <Navbar />
                 <main className="flex-1">{children}</main>
@@ -47,6 +49,7 @@ export default function RootLayout({
                 <FloatingTelegram />
                 <WelcomeModal />
               </div>
+              </BrandDockProvider>
             </LanguageProvider>
           </ThemeProvider>
         </ErrorBoundary>

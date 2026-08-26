@@ -1,22 +1,77 @@
 import Image from "next/image";
-import { Heart, MapPin, Target, Eye, Users2, Stethoscope } from "lucide-react";
+import {
+  Eye,
+  Handshake,
+  Heart,
+  Scale,
+  ShieldCheck,
+  Target,
+  Users2,
+} from "lucide-react";
 import TeamMemberCard from "@/components/team-member-card";
 
 const values = [
   {
-    title: "Compassion first",
-    text: "We meet people where they are, with dignity and respect.",
+    title: "Empathy & Respect",
+    text: "Compassionate, stigma-free care.",
     icon: Heart,
   },
   {
-    title: "Local understanding",
-    text: "Our work is grounded in Ethiopian realities, languages, and community life.",
-    icon: MapPin,
+    title: "Inclusivity & Accessibility",
+    text: "Equitable outreach for all.",
+    icon: Users2,
   },
   {
-    title: "Shared responsibility",
-    text: "Mental wellness grows stronger when families, schools, and workplaces participate.",
-    icon: Users2,
+    title: "Integrity & Transparency",
+    text: "Ethical and accountable governance.",
+    icon: Scale,
+  },
+  {
+    title: "Community-Centered Care",
+    text: "Safe spaces and peer resilience.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Strategic Collaboration",
+    text: "Partnerships for systemic impact.",
+    icon: Handshake,
+  },
+];
+
+const board = [
+  {
+    initials: "MA",
+    name: "Prof. Mubarek Abera Mengistie",
+    title: "Board Chairman",
+    photo: "/images/team/member-3.png",
+    bio: "Full Professor of Mental Health and Nutrition with over 15 years of experience in academia, health system leadership, and international research collaborations. Lead consultant for national strategic initiatives (UNICEF/MoH) and a widely published author. He provides overall board stewardship, focusing on institutional strategy, academic alignment, research integrity, and senior advisory leadership.",
+  },
+  {
+    initials: "RD",
+    name: "Ms. Rediet Dadi Tafa",
+    title: "Board Member",
+    photo: "/images/team/member-6.jpg",
+    bio: "Senior psychologist, training director, and psychotherapist with over 5 years of experience leading nationwide personal development and psychological training initiatives. She leverages her background in trauma-focused therapy and capacity building so AURA initiatives deliver measurable behavioral change and community impact.",
+  },
+  {
+    initials: "AF",
+    name: "Asst. Prof. Anteneh Fikrie Tekola",
+    title: "Board Member",
+    photo: "/images/team/member-2.jpg",
+    bio: "Assistant Professor of Public Health, Director of Research & International Partnerships at Bule Hora University, external PhD candidate (Maastricht University), and PLoS ONE editor. He ensures our public health and research methodologies are ethically sound, rigorous, and positioned for international institutional partnerships.",
+  },
+  {
+    initials: "TT",
+    name: "Dr. Tamrat Tefera Ali",
+    title: "Board Member",
+    photo: "/images/team/member-4.jpg",
+    bio: "Assistant professor of psychiatry, certified psychotherapist (University of Toronto), and specialist in child and adolescent mental health. He provides strategic guidance so therapeutic, training, and community outreach programs meet high clinical standards.",
+  },
+  {
+    initials: "RT",
+    name: "Ms. Ruth Tesfaye Tegen",
+    title: "Board Member",
+    bio: "Dedicated advocate for youth empowerment and community-driven social initiatives. She focuses on creating inclusive, accessible spaces that empower young people to lead mental health advocacy efforts.",
   },
 ];
 
@@ -26,48 +81,37 @@ export default function AboutPage() {
       <section className="border-b border-border py-16 md:py-20">
         <div className="mx-auto max-w-5xl px-4 text-center md:px-6 lg:px-8">
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-            About AURA
+            About Us
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">
             Alliance for Understanding Recovery &amp; Awareness (AURA) is a
-            mental health awareness and support organization based in Bole, Addis
-            Ababa. We work to make care, conversation, and recovery support more
-            accessible for Ethiopian communities.
+            registered Ethiopian Civil Society Organization creating accessible,
+            culturally attuned safe spaces for mental health support.
           </p>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-2 md:px-6 lg:px-8">
         <div>
-          <h2 className="text-3xl font-semibold">Our story</h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
-            AURA began with a simple truth: many people are silently carrying
-            emotional pain while lacking safe places to talk. We started by
-            creating small, trusted spaces for conversation and have continued
-            growing through community partnerships, youth engagement, and
-            referral support.
-          </p>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
-            We are not here to replace professional services. We are here to
-            bridge the gap between silence and support—so that people can be
-            heard early, supported respectfully, and connected to the right
-            help.
-          </p>
+          <h2 className="text-3xl font-semibold">Mission, vision, and values</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-lg border border-border bg-card p-5">
               <Target className="h-5 w-5 text-primary" />
-              <h3 className="mt-3 font-medium">Mission</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Normalize mental health conversations and strengthen support
-                pathways across Ethiopia.
+              <h3 className="mt-3 font-medium">Our mission</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                To create accessible, culturally attuned safe spaces for mental
+                health support and stigma reduction by empowering youth,
+                leveraging digital innovation, and driving multi-stakeholder
+                action.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
               <Eye className="h-5 w-5 text-primary" />
-              <h3 className="mt-3 font-medium">Vision</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                A society where seeking support is seen as strength and everyone
-                can access care with dignity.
+              <h3 className="mt-3 font-medium">Our vision</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                A society where mental wellness is understood, valued,
+                protected, and accessible to all—free from stigma and
+                exclusion.
               </p>
             </div>
           </div>
@@ -75,7 +119,7 @@ export default function AboutPage() {
         <div className="rounded-lg border border-border bg-card p-3">
           <Image
             src="/images/mental-health-hero.png"
-            alt="AURA awareness event in Ethiopia"
+            alt="AURA awareness gathering"
             width={900}
             height={680}
             className="h-full w-full rounded object-cover"
@@ -85,81 +129,77 @@ export default function AboutPage() {
 
       <section className="border-y border-border bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-          <h2 className="text-3xl font-semibold">Meet Our Founder</h2>
-          <p className="mt-3 max-w-3xl text-muted-foreground">
-            Visionary leadership driving change in mental health advocacy.
-          </p>
-          <div className="mt-8">
-            <TeamMemberCard
-              initials="RF"
-              name="Dr. Rediet Feleke"
-              title="Founder & Medical Director"
-              instagram="@red8_fe"
-              telegram="@red8_fe"
-              tags={[
-                "Medical Student",
-                "Asela University",
-                "Mental Health Advocate",
-                "Highly Honored",
-              ]}
-              bio="Dr. Rediet Feleke is a passionate medical student at Asela University with a deep commitment to bridging mental health gaps for underserved communities. Her vision for AURA stems from firsthand experience witnessing the mental health challenges faced by Ethiopian youth and families."
-              icon={Stethoscope}
-              highlight
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold">Our Team</h2>
-        <p className="mt-3 max-w-3xl text-muted-foreground">
-          Dedicated professionals working together for mental wellness.
-        </p>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <TeamMemberCard
-            initials="SD"
-            name="Simret G. Dessie"
-            title="Community Outreach Coordinator"
-            instagram="@lunashine12"
-            tags={[
-              "Community engagement",
-              "Partnerships",
-              "Behavior change communication",
-            ]}
-            bio="Simret leads community engagement initiatives and builds trusted connections across Ethiopian communities to support awareness, reduce stigma, and increase access to care."
-          />
-          <TeamMemberCard
-            initials="MG"
-            name="Messeret Gossa"
-            title="Program Development Specialist"
-            instagram="@mesigosaa"
-            tags={[
-              "Program design",
-              "Implementation",
-              "Local context adaptation",
-            ]}
-            bio="Messeret designs and implements innovative mental health programs tailored to Ethiopian contexts, balancing evidence-based structure with practical on-the-ground realities."
-          />
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-muted/30 py-16">
-        <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-          <h2 className="text-3xl font-semibold">What guides our work</h2>
-          <div className="mt-7 grid gap-4 md:grid-cols-3">
+          <h2 className="text-3xl font-semibold">Core values</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {values.map((value) => (
               <article
                 key={value.title}
-                className="border-l-2 border-primary pl-5"
+                className="rounded-lg border border-border bg-card p-5"
               >
                 <value.icon className="h-5 w-5 text-primary" />
-                <h3 className="mt-3 text-lg font-medium">{value.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted-foreground">
+                <h3 className="mt-3 text-base font-medium">{value.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {value.text}
                 </p>
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 lg:px-8">
+        <h2 className="text-3xl font-semibold">Governance &amp; legal compliance</h2>
+        <p className="mt-4 max-w-4xl leading-relaxed text-muted-foreground">
+          AURA (Alliance for Understanding Recovery &amp; Awareness) is
+          officially registered as an Ethiopian Civil Society Organization (CSO)
+          under Proclamation No. 1113/2011. We adhere to national governance
+          regulations and international non-profit best practices to ensure full
+          operational transparency and impact accountability.
+        </p>
+      </section>
+
+      <section className="border-y border-border bg-muted/40 py-16">
+        <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold">Our leadership &amp; governance</h2>
+          <p className="mt-3 max-w-3xl text-muted-foreground">
+            Guided by vision, grounded in accountability, and driven by
+            community impact.
+          </p>
+          <div className="mt-8 grid gap-6">
+            <TeamMemberCard
+              initials="RF"
+              name="Rediet Feleke"
+              title="Founder & Executive Director"
+              photo="/images/team/member-1.png"
+              bio="Rediet Feleke is the Founder and Executive Director of AURA. As the primary visionary behind the initiative, she directs organizational strategy, cross-sector partnerships, and community program execution to advance accessible, stigma-free mental health support across Ethiopian communities."
+              highlight
+            />
+            <div className="grid gap-6 md:grid-cols-2">
+              <TeamMemberCard
+                initials="SG"
+                name="Simret Gashaw"
+                title="Co-Founder"
+                photo="/images/team/member-5.jpg"
+                bio="Simret Gashaw is a Co-Founder of AURA, driving strategic outreach, community engagement, and program development. She plays a key role in shaping AURA's foundational mission, expanding support networks, and fostering safe, inclusive spaces for mental health awareness."
+              />
+              <TeamMemberCard
+                initials="MG"
+                name="Meseret Gossa"
+                title="Co-Founder"
+                photo="/images/team/member-7.jpg"
+                bio="Meseret Gossa is a Co-Founder of AURA, contributing to organizational vision, initiative design, and stakeholder collaboration. She works closely with the founding team to build sustainable pathways for mental health advocacy and community recovery."
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 lg:px-8">
+        <h2 className="text-3xl font-semibold">The Board</h2>
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {board.map((member) => (
+            <TeamMemberCard key={member.name} {...member} />
+          ))}
         </div>
       </section>
     </div>
