@@ -1,12 +1,15 @@
 import type { LucideIcon } from "lucide-react";
-import { BadgeCheck, Instagram, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { BadgeCheck } from "lucide-react";
+import { InstagramIcon, TelegramIcon } from "@/components/brand-icons";
 
 interface TeamMemberCardProps {
   initials: string;
   name: string;
   title: string;
   bio: string;
-  tags: string[];
+  tags?: string[];
+  photo?: string;
   instagram?: string;
   telegram?: string;
   icon?: LucideIcon;
@@ -18,7 +21,8 @@ export default function TeamMemberCard({
   name,
   title,
   bio,
-  tags,
+  tags = [],
+  photo,
   instagram,
   telegram,
   icon: Icon,
@@ -33,9 +37,19 @@ export default function TeamMemberCard({
       }`}
     >
       <div className="flex items-start gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-base font-semibold text-primary-foreground">
-          {initials}
-        </div>
+        {photo ? (
+          <Image
+            src={photo}
+            alt={name}
+            width={56}
+            height={56}
+            className="h-14 w-14 shrink-0 rounded-full object-cover"
+          />
+        ) : (
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-base font-semibold text-primary-foreground">
+            {initials}
+          </div>
+        )}
         <div>
           <h3 className="text-xl font-semibold">{name}</h3>
           <p className="mt-0.5 text-sm text-primary">{title}</p>
@@ -51,16 +65,18 @@ export default function TeamMemberCard({
 
       <p className="mt-4 leading-relaxed text-muted-foreground">{bio}</p>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-md border border-border bg-background px-2.5 py-0.5 text-xs font-medium text-foreground"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
+      {tags.length ? (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-md border border-border bg-background px-2.5 py-0.5 text-xs font-medium text-foreground"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      ) : null}
 
       <div className="mt-4 flex flex-wrap gap-3">
         {instagram ? (
@@ -70,7 +86,7 @@ export default function TeamMemberCard({
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1.5 text-sm text-muted-foreground hover:border-primary hover:text-foreground"
           >
-            <Instagram className="h-3.5 w-3.5" />
+            <InstagramIcon className="h-3.5 w-3.5" />
             {instagram}
           </a>
         ) : null}
@@ -81,7 +97,7 @@ export default function TeamMemberCard({
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1.5 text-sm text-muted-foreground hover:border-primary hover:text-foreground"
           >
-            <MessageCircle className="h-3.5 w-3.5" />
+            <TelegramIcon className="h-3.5 w-3.5" />
             {telegram}
           </a>
         ) : null}
