@@ -6,6 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
+    "optimize:media": "python3 scripts/optimize-media.py",
     "start": "next start"
   },
   "dependencies": {
