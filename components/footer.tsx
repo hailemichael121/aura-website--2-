@@ -92,10 +92,10 @@ export default function Footer() {
               <a
                 href="mailto:contact@auramentalhealth.com"
                 aria-label="Email AURA"
-                className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/20 hover:pr-3.5 hover:shadow-md"
+                className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-300 hover:w-auto hover:border-white/40 hover:bg-white/20 hover:px-3 hover:shadow-md"
               >
                 <MailIcon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 group-hover:max-w-xs group-hover:opacity-100">
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 ease-out group-hover:max-w-xs group-hover:pl-2 group-hover:opacity-100">
                   Email AURA
                 </span>
               </a>
@@ -104,10 +104,10 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/20 hover:pr-3.5 hover:shadow-md"
+                className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-300 hover:w-auto hover:border-white/40 hover:bg-white/20 hover:px-3 hover:shadow-md"
               >
                 <InstagramIcon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 group-hover:max-w-xs group-hover:opacity-100">
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 ease-out group-hover:max-w-xs group-hover:pl-2 group-hover:opacity-100">
                   AURA on Instagram
                 </span>
               </a>
@@ -116,10 +116,10 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram Community"
-                className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/20 hover:pr-3.5 hover:shadow-md"
+                className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-300 hover:w-auto hover:border-white/40 hover:bg-white/20 hover:px-3 hover:shadow-md"
               >
                 <TelegramIcon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 group-hover:max-w-xs group-hover:opacity-100">
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 ease-out group-hover:max-w-xs group-hover:pl-2 group-hover:opacity-100">
                   AURA on Telegram
                 </span>
               </a>
