@@ -57,8 +57,13 @@ export default function FoundersPage() {
               {/* Photo and Basic Info */}
               <div className="text-center lg:text-left">
                 <div className="relative mb-6 inline-block">
-                  <div className="flex h-64 w-64 items-center justify-center rounded-lg bg-primary text-6xl font-bold text-primary-foreground">
-                    RF
+                  <div className="relative h-64 w-64 overflow-hidden rounded-xl border border-border shadow-md">
+                    <Image
+                      src="/images/team/member-5.webp"
+                      alt="Dr. Rediet Feleke"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="absolute -bottom-3 -right-3 flex h-14 w-14 items-center justify-center rounded-full border border-border bg-background shadow-sm">
                     <Stethoscope className="h-7 w-7 text-primary" />
@@ -67,7 +72,7 @@ export default function FoundersPage() {
 
                 <h2 className="text-3xl font-semibold">Dr. Rediet Feleke</h2>
                 <p className="mt-1 text-lg font-medium text-primary">
-                  Founder &amp; Medical Director
+                  Founder &amp; Executive Director
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2 justify-center lg:justify-start">
@@ -179,12 +184,17 @@ export default function FoundersPage() {
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {/* Simret */}
             <div className="rounded-lg border border-border bg-card p-6">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground mb-4">
-                SD
+              <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full border border-border shadow-sm">
+                <Image
+                  src="/images/team/member-1.webp"
+                  alt="Simret Gashaw"
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <h3 className="text-xl font-semibold">Simret G. Dessie</h3>
+              <h3 className="text-xl font-semibold">Simret Gashaw</h3>
               <p className="mt-1 text-sm font-medium text-primary">
-                Community Outreach Coordinator
+                Co-Founder
               </p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <Badge variant="outline" className="text-xs">Community Engagement</Badge>
@@ -206,19 +216,24 @@ export default function FoundersPage() {
               <div className="mt-3">
                 <Button size="sm" variant="outline">
                   <MessageCircle className="mr-2 h-3.5 w-3.5" />
-                  @lunashine12
+                  @AURA_MHP
                 </Button>
               </div>
             </div>
 
             {/* Messeret */}
             <div className="rounded-lg border border-border bg-card p-6">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground mb-4">
-                MG
+              <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full border border-border shadow-sm">
+                <Image
+                  src="/images/team/member-7.webp"
+                  alt="Meseret Gossa"
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <h3 className="text-xl font-semibold">Messeret Gossa</h3>
+              <h3 className="text-xl font-semibold">Meseret Gossa</h3>
               <p className="mt-1 text-sm font-medium text-primary">
-                Program Development Specialist
+                Co-Founder
               </p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <Badge variant="outline" className="text-xs">Program Design</Badge>

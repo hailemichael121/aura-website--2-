@@ -187,7 +187,7 @@ export default function AboutPage() {
               initials="RF"
               name="Rediet Feleke"
               title="Founder & Executive Director"
-              photo="/images/team/member-1.webp"
+              photo="/images/team/member-5.webp"
               bio="Rediet Feleke is the Founder and Executive Director of AURA. As the primary visionary behind the initiative, she directs organizational strategy, cross-sector partnerships, and community program execution to advance accessible, stigma-free mental health support across Ethiopian communities."
               highlight
             />
@@ -196,7 +196,7 @@ export default function AboutPage() {
                 initials="SG"
                 name="Simret Gashaw"
                 title="Co-Founder"
-                photo="/images/team/member-5.webp"
+                photo="/images/team/member-1.webp"
                 bio="Simret Gashaw is a Co-Founder of AURA, driving strategic outreach, community engagement, and program development. She plays a key role in shaping AURA's foundational mission, expanding support networks, and fostering safe, inclusive spaces for mental health awareness."
               />
               <TeamMemberCard
