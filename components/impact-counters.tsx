@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 1000, suffix: "+", label: "People connected" },
-  { value: 100, suffix: "+", label: "Directly supported" },
-  { value: 80, suffix: "+", label: "Conversations hosted" },
+  { value: 1000, suffix: "+", label: "People Connected across networks" },
+  { value: 100, suffix: "+", label: "Individuals Supported directly" },
+  { value: 80, suffix: "+", label: "Community Conversations Hosted" },
 ];
 
 function easeOutQuint(t: number) {

@@ -25,7 +25,7 @@ A modern, accessible, community-centered digital portal for **AURA (Alliance for
 - **Vision:** A society where mental wellness is understood, valued, protected, and accessible to all — free from stigma and exclusion.
 - **Headquarters:** Bole, Addis Ababa, Ethiopia
 - **Telegram Community:** [@AURA_MHP](https://t.me/AURA_MHP)
-- **Email:** hello@auraethiopia.org / contact@aura-ethiopia.org
+- **Email:** contact@auramentalhealth.com / contact@auramentalhealth.com
 
 ---
 
@@ -51,7 +51,7 @@ A modern, accessible, community-centered digital portal for **AURA (Alliance for
 | **Language** | [TypeScript 5](https://www.typescriptlang.org/) |
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) with custom design tokens |
 | **Icons** | [Lucide React](https://lucide.dev/) |
-| **UI Primitives** | Radix UI accessible primitives (`@radix-ui/react-*`) |
+| **UI Primitives** | Accessible custom components built with pure React & Tailwind CSS |
 | **Package Manager** | [pnpm v11+](https://pnpm.io/) |
 | **Media Pipeline** | Python + Pillow + FFmpeg (WebP image conversion & streaming H.264 video encoding) |
 | **Backend & Auth** | Supabase client integration ready |
