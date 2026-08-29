@@ -23,41 +23,69 @@ type HeroSlide = {
   src: string;
   poster?: string;
   alt: string;
+  /** Custom duration in ms for this slide */
+  duration?: number;
+  /** Custom object position, e.g. "object-top" */
+  objectPosition?: string;
+  /** Custom inline object position style, e.g. "center 0%" */
+  objectPositionStyle?: string;
   /** Photo already has the lime brand overlay baked in. */
   preTinted?: boolean;
 };
 
 const slides: HeroSlide[] = [
   {
-    id: "community-together",
+    id: "founder-dialogue-session",
     type: "image",
-    src: "/images/hero/community-dialogue-3.webp",
-    alt: "Friends sitting together in community",
+    src: "/images/hero/community-dialogue-7.webp",
+    alt: "Dr. Rediet Feleke leading an AURA community mental health dialogue session",
+    duration: 6000, // 6 seconds
+    objectPosition: "object-center",
+    objectPositionStyle: "center 30%", // Centers directly on founder and dialogue participants
   },
   {
-    id: "community-care-2",
-    type: "video",
-    src: "/videos/hero/community-care-2.mp4",
-    poster: "/images/hero/posters/community-care-2.webp",
-    alt: "A volunteer offering a supportive hand",
+    id: "community-dialogue-2",
+    type: "image",
+    src: "/images/hero/community-dialogue-2.webp",
+    alt: "Community dialogue and peer listening session in Addis Ababa",
+    duration: 5000,
+    objectPosition: "object-center",
   },
   {
-    id: "community-care-3",
-    type: "video",
-    src: "/videos/hero/community-care-3.mp4",
-    poster: "/images/hero/posters/community-care-3.webp",
-    alt: "Hands stacked together in a circle of support",
+    id: "community-dialogue-4",
+    type: "image",
+    src: "/images/hero/community-dialogue-4.webp",
+    alt: "AURA community workshop and group participation",
+    duration: 5000,
+    objectPosition: "object-center",
   },
   {
     id: "community-care-5",
     type: "video",
     src: "/videos/hero/community-care-5.mp4",
     poster: "/images/hero/posters/community-care-5.webp",
-    alt: "Friends moving together outdoors in community",
+    alt: "Community members moving together outdoors",
+    duration: 5000,
+  },
+  {
+    id: "community-dialogue-3",
+    type: "image",
+    src: "/images/hero/community-dialogue-3.webp",
+    alt: "Community members sitting together in supportive connection",
+    duration: 5000,
+    objectPosition: "object-center",
+  },
+  {
+    id: "community-dialogue-6",
+    type: "image",
+    src: "/images/hero/community-dialogue-6.webp",
+    alt: "Engaged participants in mental wellness training",
+    duration: 5000,
+    objectPosition: "object-center",
   },
 ];
 
-const AUTOPLAY_MS = 8000;
+const DEFAULT_AUTOPLAY_MS = 5000;
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
@@ -67,6 +95,8 @@ export default function HeroSection() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const reducedMotion = useRef(false);
   const { eased, fly, registerSizer } = useBrandDock();
+
+  const currentDuration = slides[index]?.duration || DEFAULT_AUTOPLAY_MS;
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia(
@@ -101,11 +131,11 @@ export default function HeroSection() {
           paginate(1);
           return 0;
         }
-        return prev + (step / AUTOPLAY_MS) * 100;
+        return prev + (step / currentDuration) * 100;
       });
     }, step);
     return () => window.clearInterval(timer);
-  }, [playing, paginate]);
+  }, [playing, paginate, currentDuration]);
 
   useEffect(() => {
     videoRefs.current.forEach((video, i) => {
@@ -130,17 +160,13 @@ export default function HeroSection() {
             <div
               key={slide.id}
               className={cn(
-                "hero-slide",
-                isActive && "is-active",
-                isLeaving && "is-leaving",
-                !isActive && "pointer-events-none",
+                "hero-slide-layer pointer-events-none absolute inset-0 transition-opacity duration-1000 ease-in-out",
+                isActive
+                  ? "hero-slide-layer--active z-10 opacity-100"
+                  : isLeaving
+                    ? "hero-slide-layer--leaving z-0 opacity-0"
+                    : "opacity-0",
               )}
-              onTransitionEnd={(event) => {
-                if (event.target !== event.currentTarget) return;
-                if (isLeaving && event.propertyName === "opacity") {
-                  setLeaving(null);
-                }
-              }}
               aria-hidden={!isActive}
             >
               {slide.type === "video" ? (
@@ -148,91 +174,92 @@ export default function HeroSection() {
                   ref={(el) => {
                     videoRefs.current[i] = el;
                   }}
-                  className="hero-media"
-                  src={slide.src}
-                  poster={slide.poster}
-                  muted
                   playsInline
+                  muted
                   loop
-                  preload={isActive || Math.abs(i - index) === 1 ? "auto" : "metadata"}
-                  autoPlay={isActive}
-                />
+                  preload="metadata"
+                  poster={slide.poster}
+                  className="h-full w-full object-cover"
+                >
+                  <source src={slide.src} type="video/mp4" />
+                </video>
               ) : (
                 <Image
                   src={slide.src}
                   alt={slide.alt}
                   fill
                   priority={i === 0}
-                  className="hero-media hero-media-still object-cover"
+                  style={
+                    slide.objectPositionStyle
+                      ? { objectPosition: slide.objectPositionStyle }
+                      : undefined
+                  }
+                  className={cn(
+                    "object-cover",
+                    slide.objectPosition || "object-center",
+                  )}
                   sizes="100vw"
                 />
               )}
-              {!slide.preTinted && (
-                <div
-                  className="pointer-events-none absolute inset-0 bg-[#3ad645]/55 mix-blend-multiply"
-                  aria-hidden
-                />
-              )}
+              <div
+                className={cn(
+                  "hero-lime-wash pointer-events-none absolute inset-0 mix-blend-multiply",
+                  slide.preTinted && "opacity-0",
+                )}
+                aria-hidden
+              />
+              <div
+                className="hero-dim-scrim pointer-events-none absolute inset-0"
+                aria-hidden
+              />
             </div>
           );
         })}
       </div>
 
       <div
-        className="pointer-events-none absolute inset-0 z-20 bg-[#3ad645]/20 mix-blend-multiply"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-black/30 via-transparent to-black/40"
+        className="hero-top-scrim pointer-events-none absolute inset-x-0 top-0 z-20 h-44 bg-gradient-to-b from-black/55 via-black/25 to-transparent"
         aria-hidden
       />
 
-      <div className="relative z-30 mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-4 pb-28 pt-28 text-center md:px-6">
-        <div id="hero-brand-rest" className="relative min-h-[5.5rem] sm:min-h-[6rem]">
-          <div
-            id="hero-brand-sizer"
-            ref={registerSizer}
-            className={cn(
-              "hero-lockup flex flex-col items-center gap-5 sm:flex-row sm:gap-6",
-              fly.pinned && "invisible",
-            )}
-            aria-hidden={fly.pinned}
-          >
-            <AuraHeroLockup />
-          </div>
+      <div className="relative z-30 mx-auto flex min-h-[100svh] max-w-5xl flex-col items-center justify-center px-4 pb-28 pt-28 text-center sm:px-6 lg:px-8">
+        <div
+          ref={registerSizer}
+          className="hero-static-lockup flex flex-col items-center gap-5 sm:flex-row sm:gap-6"
+          style={{ opacity: eased }}
+        >
+          <AuraHeroLockup />
         </div>
 
-        <div
-          className="hero-copy mt-10 max-w-3xl space-y-4"
-          style={{
-            opacity: Math.max(0, 1 - eased * 1.15),
-            pointerEvents: eased > 0.55 ? "none" : undefined,
-          }}
-        >
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            Mental Wellbeing for All!
-          </h1>
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/92 sm:text-lg">
-            AURA creates safe spaces for open conversation, recovery support,
-            and mental wellness awareness across Ethiopian communities. We
-            break stigma and foster healing through peer circles, public
-            dialogues, and community care.
-          </p>
-        </div>
+        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#e8f5e9]/90 sm:text-sm">
+          Alliance for Understanding Recovery &amp; Awareness
+        </p>
 
-        <div
-          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+        <h1
+          className="hero-headline mt-3 text-balance font-extrabold tracking-tight"
           style={{
-            opacity: Math.max(0, 1 - eased * 1.15),
-            pointerEvents: eased > 0.55 ? "none" : undefined,
+            fontSize: "clamp(2.1rem, 5.2vw, 3.85rem)",
+            lineHeight: 1.1,
           }}
         >
+          Mental Wellbeing for All!
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-balance text-sm leading-relaxed text-[#f4faf4] sm:text-base md:text-lg">
+          Alliance for Understanding Recovery &amp; Awareness (AURA) creates
+          accessible, culturally attuned safe spaces for mental health support
+          and stigma reduction by empowering youth, leveraging digital
+          innovation, and driving multi-stakeholder action across Ethiopian
+          communities.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button
             asChild
-            className="hero-cta h-11 shrink-0 whitespace-nowrap rounded-full bg-white px-5 text-sm text-[#369319] hover:bg-white/90 sm:text-base"
+            className="hero-cta h-11 shrink-0 whitespace-nowrap rounded-full bg-white px-5 text-sm font-semibold text-[#1a7a28] shadow-md hover:bg-white/90 sm:text-base"
           >
             <Link href="/resources">
-              <Library className="h-4 w-4" />
+              <Library className="h-4 w-4 text-[#1a7a28]" />
               Resources
             </Link>
           </Button>
@@ -263,56 +290,69 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-24 left-0 right-0 z-30 flex items-center justify-center gap-2.5 px-4">
-        <button
-          type="button"
-          onClick={() => paginate(-1)}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/35 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/20 px-3 py-2 backdrop-blur-md">
-          {slides.map((slide, i) => (
-            <button
-              key={slide.id}
-              type="button"
-              aria-label={`Go to slide ${i + 1}`}
-              onClick={() => goTo(i)}
-              className={cn(
-                "h-1.5 overflow-hidden rounded-full bg-white/35 transition-all duration-500",
-                i === index ? "w-10" : "w-2 hover:bg-white/60",
-              )}
-            >
-              {i === index ? (
-                <span
-                  className="block h-full bg-white"
-                  style={{ width: `${slideProgress}%` }}
-                />
-              ) : null}
-            </button>
-          ))}
+      {/* Left-Aligned Minimal Hero Controls */}
+      <div className="absolute bottom-20 left-4 z-30 flex items-center gap-2 sm:bottom-24 sm:left-8 md:left-12 lg:left-16">
+        <div className="flex items-center gap-2 rounded-full border border-white/20 bg-black/35 px-3 py-1.5 backdrop-blur-md shadow-lg">
+          {/* Prev */}
+          <button
+            type="button"
+            onClick={() => paginate(-1)}
+            className="inline-flex h-6 w-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+
+          {/* Minimal Progress Indicators */}
+          <div className="flex items-center gap-1.5">
+            {slides.map((slide, i) => (
+              <button
+                key={slide.id}
+                type="button"
+                aria-label={`Go to slide ${i + 1}`}
+                onClick={() => goTo(i)}
+                className={cn(
+                  "h-1.5 overflow-hidden rounded-full bg-white/30 transition-all duration-300",
+                  i === index ? "w-6 bg-white/40" : "w-1.5 hover:bg-white/60",
+                )}
+              >
+                {i === index ? (
+                  <span
+                    className="block h-full bg-white"
+                    style={{ width: `${slideProgress}%` }}
+                  />
+                ) : null}
+              </button>
+            ))}
+          </div>
+
+          {/* Next */}
+          <button
+            type="button"
+            onClick={() => paginate(1)}
+            className="inline-flex h-6 w-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+
+          {/* Divider */}
+          <span className="h-3 w-px bg-white/25" />
+
+          {/* Play/Pause */}
+          <button
+            type="button"
+            onClick={() => setPlaying((v) => !v)}
+            className="inline-flex h-6 w-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
+            aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+          >
+            {playing ? (
+              <Pause className="h-3.5 w-3.5" />
+            ) : (
+              <Play className="h-3.5 w-3.5" />
+            )}
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={() => paginate(1)}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/35 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
-        <button
-          type="button"
-          onClick={() => setPlaying((v) => !v)}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/35 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
-          aria-label={playing ? "Pause slideshow" : "Play slideshow"}
-        >
-          {playing ? (
-            <Pause className="h-4 w-4" />
-          ) : (
-            <Play className="h-4 w-4" />
-          )}
-        </button>
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 overflow-hidden leading-[0]">
