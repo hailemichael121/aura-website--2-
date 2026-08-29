@@ -158,7 +158,7 @@ export default function Navbar() {
             tabIndex={isHome && reveal < 0.85 ? -1 : undefined}
           >
             <Image
-              src="/images/aura-logo.jpg"
+              src="/images/aura-logo.webp"
               alt="AURA logo"
               width={36}
               height={36}

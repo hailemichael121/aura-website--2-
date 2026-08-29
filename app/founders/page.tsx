@@ -284,7 +284,7 @@ export default function FoundersPage() {
 
             <div className="relative">
               <Image
-                src="/images/aura-stationery.jpg"
+                src="/images/aura-stationery.webp"
                 alt="AURA Founding Documents"
                 width={600}
                 height={400}

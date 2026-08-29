@@ -4,7 +4,7 @@ export function AuraHeroLockup() {
   return (
     <>
       <Image
-        src="/images/aura-logo.jpg"
+        src="/images/aura-logo.webp"
         alt=""
         width={112}
         height={112}

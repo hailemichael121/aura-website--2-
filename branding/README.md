@@ -17,4 +17,4 @@ Horizontal lockup, icon-only, emblem, wordmark, stacked wordmark, and vertical l
 
 ## Hero photo
 
-The live hero carousel starts with `public/images/hero/community-dialogue-3.jpg`. Keep `hero/hero-graphic-with-lockup.jpg` as the original lockup reference.
+The live hero carousel starts with `public/images/hero/community-dialogue-3.webp`. Keep `hero/hero-graphic-with-lockup.jpg` as the original lockup reference.

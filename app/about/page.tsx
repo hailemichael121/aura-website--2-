@@ -43,34 +43,35 @@ const board = [
     initials: "MA",
     name: "Prof. Mubarek Abera Mengistie",
     title: "Board Chairman",
-    photo: "/images/team/member-3.png",
+    photo: "/images/team/member-3.webp",
     bio: "Full Professor of Mental Health and Nutrition with over 15 years of experience in academia, health system leadership, and international research collaborations. Lead consultant for national strategic initiatives (UNICEF/MoH) and a widely published author. He provides overall board stewardship, focusing on institutional strategy, academic alignment, research integrity, and senior advisory leadership.",
   },
   {
     initials: "RD",
     name: "Ms. Rediet Dadi Tafa",
     title: "Board Member",
-    photo: "/images/team/member-6.jpg",
+    photo: "/images/team/member-6.webp",
     bio: "Senior psychologist, training director, and psychotherapist with over 5 years of experience leading nationwide personal development and psychological training initiatives. She leverages her background in trauma-focused therapy and capacity building so AURA initiatives deliver measurable behavioral change and community impact.",
   },
   {
     initials: "AF",
     name: "Asst. Prof. Anteneh Fikrie Tekola",
     title: "Board Member",
-    photo: "/images/team/member-2.jpg",
+    photo: "/images/team/member-2.webp",
     bio: "Assistant Professor of Public Health, Director of Research & International Partnerships at Bule Hora University, external PhD candidate (Maastricht University), and PLoS ONE editor. He ensures our public health and research methodologies are ethically sound, rigorous, and positioned for international institutional partnerships.",
   },
   {
     initials: "TT",
     name: "Dr. Tamrat Tefera Ali",
     title: "Board Member",
-    photo: "/images/team/member-4.jpg",
+    photo: "/images/team/member-4.webp",
     bio: "Assistant professor of psychiatry, certified psychotherapist (University of Toronto), and specialist in child and adolescent mental health. He provides strategic guidance so therapeutic, training, and community outreach programs meet high clinical standards.",
   },
   {
     initials: "RT",
     name: "Ms. Ruth Tesfaye Tegen",
     title: "Board Member",
+    photo: "/images/team/member-7.webp",
     bio: "Dedicated advocate for youth empowerment and community-driven social initiatives. She focuses on creating inclusive, accessible spaces that empower young people to lead mental health advocacy efforts.",
   },
 ];
@@ -118,7 +119,7 @@ export default function AboutPage() {
         </div>
         <div className="rounded-lg border border-border bg-card p-3">
           <Image
-            src="/images/mental-health-hero.png"
+            src="/images/mental-health-hero.webp"
             alt="AURA awareness gathering"
             width={900}
             height={680}
@@ -170,7 +171,7 @@ export default function AboutPage() {
               initials="RF"
               name="Rediet Feleke"
               title="Founder & Executive Director"
-              photo="/images/team/member-1.png"
+              photo="/images/team/member-1.webp"
               bio="Rediet Feleke is the Founder and Executive Director of AURA. As the primary visionary behind the initiative, she directs organizational strategy, cross-sector partnerships, and community program execution to advance accessible, stigma-free mental health support across Ethiopian communities."
               highlight
             />
@@ -179,14 +180,14 @@ export default function AboutPage() {
                 initials="SG"
                 name="Simret Gashaw"
                 title="Co-Founder"
-                photo="/images/team/member-5.jpg"
+                photo="/images/team/member-5.webp"
                 bio="Simret Gashaw is a Co-Founder of AURA, driving strategic outreach, community engagement, and program development. She plays a key role in shaping AURA's foundational mission, expanding support networks, and fostering safe, inclusive spaces for mental health awareness."
               />
               <TeamMemberCard
                 initials="MG"
                 name="Meseret Gossa"
                 title="Co-Founder"
-                photo="/images/team/member-7.jpg"
+                photo="/images/team/member-7.webp"
                 bio="Meseret Gossa is a Co-Founder of AURA, contributing to organizational vision, initiative design, and stakeholder collaboration. She works closely with the founding team to build sustainable pathways for mental health advocacy and community recovery."
               />
             </div>

@@ -20,7 +20,7 @@ export default function Footer() {
         <div>
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/images/aura-logo.jpg"
+              src="/images/aura-logo.webp"
               alt=""
               width={44}
               height={44}
