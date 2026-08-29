@@ -1,6 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { resourceArticles } from "@/lib/content/resources";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Blog & Mental Wellness Insights",
+  description:
+    "Reflections, educational articles, and recovery perspectives from the AURA mental health community in Ethiopia.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "AURA Blog — Mental Wellness Insights",
+    description: "Educational articles and reflections on mental health and recovery.",
+    url: "https://www.auramentalhealth.org/blog",
+  },
+};
 
 export default function BlogPage() {
   return (

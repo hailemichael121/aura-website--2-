@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import { Mail, MapPin, PhoneCall, Send } from "lucide-react";
 import { TelegramIcon } from "@/components/brand-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Get in Touch with AURA",
+  description:
+    "Get in touch with AURA in Addis Ababa, Ethiopia. Connect via email, Telegram (@AURA_MHP), or send an inquiry for support, partnerships, or volunteering.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact AURA — Ethiopian Mental Health Initiative",
+    description: "Reach out for support, partnerships, speaking requests, or volunteer questions.",
+    url: "https://www.auramentalhealth.org/contact",
+  },
+};
 
 export default function ContactPage() {
   return (

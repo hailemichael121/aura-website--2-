@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Users, MessageCircle, HandHeart, Shield, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Community & Peer Support Circles",
+  description:
+    "Join AURA community spaces built for listening, dignity, and care. Participate in support circles, discussion forums, and wellness gatherings across Ethiopia.",
+  alternates: {
+    canonical: "/community",
+  },
+  openGraph: {
+    title: "AURA Community — Support Circles & Discussion",
+    description: "Safe spaces built for listening, dignity, and care in Ethiopian communities.",
+    url: "https://www.auramentalhealth.org/community",
+  },
+};
 
 const sections = [
   {

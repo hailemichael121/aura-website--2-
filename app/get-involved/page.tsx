@@ -1,8 +1,23 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Building2, GraduationCap, HandHeart, HeartHandshake, Landmark, Stethoscope, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+
+export const metadata: Metadata = {
+  title: "Get Involved | Volunteer, Partner & Support",
+  description:
+    "Partner with AURA, volunteer for peer listening circles, host community workshops, or donate to support mental health across Ethiopia.",
+  alternates: {
+    canonical: "/get-involved",
+  },
+  openGraph: {
+    title: "Get Involved with AURA | Volunteer & Partner",
+    description: "Support community mental health initiatives and stigma-reduction efforts in Ethiopia.",
+    url: "https://www.auramentalhealth.org/get-involved",
+  },
+}
 
 const ways = [
   {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import {
   Eye,
@@ -9,6 +10,21 @@ import {
   Users2,
 } from "lucide-react";
 import TeamMemberCard from "@/components/team-member-card";
+
+export const metadata: Metadata = {
+  title: "About Us | Mission, Vision & Leadership",
+  description:
+    "Learn about AURA (Alliance for Understanding Recovery & Awareness), our mission, core values, board members, and executive leadership driving community mental health in Ethiopia.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About AURA — Mission, Vision & Leadership",
+    description:
+      "Alliance for Understanding Recovery & Awareness (AURA) is an officially registered Ethiopian CSO dedicated to accessible mental wellness.",
+    url: "https://www.auramentalhealth.org/about",
+  },
+};
 
 const values = [
   {

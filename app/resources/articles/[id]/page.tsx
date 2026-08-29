@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, Clock, Share2, User } from "lucide-react"
@@ -8,6 +9,35 @@ import { Card, CardContent } from "@/components/ui/card"
 
 type Props = {
   params: Promise<{ id: string }>
+}
+
+export function generateStaticParams() {
+  return resourceArticles.map((a) => ({ id: String(a.id) }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const article = resourceArticles.find((item) => item.id === Number(id))
+
+  if (!article) {
+    return {
+      title: "Article Not Found",
+    }
+  }
+
+  return {
+    title: `${article.title} | AURA Resources`,
+    description: article.excerpt,
+    alternates: {
+      canonical: `/resources/articles/${id}`,
+    },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      type: "article",
+      url: `https://www.auramentalhealth.org/resources/articles/${id}`,
+    },
+  }
 }
 
 export default async function ResourceArticlePage({ params }: Props) {

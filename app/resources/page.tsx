@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { BookOpen, Clock, Download, Headphones, Search, User, Video } from "lucide-react"
 import { resourceArticles, resourcePodcasts } from "@/lib/content/resources"
@@ -6,6 +7,21 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+export const metadata: Metadata = {
+  title: "Resource Hub | Articles, Podcasts, Videos & Toolkits",
+  description:
+    "Explore practical mental health resources: stress management guides, youth toolkits, grounding techniques, educational videos, and podcasts in English, Amharic, and Afan Oromo.",
+  alternates: {
+    canonical: "/resources",
+  },
+  openGraph: {
+    title: "Mental Health Resource Hub | AURA Ethiopia",
+    description:
+      "Culturally attuned mental wellness guides, toolkits, articles, and audio resources.",
+    url: "https://www.auramentalhealth.org/resources",
+  },
+}
 
 const videos = [
   {

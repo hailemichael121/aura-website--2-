@@ -1,8 +1,23 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Calendar, Heart, MessageCircle, User } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+
+export const metadata: Metadata = {
+  title: "Recovery Stories | Community Healing Journeys",
+  description:
+    "Real stories of healing, resilience, and hope from community members navigating anxiety, depression, and mental health recovery in Ethiopia.",
+  alternates: {
+    canonical: "/stories",
+  },
+  openGraph: {
+    title: "AURA Recovery Stories — Healing Journeys",
+    description: "Read real stories of hope and healing from our Ethiopian peer community.",
+    url: "https://www.auramentalhealth.org/stories",
+  },
+}
 
 const stories = [
   {

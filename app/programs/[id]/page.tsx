@@ -59,8 +59,47 @@ const programs: Program[] = [
   },
 ]
 
-export default function ProgramDetailPage({ params }: { params: { id: string } }) {
-  const program = programs.find((item) => item.id === Number(params.id))
+import type { Metadata } from "next"
+
+export function generateStaticParams() {
+  return programs.map((p) => ({ id: String(p.id) }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const { id } = await params
+  const program = programs.find((item) => item.id === Number(id))
+
+  if (!program) {
+    return {
+      title: "Program Not Found",
+    }
+  }
+
+  return {
+    title: `${program.title} | Programs`,
+    description: program.description,
+    alternates: {
+      canonical: `/programs/${id}`,
+    },
+    openGraph: {
+      title: `${program.title} — AURA Programs`,
+      description: program.description,
+      url: `https://www.auramentalhealth.org/programs/${id}`,
+    },
+  }
+}
+
+export default async function ProgramDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const program = programs.find((item) => item.id === Number(id))
 
   if (!program) {
     notFound()

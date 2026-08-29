@@ -1,4 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
+
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions (FAQ)",
+  description:
+    "Common questions about AURA: services provided, registration as an Ethiopian CSO, location in Addis Ababa, and how to get involved.",
+  alternates: {
+    canonical: "/faq",
+  },
+  openGraph: {
+    title: "AURA FAQ — Frequently Asked Questions",
+    description: "Common questions about AURA's mental health mission and community spaces in Ethiopia.",
+    url: "https://www.auramentalhealth.org/faq",
+  },
+};
 
 const faqs = [
   {
@@ -20,8 +36,22 @@ const faqs = [
 ];
 
 export default function FaqPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
   return (
     <div className="bg-background pt-24 text-foreground">
+      <JsonLd data={faqSchema} />
       <section className="mx-auto max-w-3xl px-4 py-16 md:px-6">
         <h1 className="text-4xl font-semibold">FAQ</h1>
         <div className="mt-10 space-y-6">

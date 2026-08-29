@@ -1,8 +1,24 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { CalendarDays, GraduationCap, HeartPulse, Laptop, Megaphone, UsersRound, Users } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+
+export const metadata: Metadata = {
+  title: "Programs & Community Initiatives",
+  description:
+    "Explore AURA mental health programs: youth wellness, community workshops, peer support circles, Family Time, and stigma-reduction campaigns.",
+  alternates: {
+    canonical: "/programs",
+  },
+  openGraph: {
+    title: "AURA Programs & Community Initiatives",
+    description:
+      "Accessible mental wellness programs, workshops, and peer groups across Ethiopian communities.",
+    url: "https://www.auramentalhealth.org/programs",
+  },
+}
 
 const programs = [
   {

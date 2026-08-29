@@ -1,8 +1,24 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { AlertTriangle, BookText, MessageSquareHeart, PhoneCall, UserRoundCheck } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+
+export const metadata: Metadata = {
+  title: "Get Help | Crisis Support & Peer Care",
+  description:
+    "Find immediate mental health support, crisis listening lines, peer circles, and professional clinical referrals across Ethiopian communities.",
+  alternates: {
+    canonical: "/get-help",
+  },
+  openGraph: {
+    title: "Get Mental Health Help | AURA Ethiopia",
+    description:
+      "Whether you need support right now or long-term guidance, AURA connects you with safe, stigma-free listening and care.",
+    url: "https://www.auramentalhealth.org/get-help",
+  },
+}
 
 const immediate = [
   {

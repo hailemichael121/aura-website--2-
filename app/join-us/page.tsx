@@ -1,8 +1,23 @@
+import type { Metadata } from "next"
 import { Calendar, Clock, Heart, MapPin, Star, Users } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+export const metadata: Metadata = {
+  title: "Join Us | Volunteer Roles & Partnerships",
+  description:
+    "Explore open volunteer roles, outreach positions, and partnership pathways with AURA in Addis Ababa and across Ethiopia.",
+  alternates: {
+    canonical: "/join-us",
+  },
+  openGraph: {
+    title: "Join AURA — Volunteer Roles & Partnerships",
+    description: "Make an impact on mental wellness in your community. Join AURA today.",
+    url: "https://www.auramentalhealth.org/join-us",
+  },
+}
 
 const opportunities = [
   {

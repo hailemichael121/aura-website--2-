@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,21 @@ import {
   BookOpen,
   Stethoscope,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Founders & Leadership Story",
+  description:
+    "Meet Dr. Rediet Feleke, Simret Gashaw, Meseret Gossa, and the visionary founding team behind AURA.",
+  alternates: {
+    canonical: "/founders",
+  },
+  openGraph: {
+    title: "Founders & Leadership | AURA Ethiopia",
+    description:
+      "The founding story and community vision behind Alliance for Understanding Recovery & Awareness.",
+    url: "https://www.auramentalhealth.org/founders",
+  },
+};
 
 export default function FoundersPage() {
   return (
@@ -310,14 +326,14 @@ export default function FoundersPage() {
               <Mail className="mx-auto h-5 w-5 text-primary mb-2" />
               <h3 className="font-medium">Email Us</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                founders@aura-ethiopia.org
+                contact@auramentalhealth.com
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5 text-center">
               <MessageCircle className="mx-auto h-5 w-5 text-primary mb-2" />
               <h3 className="font-medium">Telegram</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                @aura_ethiopia
+                @AURA_MHP
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5 text-center">
