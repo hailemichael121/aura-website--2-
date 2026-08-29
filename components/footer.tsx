@@ -1,165 +1,231 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, PhoneCall } from "lucide-react";
+import {
+  HeartHandshake,
+  Mail,
+  MapPin,
+  PhoneCall,
+} from "lucide-react";
 import { InstagramIcon, MailIcon, TelegramIcon } from "@/components/brand-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const quickLinks = [
-  { href: "/about", label: "About" },
-  { href: "/get-involved#membership", label: "Become a Member" },
-  { href: "/blog", label: "Blog" },
-  { href: "/get-involved#donate", label: "Fund Us" },
+const communityLinks = [
+  { href: "/about", label: "About Us" },
+  { href: "/programs", label: "Programs & Events" },
+  { href: "/community", label: "Community Circles" },
+  { href: "/forum", label: "Discussion Forum" },
+  { href: "/stories", label: "Recovery Stories" },
+  { href: "/confessions", label: "Anonymous Confessions" },
+];
+
+const resourceLinks = [
+  { href: "/resources", label: "Resource Hub" },
+  { href: "/get-help", label: "Get Help & Support" },
   { href: "/faq", label: "FAQ" },
+  { href: "/blog", label: "Blog & Insights" },
+  { href: "/auth/signin", label: "Member Sign In" },
+];
+
+const involvementLinks = [
+  { href: "/get-involved", label: "Get Involved" },
+  { href: "/join-us", label: "Volunteer Roles" },
+  { href: "/get-involved", label: "Partnerships" },
+  { href: "/get-involved", label: "Membership Info" },
+  { href: "/contact", label: "Contact the Team" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#145c1e] text-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-2 md:px-6 lg:grid-cols-4 lg:px-8">
-        <div>
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/aura-logo.webp"
-              alt=""
-              width={44}
-              height={44}
-              className="h-11 w-11 rounded-full object-cover ring-1 ring-white/40"
-            />
-            <div>
-              <p className="text-lg font-semibold leading-none">AURA</p>
-              <p className="mt-1 text-xs text-white/80">
-                Alliance for Understanding Recovery &amp; Awareness
-              </p>
+    <footer className="border-t border-[#1a7a28]/30 bg-[#124d1a] text-white">
+      {/* Main Multi-Column Grid */}
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          {/* Col 1: Brand & Standing (Span 4) */}
+          <div className="space-y-4 lg:col-span-4">
+            <Link href="/" scroll={true} className="inline-flex items-center gap-3">
+              <Image
+                src="/images/aura-logo.webp"
+                alt="AURA Logo"
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full object-cover ring-2 ring-white/30"
+              />
+              <div>
+                <p className="text-xl font-bold tracking-tight text-white">AURA</p>
+                <p className="text-xs text-white/80">
+                  Alliance for Understanding Recovery &amp; Awareness
+                </p>
+              </div>
+            </Link>
+
+            <p className="text-sm leading-relaxed text-white/80">
+              Registered Ethiopian Civil Society Organization (CSO) under{" "}
+              <span className="font-semibold text-white">Proclamation No. 1113/2011</span>. We create safe spaces for open conversation, stigma reduction, and accessible mental health support.
+            </p>
+
+            <div className="flex flex-wrap gap-2 pt-2">
+              <Button
+                asChild
+                size="sm"
+                className="h-9 rounded-full bg-white font-medium text-[#145c1e] hover:bg-white/90"
+              >
+                <Link href="/contact" scroll={true}>
+                  <Mail className="mr-1.5 h-3.5 w-3.5" />
+                  Contact Us
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className="h-9 rounded-full border-white/30 bg-white/5 font-medium text-white hover:bg-white/15 hover:text-white"
+              >
+                <Link href="/get-help" scroll={true}>
+                  <HeartHandshake className="mr-1.5 h-3.5 w-3.5" />
+                  Get Help
+                </Link>
+              </Button>
             </div>
-          </Link>
-          <p className="mt-4 text-sm leading-relaxed text-white/80">
-            Registered Ethiopian CSO under Proclamation No. 1113/2011. We create
-            safe spaces for conversation, healing, and community care.
-          </p>
-          <Button
-            asChild
-            className="mt-5 bg-white text-[#369319] hover:bg-white/90"
-          >
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-          <div className="mt-5 flex gap-2">
-            <a
-              href="mailto:contact@auramentalhealth.com"
-              aria-label="Email AURA"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
-            >
-              <MailIcon className="h-4 w-4" />
-            </a>
-            <a
-              href="https://www.instagram.com/red8_fe"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
-            >
-              <InstagramIcon className="h-4 w-4" />
-            </a>
-            <a
-              href="https://t.me/AURA_MHP"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Telegram"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20"
-            >
-              <TelegramIcon className="h-4 w-4" />
-            </a>
+
+            <div className="flex items-center gap-2.5 pt-2">
+              <a
+                href="mailto:contact@auramentalhealth.com"
+                aria-label="Email AURA"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/25 hover:scale-105"
+              >
+                <MailIcon className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/red8_fe"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/25 hover:scale-105"
+              >
+                <InstagramIcon className="h-4 w-4" />
+              </a>
+              <a
+                href="https://t.me/AURA_MHP"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Telegram Community"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/25 hover:scale-105"
+              >
+                <TelegramIcon className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Col 2: Community & Pages (Span 2) */}
+          <div className="space-y-3 lg:col-span-2 lg:pl-2">
+            <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-white/70">
+              Community
+            </h4>
+            <ul className="space-y-2.5 text-sm text-white/85">
+              {communityLinks.map((link) => (
+                <li key={link.href + link.label}>
+                  <Link
+                    href={link.href}
+                    scroll={true}
+                    className="inline-block transition hover:translate-x-1 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3: Resources & Support (Span 2) */}
+          <div className="space-y-3 lg:col-span-2">
+            <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-white/70">
+              Resources
+            </h4>
+            <ul className="space-y-2.5 text-sm text-white/85">
+              {resourceLinks.map((link) => (
+                <li key={link.href + link.label}>
+                  <Link
+                    href={link.href}
+                    scroll={true}
+                    className="inline-block transition hover:translate-x-1 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Involvement & Contact Info (Span 4) */}
+          <div className="space-y-4 lg:col-span-4">
+            <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-white/70">
+              Newsletter &amp; Contact
+            </h4>
+            <p className="text-xs text-white/80">
+              Stay informed on upcoming dialogue circles, workshops, and community stories.
+            </p>
+
+            <form className="space-y-2" action="/contact">
+              <Input
+                type="email"
+                name="email"
+                required
+                aria-label="Email"
+                placeholder="your.email@example.com"
+                className="h-10 rounded-md border-white/20 bg-white/10 text-sm text-white placeholder:text-white/50 focus:border-white focus:bg-white/15"
+              />
+              <div className="grid grid-cols-2 gap-2">
+                <Input
+                  name="firstName"
+                  aria-label="First name"
+                  placeholder="First name"
+                  className="h-9 rounded-md border-white/20 bg-white/10 text-xs text-white placeholder:text-white/50"
+                />
+                <Input
+                  name="lastName"
+                  aria-label="Last name"
+                  placeholder="Last name"
+                  className="h-9 rounded-md border-white/20 bg-white/10 text-xs text-white placeholder:text-white/50"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full rounded-md bg-white font-medium text-[#145c1e] hover:bg-white/90"
+              >
+                Subscribe
+              </Button>
+            </form>
+
+            <ul className="space-y-2 pt-2 text-xs text-white/80">
+              <li className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 shrink-0 text-white/70" />
+                <span>Bole Sub-City, Addis Ababa, Ethiopia</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <MailIcon className="h-4 w-4 shrink-0 text-white/70" />
+                <span>contact@auramentalhealth.com</span>
+              </li>
+              <li className="flex items-center gap-2 font-medium text-white">
+                <PhoneCall className="h-4 w-4 shrink-0 text-[#a3e635]" />
+                <span>Emergency Crisis Helpline: Call 952</span>
+              </li>
+            </ul>
           </div>
         </div>
-
-        <div>
-          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/70">
-            Quick links
-          </h4>
-          <ul className="mt-4 space-y-2.5 text-sm text-white/85">
-            {quickLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="hover:text-white">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/70">
-            Contact
-          </h4>
-          <ul className="mt-4 space-y-3 text-sm text-white/85">
-            <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/70" />
-              Bole Sub-City, Addis Ababa
-            </li>
-            <li className="flex items-start gap-2">
-              <MailIcon className="mt-0.5 h-4 w-4 shrink-0 text-white/70" />
-              contact@auramentalhealth.com
-            </li>
-            <li className="flex items-start gap-2">
-              <TelegramIcon className="mt-0.5 h-4 w-4 shrink-0 text-white/70" />
-              @AURA_MHP
-            </li>
-            <li className="flex items-start gap-2">
-              <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-white/70" />
-              Crisis: Call 952
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/70">
-            Newsletter
-          </h4>
-          <p className="mt-4 text-sm text-white/80">
-            Subscribe for programs, dialogues, and community updates.
-          </p>
-          <form className="mt-4 space-y-2" action="/contact">
-            <Input
-              type="email"
-              name="email"
-              required
-              aria-label="Email"
-              placeholder="your.email@example.com"
-              className="border-white/20 bg-white/10 text-white placeholder:text-white/50"
-            />
-            <div className="grid grid-cols-2 gap-2">
-              <Input
-                name="firstName"
-                aria-label="First name"
-                placeholder="First name"
-                className="border-white/20 bg-white/10 text-white placeholder:text-white/50"
-              />
-              <Input
-                name="lastName"
-                aria-label="Last name"
-                placeholder="Last name"
-                className="border-white/20 bg-white/10 text-white placeholder:text-white/50"
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full bg-white text-[#369319] hover:bg-white/90"
-            >
-              Submit
-            </Button>
-          </form>
-          <p className="mt-2 text-xs text-white/60">
-            We value your privacy and will never send irrelevant information.
-          </p>
-        </div>
       </div>
-      <div className="border-t border-white/15">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-white/65 md:flex-row md:items-center md:justify-between md:px-6 lg:px-8">
+
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10 bg-[#0b3311]/90">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-white/70 sm:flex-row sm:px-6 lg:px-8">
           <p>
-            &copy; {new Date().getFullYear()} Alliance for Understanding Recovery
-            &amp; Awareness (AURA). All Rights Reserved.
+            &copy; {new Date().getFullYear()} Alliance for Understanding Recovery &amp; Awareness (AURA). All Rights Reserved.
           </p>
-          <p>AURA is not a crisis clinic. In an emergency, call 952.</p>
+          <div className="flex items-center gap-4">
+            <span className="text-white/50">CSO Proclamation No. 1113/2011</span>
+            <span className="text-white/30">&bull;</span>
+            <span className="text-white/90 font-medium">Not a crisis clinic &bull; Call 952</span>
+          </div>
         </div>
       </div>
     </footer>

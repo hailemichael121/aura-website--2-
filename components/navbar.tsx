@@ -81,7 +81,6 @@ const navigation: NavItem[] = [
       },
     ],
   },
-  { name: "Resource", href: "/resources" },
   {
     name: "Get Involved",
     href: "/get-involved",
@@ -255,17 +254,6 @@ export default function Navbar() {
             </a>
             <LanguageSwitcher />
             <ThemeSwitcher />
-            <Button
-              asChild
-              className={cn(
-                "h-9 shrink-0 whitespace-nowrap rounded-full px-4 text-sm",
-                overHero
-                  ? "bg-white text-[#369319] hover:bg-white/90"
-                  : "bg-primary text-primary-foreground",
-              )}
-            >
-              <Link href="/auth/signup">Sign up</Link>
-            </Button>
           </div>
 
           <div
@@ -323,12 +311,6 @@ export default function Navbar() {
                       ))}
                     </div>
                   ))}
-                  <Link
-                    href="/auth/signup"
-                    className="mt-4 block rounded-full bg-primary px-4 py-2.5 text-center text-sm font-medium text-primary-foreground"
-                  >
-                    Sign up
-                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
