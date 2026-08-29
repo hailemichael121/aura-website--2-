@@ -14,7 +14,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("system")
+  const [theme, setTheme] = useState<Theme>("light")
   const [actualTheme, setActualTheme] = useState<"light" | "dark">("light")
 
   useEffect(() => {
@@ -22,6 +22,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const savedTheme = localStorage.getItem("aura-theme") as Theme
     if (savedTheme) {
       setTheme(savedTheme)
+    } else {
+      setTheme("light")
     }
   }, [])
 

@@ -231,61 +231,52 @@ export default function Navbar() {
             })}
           </div>
 
-          <div
-            className={cn(
-              "hidden items-center gap-1 xl:flex",
-              overHero &&
-                "[&_button]:text-white [&_button]:hover:bg-white/15",
-            )}
-          >
+          <div className="hidden items-center gap-1 xl:flex">
             <a
               href="https://t.me/AURA_MHP"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join AURA on Telegram"
               className={cn(
-                "inline-flex h-9 w-9 items-center justify-center rounded-full",
+                "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors",
                 overHero
-                  ? "text-white hover:bg-white/15"
+                  ? "text-white hover:bg-white/15 hover:text-white"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground",
               )}
             >
               <TelegramIcon className="h-4 w-4" />
             </a>
-            <LanguageSwitcher />
-            <ThemeSwitcher />
+            <LanguageSwitcher overHero={overHero} />
+            <ThemeSwitcher overHero={overHero} />
           </div>
 
-          <div
-            className={cn(
-              "flex items-center gap-1 xl:hidden",
-              overHero &&
-                "[&_button]:text-white [&_button]:hover:bg-white/15",
-            )}
-          >
+          <div className="flex items-center gap-1 xl:hidden">
             <a
               href="https://t.me/AURA_MHP"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join AURA on Telegram"
               className={cn(
-                "inline-flex h-9 w-9 items-center justify-center rounded-full",
+                "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors",
                 overHero
-                  ? "text-white hover:bg-white/15"
-                  : "text-muted-foreground hover:bg-muted",
+                  ? "text-white hover:bg-white/15 hover:text-white"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
               )}
             >
               <TelegramIcon className="h-4 w-4" />
             </a>
-            <LanguageSwitcher />
-            <ThemeSwitcher />
+            <LanguageSwitcher overHero={overHero} />
+            <ThemeSwitcher overHero={overHero} />
             <Sheet>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
                   aria-label="Open menu"
-                  className={overHero ? "text-white hover:bg-white/15" : ""}
+                  className={cn(
+                    "h-9 w-9 rounded-full transition-colors",
+                    overHero ? "text-white hover:bg-white/15 hover:text-white" : ""
+                  )}
                 >
                   <Menu className="h-5 w-5" />
                 </Button>
