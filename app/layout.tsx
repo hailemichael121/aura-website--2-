@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
+import { Poppins, Noto_Sans_Ethiopic } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -10,6 +11,21 @@ import { ThemeProvider } from "@/contexts/theme-context";
 import ErrorBoundary from "@/components/error-boundary";
 import { BrandDockProvider } from "@/hooks/use-brand-dock";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/json-ld";
+import ScrollToTop from "@/components/scroll-to-top";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const notoSansEthiopic = Noto_Sans_Ethiopic({
+  subsets: ["ethiopic"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ethiopic",
+  display: "swap",
+});
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.auramentalhealth.org";
 
@@ -117,11 +133,12 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className="font-[Inter,system-ui,-apple-system,Segoe_UI,Roboto,sans-serif]">
+      <body className={`${poppins.variable} ${notoSansEthiopic.variable} font-sans antialiased`}>
         <ErrorBoundary>
           <ThemeProvider>
             <LanguageProvider>
               <BrandDockProvider>
+                <ScrollToTop />
                 <div className="flex min-h-screen flex-col">
                   <Navbar />
                   <main id="main-content" className="flex-1">

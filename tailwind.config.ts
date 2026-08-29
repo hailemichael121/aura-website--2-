@@ -12,7 +12,15 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--font-poppins)', 'var(--font-ethiopic)', 'Poppins', 'system-ui', 'sans-serif'],
+  			heading: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
+  			amharic: ['var(--font-ethiopic)', 'Nokia', 'sans-serif'],
+  		},
   		colors: {
+  			'brand-green': '#31960F',
+  			'brand-azure': '#3284FC',
+  			'pearl-white': '#FFFFF8',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

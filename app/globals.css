@@ -4,50 +4,50 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 60 100% 99%; /* Pearl White #FFFFF8 */
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    --primary: 106 71% 34%;
+    --primary: 105 82% 33%; /* La Salle Green #31960F */
     --primary-foreground: 0 0% 100%;
-    --brand-blue: 222 72% 65%;
-    --secondary: 222 45% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 106 18% 95%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 222 45% 96%;
-    --accent-foreground: 222 47% 11%;
+    --brand-azure: 215 97% 59%; /* Bright Azure #3284FC */
+    --secondary: 105 30% 96%;
+    --secondary-foreground: 105 82% 25%;
+    --muted: 105 18% 95%;
+    --muted-foreground: 215 16% 45%;
+    --accent: 105 30% 94%;
+    --accent-foreground: 105 82% 25%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 106 20% 88%;
-    --input: 106 20% 88%;
-    --ring: 106 71% 34%;
+    --border: 105 20% 88%;
+    --input: 105 20% 88%;
+    --ring: 105 82% 33%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 96%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 96%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 96%;
-    --primary: 106 62% 48%;
-    --primary-foreground: 222 47% 6%;
-    --brand-blue: 222 72% 68%;
-    --secondary: 222 20% 14%;
-    --secondary-foreground: 210 40% 96%;
-    --muted: 222 15% 13%;
-    --muted-foreground: 215 12% 65%;
-    --accent: 222 20% 14%;
-    --accent-foreground: 210 40% 96%;
+    --background: 105 40% 5%;
+    --foreground: 60 50% 98%;
+    --card: 105 35% 8%;
+    --card-foreground: 60 50% 98%;
+    --popover: 105 35% 8%;
+    --popover-foreground: 60 50% 98%;
+    --primary: 105 78% 42%; /* Vibrant La Salle Green for Dark Mode */
+    --primary-foreground: 0 0% 100%;
+    --brand-azure: 215 97% 65%;
+    --secondary: 105 25% 15%;
+    --secondary-foreground: 60 50% 98%;
+    --muted: 105 20% 14%;
+    --muted-foreground: 105 15% 65%;
+    --accent: 105 25% 16%;
+    --accent-foreground: 60 50% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
-    --border: 222 15% 20%;
-    --input: 222 15% 20%;
-    --ring: 106 62% 48%;
+    --border: 105 20% 18%;
+    --input: 105 20% 18%;
+    --ring: 105 78% 42%;
   }
 
   * {
@@ -56,11 +56,46 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: var(--font-poppins), var(--font-ethiopic), "Poppins", system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
+    font-weight: 600;
   }
 
   :focus-visible {
     @apply outline-none ring-2 ring-primary ring-offset-2;
   }
+}
+
+/* Hero Section Overlay & Visual Styling */
+.hero-lime-wash {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 92, 30, 0.82) 0%,
+    rgba(49, 150, 15, 0.72) 45%,
+    rgba(132, 204, 22, 0.52) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+.hero-dim-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 63, 21, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(14, 63, 21, 0.7) 100%
+  );
+}
+
+.hero-top-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 51, 17, 0.75) 0%,
+    rgba(14, 63, 21, 0.35) 60%,
+    transparent 100%
+  );
 }
 
 @keyframes hero-kenburns {
@@ -72,38 +107,9 @@
   }
 }
 
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: scale(1.045);
-  transition:
-    opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.45s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.hero-slide.is-active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 2;
-}
-
-.hero-slide.is-leaving {
-  opacity: 0;
-  transform: scale(0.985);
-  z-index: 3;
-}
-
-.hero-slide.is-active .hero-media-still {
-  animation: hero-kenburns 22s ease-in-out infinite alternate;
-}
-
-.hero-media {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+.hero-slide-layer--active img {
+  transform-origin: center 38%;
+  animation: hero-kenburns 20s ease-in-out infinite alternate;
 }
 
 @keyframes counter-brake {
@@ -134,17 +140,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-slide {
-    transform: none;
-    transition: opacity 0.35s ease;
-  }
-
-  .hero-slide.is-active .hero-media-still {
+  .hero-slide-layer--active img {
     animation: none;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
