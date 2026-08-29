@@ -88,31 +88,40 @@ export default function Footer() {
               </Button>
             </div>
 
-            <div className="flex items-center gap-2.5 pt-2">
+            <div className="flex flex-wrap items-center gap-2.5 pt-2">
               <a
                 href="mailto:contact@auramentalhealth.com"
                 aria-label="Email AURA"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/25 hover:scale-105"
+                className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/20 hover:pr-3.5 hover:shadow-md"
               >
-                <MailIcon className="h-4 w-4" />
+                <MailIcon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 group-hover:max-w-xs group-hover:opacity-100">
+                  Email AURA
+                </span>
               </a>
               <a
                 href="https://www.instagram.com/red8_fe"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/25 hover:scale-105"
+                className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/20 hover:pr-3.5 hover:shadow-md"
               >
-                <InstagramIcon className="h-4 w-4" />
+                <InstagramIcon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 group-hover:max-w-xs group-hover:opacity-100">
+                  AURA on Instagram
+                </span>
               </a>
               <a
                 href="https://t.me/AURA_MHP"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram Community"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/25 hover:scale-105"
+                className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 text-white transition-all duration-300 hover:border-white/40 hover:bg-white/20 hover:pr-3.5 hover:shadow-md"
               >
-                <TelegramIcon className="h-4 w-4" />
+                <TelegramIcon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 group-hover:max-w-xs group-hover:opacity-100">
+                  AURA on Telegram
+                </span>
               </a>
             </div>
           </div>
@@ -221,11 +230,7 @@ export default function Footer() {
           <p>
             &copy; {new Date().getFullYear()} Alliance for Understanding Recovery &amp; Awareness (AURA). All Rights Reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <span className="text-white/50">CSO Proclamation No. 1113/2011</span>
-            <span className="text-white/30">&bull;</span>
-            <span className="text-white/90 font-medium">Not a crisis clinic &bull; Call 952</span>
-          </div>
+        
         </div>
       </div>
     </footer>
