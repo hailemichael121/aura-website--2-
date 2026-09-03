@@ -31,6 +31,32 @@ export const translations = {
       comment: "Comment",
       reply: "Reply",
     },
+    comingSoon: {
+      title: "Coming Soon",
+      message:
+        "We are preparing this section with care. Please check back soon.",
+      returnHome: "Return Home",
+      viewAbout: "About AURA",
+      viewPrograms: "Programs & Events",
+      viewCampaign: "Campaign",
+      pages: {
+        contact: "Contact",
+        faq: "FAQ",
+        founders: "Founders",
+        resources: "Resources",
+        community: "Community",
+        forum: "Forum",
+        stories: "Stories",
+        confessions: "Confessions",
+        getHelp: "Get Help",
+        getInvolved: "Get Involved",
+        joinUs: "Join Us",
+        blog: "Blog",
+        programs: "Program Details",
+        auth: "Account",
+        admin: "Admin",
+      },
+    },
     // Home page
     home: {
       hero: {
@@ -92,6 +118,31 @@ export const translations = {
       comment: "አስተያየት",
       reply: "መልስ",
     },
+    comingSoon: {
+      title: "በቅርቡ ይመጣል",
+      message: "ይህን ክፍል በጥንቃቄ እያዘጋጀን ነው። በቅርቡ እንደገና ይመለከቱ።",
+      returnHome: "ወደ መነሻ",
+      viewAbout: "ስለ AURA",
+      viewPrograms: "ፕሮግራሞች እና ክስተቶች",
+      viewCampaign: "ካምፔን",
+      pages: {
+        contact: "ያግኙን",
+        faq: "ተደጋጋሚ ጥያቄዎች",
+        founders: "መስራቾች",
+        resources: "ሀብቶች",
+        community: "ማህበረሰብ",
+        forum: "መድረክ",
+        stories: "ታሪኮች",
+        confessions: "ምስጢራዊ ተሞክሮዎች",
+        getHelp: "እርዳታ",
+        getInvolved: "ይሳተፉ",
+        joinUs: "ይቀላቀሉ",
+        blog: "ብሎግ",
+        programs: "የፕሮግራም ዝርዝር",
+        auth: "መለያ",
+        admin: "አስተዳደር",
+      },
+    },
     // Home page - Amharic
     home: {
       hero: {
@@ -151,6 +202,32 @@ export const translations = {
       like: "Jaallaa",
       comment: "Yaada",
       reply: "Deebii",
+    },
+    comingSoon: {
+      title: "Fuuldura Dhufaa Jira",
+      message:
+        "Kutaa kana of eeggannoodhaan qophii irra jirra. Mee yeroo gabaabaa keessatti deebi'aa ilaalaa.",
+      returnHome: "Gara Manaatti Deebi'i",
+      viewAbout: "Waa'ee AURA",
+      viewPrograms: "Sagantaalee fi Taateewwan",
+      viewCampaign: "Kampaanii",
+      pages: {
+        contact: "Nu Quunnamaa",
+        faq: "Gaaffilee Yeroo Baay'ee Gaafataman",
+        founders: "Hundeessitootaa",
+        resources: "Qabeenya",
+        community: "Hawaasa",
+        forum: "Waldaa",
+        stories: "Seenaalee",
+        confessions: "Dhugaa Dhoksaa",
+        getHelp: "Gargaarsa",
+        getInvolved: "Hirmaadhu",
+        joinUs: "Nu Makamaa",
+        blog: "Biloogii",
+        programs: "Bal'ina Sagantaa",
+        auth: "Herrega",
+        admin: "Bulchiinsa",
+      },
     },
     // Home page - Afan Oromo
     home: {

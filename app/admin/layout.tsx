@@ -8,7 +8,7 @@ import { supabase } from "@/lib/supabase"
 import type { User } from "@supabase/supabase-js"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Loader2 } from "lucide-react"
+import AuraLoader from "@/components/aura-loader"
 
 export default function AdminLayout({
   children,
@@ -53,11 +53,7 @@ export default function AdminLayout({
   }, [router])
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-primary" />
-      </div>
-    )
+    return <AuraLoader message="Loading admin..." fullScreen />
   }
 
   if (!isAdmin) {
