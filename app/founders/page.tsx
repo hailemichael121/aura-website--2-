@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { SITE_EMAILS } from "@/lib/site-contact";
 import {
   Instagram,
   MessageCircle,
@@ -59,7 +60,7 @@ export default function FoundersPage() {
                 <div className="relative mb-6 inline-block">
                   <div className="relative h-64 w-64 overflow-hidden rounded-xl border border-border shadow-md">
                     <Image
-                      src="/images/team/member-5.webp"
+                      src="/images/team/architecture/rediet-feleke.webp"
                       alt="Dr. Rediet Feleke"
                       fill
                       className="object-cover"
@@ -186,7 +187,7 @@ export default function FoundersPage() {
             <div className="rounded-lg border border-border bg-card p-6">
               <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full border border-border shadow-sm">
                 <Image
-                  src="/images/team/member-1.webp"
+                  src="/images/team/architecture/simret-gashaw.webp"
                   alt="Simret Gashaw"
                   fill
                   className="object-cover"
@@ -225,7 +226,7 @@ export default function FoundersPage() {
             <div className="rounded-lg border border-border bg-card p-6">
               <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full border border-border shadow-sm">
                 <Image
-                  src="/images/team/member-7.webp"
+                  src="/images/team/architecture/meseret-gossa.webp"
                   alt="Meseret Gossa"
                   fill
                   className="object-cover"
@@ -341,7 +342,9 @@ export default function FoundersPage() {
               <Mail className="mx-auto h-5 w-5 text-primary mb-2" />
               <h3 className="font-medium">Email Us</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                contact@auramentalhealth.com
+                <a href={`mailto:${SITE_EMAILS.info}`} className="hover:text-foreground">
+                  {SITE_EMAILS.info}
+                </a>
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5 text-center">
