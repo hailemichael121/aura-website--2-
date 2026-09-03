@@ -222,7 +222,7 @@ export default function HeroSection() {
         aria-hidden
       />
 
-      <div className="relative z-30 mx-auto flex min-h-[100svh] max-w-5xl flex-col items-center justify-center px-4 pb-28 pt-28 text-center sm:px-6 lg:px-8">
+      <div className="relative z-30 mx-auto flex min-h-[100svh] max-w-5xl flex-col items-center justify-center px-4 pb-44 pt-28 text-center sm:px-6 sm:pb-36 lg:px-8 lg:pb-32">
         <div
           ref={registerSizer}
           className="hero-static-lockup flex flex-col items-center gap-5 sm:flex-row sm:gap-6"
@@ -289,68 +289,80 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Left-Aligned Minimal Hero Controls */}
-      <div className="absolute bottom-20 left-4 z-30 flex items-center gap-2 sm:bottom-24 sm:left-8 md:left-12 lg:left-16">
-        <div className="flex items-center gap-2 rounded-full border border-white/20 bg-black/35 px-3 py-1.5 backdrop-blur-md shadow-lg">
-          {/* Prev */}
-          <button
-            type="button"
-            onClick={() => paginate(-1)}
-            className="inline-flex h-6 w-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
+      {/* Hero carousel controls */}
+      <div className="absolute inset-x-0 bottom-8 z-30 flex justify-center px-4 sm:bottom-24 sm:justify-start sm:px-8 md:px-12 lg:px-16">
+        <div className="flex w-full max-w-[min(100%,22rem)] flex-col items-center gap-2 sm:max-w-none sm:flex-row sm:items-center">
+          <div className="flex w-full items-center gap-2 rounded-full border border-white/20 bg-black/35 px-3 py-2 backdrop-blur-md shadow-lg sm:w-auto sm:py-1.5">
+            <button
+              type="button"
+              onClick={() => paginate(-1)}
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
 
-          {/* Minimal Progress Indicators */}
-          <div className="flex items-center gap-1.5">
-            {slides.map((slide, i) => (
-              <button
-                key={slide.id}
-                type="button"
-                aria-label={`Go to slide ${i + 1}`}
-                onClick={() => goTo(i)}
-                className={cn(
-                  "h-1.5 overflow-hidden rounded-full bg-white/30 transition-all duration-300",
-                  i === index ? "w-6 bg-white/40" : "w-1.5 hover:bg-white/60",
-                )}
-              >
-                {i === index ? (
-                  <span
-                    className="block h-full bg-white"
-                    style={{ width: `${slideProgress}%` }}
-                  />
-                ) : null}
-              </button>
-            ))}
+            <div className="hidden min-w-0 flex-1 items-center gap-1 sm:flex sm:flex-none">
+              {slides.map((slide, i) => (
+                <button
+                  key={slide.id}
+                  type="button"
+                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => goTo(i)}
+                  className={cn(
+                    "h-1.5 shrink-0 overflow-hidden rounded-full bg-white/30 transition-all duration-300",
+                    i === index ? "w-6 bg-white/40" : "w-1.5 hover:bg-white/60",
+                  )}
+                >
+                  {i === index ? (
+                    <span
+                      className="block h-full bg-white"
+                      style={{ width: `${slideProgress}%` }}
+                    />
+                  ) : null}
+                </button>
+              ))}
+            </div>
+
+            <div className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-white/30 sm:hidden">
+              <span
+                className="block h-full bg-white transition-all duration-150"
+                style={{ width: `${slideProgress}%` }}
+              />
+            </div>
+
+            <span className="shrink-0 px-1 text-[11px] font-medium tabular-nums text-white/85 sm:hidden">
+              {index + 1}/{slides.length}
+            </span>
+
+            <button
+              type="button"
+              onClick={() => paginate(1)}
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+
+            <span className="hidden h-3 w-px bg-white/25 sm:block" />
+
+            <button
+              type="button"
+              onClick={() => setPlaying((v) => !v)}
+              className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
+              aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+            >
+              {playing ? (
+                <Pause className="h-3.5 w-3.5" />
+              ) : (
+                <Play className="h-3.5 w-3.5" />
+              )}
+            </button>
           </div>
 
-          {/* Next */}
-          <button
-            type="button"
-            onClick={() => paginate(1)}
-            className="inline-flex h-6 w-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-
-          {/* Divider */}
-          <span className="h-3 w-px bg-white/25" />
-
-          {/* Play/Pause */}
-          <button
-            type="button"
-            onClick={() => setPlaying((v) => !v)}
-            className="inline-flex h-6 w-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/20 hover:text-white"
-            aria-label={playing ? "Pause slideshow" : "Play slideshow"}
-          >
-            {playing ? (
-              <Pause className="h-3.5 w-3.5" />
-            ) : (
-              <Play className="h-3.5 w-3.5" />
-            )}
-          </button>
+          <p className="hidden text-xs tabular-nums text-white/75 sm:block">
+            Slide {index + 1} of {slides.length}
+          </p>
         </div>
       </div>
 

@@ -17,7 +17,7 @@ export default function FloatingTelegram() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 z-40 pb-[env(safe-area-inset-bottom)] sm:bottom-6 sm:right-6">
       {isOpen ? (
         <div className="w-[min(100vw-2rem,320px)] border border-border bg-background shadow-lg">
           <div className="flex items-start justify-between gap-3 border-b border-border px-4 py-3">
@@ -50,7 +50,7 @@ export default function FloatingTelegram() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block rounded-md px-3 py-2.5 text-sm text-foreground hover:bg-muted"
+                className="block min-h-11 touch-manipulation rounded-md px-3 py-2.5 text-sm text-foreground active:bg-muted"
               >
                 {item.label}
               </Link>

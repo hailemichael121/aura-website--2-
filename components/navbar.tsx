@@ -1,13 +1,13 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ChevronDown } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { MobileNav } from "@/components/mobile-nav";
 import { useBrandDock } from "@/hooks/use-brand-dock";
 import { AuraHeroLockup } from "@/components/aura-hero-lockup";
 import { TelegramIcon } from "@/components/brand-icons";
@@ -35,22 +35,27 @@ const navigation: NavItem[] = [
       },
       {
         name: "Weekly Family Time",
-        href: "/programs",
+        href: "/programs#family-time",
         description: "Open family conversations around wellness at home.",
       },
       {
         name: "Virtual trainings",
-        href: "/programs",
+        href: "/programs#virtual-trainings",
         description: "Live online sessions you can join from anywhere.",
       },
       {
+        name: "Campaign",
+        href: "/campaign",
+        description: "Current awareness drives and public initiatives.",
+      },
+      {
         name: "In-person trainings",
-        href: "/programs",
-        description: "Facilitated sessions in Addis Ababa communities.",
+        href: "/programs#in-person-trainings",
+        description: "Facilitated sessions in Ethiopian communities.",
       },
       {
         name: "Events",
-        href: "/programs",
+        href: "/programs#events",
         description: "Dialogues, forums, and community gatherings.",
       },
     ],
@@ -111,13 +116,122 @@ function isActivePath(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+function NavDropdown({
+  item,
+  overHero,
+  linkClassName,
+}: {
+  item: NavItem & { children: NavChild[] };
+  overHero: boolean;
+  linkClassName: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  const handleEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  };
+
+  const close = () => setOpen(false);
+  const toggle = () => setOpen((value) => !value);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      if (rootRef.current?.contains(event.target as Node)) return;
+      setOpen(false);
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [open]);
+
+  return (
+    <div
+      ref={rootRef}
+      className="relative"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <button
+        type="button"
+        className={linkClassName}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        onClick={(event) => {
+          event.preventDefault();
+          toggle();
+        }}
+      >
+        {item.name}
+        <ChevronDown
+          className={cn(
+            "ml-1 h-3.5 w-3.5 opacity-80 transition-transform duration-200",
+            open && "rotate-180",
+          )}
+        />
+      </button>
+      {open ? (
+        <div className="absolute left-1/2 top-full z-50 w-[560px] -translate-x-1/2 pt-2">
+          <div
+            className={cn(
+              "grid grid-cols-2 gap-1 border p-3 shadow-md",
+              overHero
+                ? "border-white/20 bg-white text-foreground"
+                : "border-border bg-popover",
+            )}
+          >
+            {item.children.map((child) => (
+              <Link
+                key={child.href + child.name}
+                href={child.href}
+                onClick={close}
+                className="px-3 py-2.5 text-left hover:bg-muted"
+              >
+                <p className="text-sm font-medium text-foreground">
+                  {child.name}
+                </p>
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+                  {child.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const { progress, reveal, fly, isHome } = useBrandDock();
   const overHero = isHome && progress < 0.06;
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1280px)");
+    const update = () => setIsDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  const brandLocked = isHome && reveal < 0.85 && isDesktop;
 
   const linkBase =
-    "inline-flex h-9 shrink-0 items-center whitespace-nowrap rounded-full px-3 text-sm transition";
+    "inline-flex h-9 shrink-0 items-center whitespace-nowrap rounded-full px-3.5 text-sm transition-colors duration-200";
 
   return (
     <>
@@ -152,17 +266,17 @@ export default function Navbar() {
             className="flex min-h-9 min-w-[9.5rem] shrink-0 items-center gap-3"
             style={{
               opacity: isHome ? reveal : 1,
-              pointerEvents: !isHome || reveal > 0.85 ? "auto" : "none",
+              pointerEvents: brandLocked ? "none" : "auto",
             }}
-            aria-hidden={isHome && reveal < 0.85}
-            tabIndex={isHome && reveal < 0.85 ? -1 : undefined}
+            aria-hidden={brandLocked}
+            tabIndex={brandLocked ? -1 : undefined}
           >
             <Image
               src="/images/aura-logo.webp"
               alt="AURA logo"
               width={36}
               height={36}
-              className="h-9 w-9 rounded-full object-cover"
+              className="h-9 w-9 object-cover"
             />
             <div className="min-w-0">
               <p className="text-base font-bold leading-none text-foreground">
@@ -181,11 +295,11 @@ export default function Navbar() {
                 linkBase,
                 overHero
                   ? active
-                    ? "bg-white px-4 font-medium text-primary hover:bg-white/90"
+                    ? "bg-white/95 font-medium text-primary shadow-sm hover:bg-white"
                     : "text-white/85 hover:bg-white/10 hover:text-white"
                   : active
-                    ? "font-semibold text-primary"
-                    : "text-muted-foreground hover:bg-muted/70 hover:text-foreground",
+                    ? "bg-primary/10 font-semibold text-primary"
+                    : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
               );
 
               if (!item.children?.length) {
@@ -197,37 +311,12 @@ export default function Navbar() {
               }
 
               return (
-                <div key={item.name} className="group relative">
-                  <Link href={item.href} className={pill}>
-                    {item.name}
-                    <ChevronDown className="ml-1 h-3.5 w-3.5 opacity-80" />
-                  </Link>
-                  <div className="invisible absolute left-1/2 top-full z-50 w-[560px] -translate-x-1/2 pt-3 opacity-0 transition duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                    <div
-                      className={cn(
-                        "grid grid-cols-2 gap-2 rounded-xl border p-4",
-                        overHero
-                          ? "border-white/20 bg-white text-foreground"
-                          : "border-border bg-popover",
-                      )}
-                    >
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href + child.name}
-                          href={child.href}
-                          className="rounded-xl px-3 py-3 text-left hover:bg-muted"
-                        >
-                          <p className="text-sm font-medium text-foreground">
-                            {child.name}
-                          </p>
-                          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                            {child.description}
-                          </p>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                <NavDropdown
+                  key={item.name}
+                  item={item as NavItem & { children: NavChild[] }}
+                  overHero={overHero}
+                  linkClassName={pill}
+                />
               );
             })}
           </div>
@@ -251,14 +340,14 @@ export default function Navbar() {
             <ThemeSwitcher overHero={overHero} />
           </div>
 
-          <div className="flex items-center gap-1 xl:hidden">
+          <div className="flex items-center gap-0.5 xl:hidden">
             <a
               href="https://t.me/AURA_MHP"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Join AURA on Telegram"
               className={cn(
-                "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors",
+                "inline-flex h-10 w-10 shrink-0 touch-manipulation items-center justify-center rounded-full transition-colors",
                 overHero
                   ? "text-white hover:bg-white/15 hover:text-white"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground",
@@ -268,44 +357,7 @@ export default function Navbar() {
             </a>
             <LanguageSwitcher overHero={overHero} />
             <ThemeSwitcher overHero={overHero} />
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  aria-label="Open menu"
-                  className={cn(
-                    "h-9 w-9 rounded-full transition-colors",
-                    overHero ? "text-white hover:bg-white/15 hover:text-white" : ""
-                  )}
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="bg-background">
-                <div className="mt-10 space-y-1">
-                  {navigation.map((item) => (
-                    <div key={item.name}>
-                      <Link
-                        href={item.href}
-                        className="block rounded-md px-3 py-2.5 text-foreground hover:bg-muted"
-                      >
-                        {item.name}
-                      </Link>
-                      {item.children?.map((child) => (
-                        <Link
-                          key={child.href + child.name}
-                          href={child.href}
-                          className="ml-3 block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
-                        >
-                          {child.name}
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </SheetContent>
-            </Sheet>
+            <MobileNav navigation={navigation} overHero={overHero} />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from "react"
 import { SITE_EMAILS } from "@/lib/site-contact"
+import { SITE_SOCIAL } from "@/lib/site-social"
 
 interface JsonLdProps {
   data: Record<string, any>
@@ -45,8 +46,6 @@ export function OrganizationJsonLd() {
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Bole",
-      addressLocality: "Addis Ababa",
       addressCountry: "ET",
     },
     contactPoint: {
@@ -56,8 +55,9 @@ export function OrganizationJsonLd() {
       availableLanguage: ["English", "Amharic", "Oromo"],
     },
     sameAs: [
-      "https://t.me/AURA_MHP",
-      "https://www.instagram.com/red8_fe",
+      SITE_SOCIAL.linkedin,
+      SITE_SOCIAL.telegram,
+      SITE_SOCIAL.instagram,
     ],
   }
 

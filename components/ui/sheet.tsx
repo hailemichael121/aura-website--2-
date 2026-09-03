@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { createPortal } from "react-dom"
 import { cva, type VariantProps } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -55,8 +56,14 @@ const SheetTrigger = React.forwardRef<HTMLButtonElement, SheetTriggerProps>(
     const ctx = React.useContext(SheetContext)
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      const childOnClick = asChild
+        ? (children as React.ReactElement<any>).props.onClick
+        : undefined
+      childOnClick?.(e)
       props.onClick?.(e)
-      ctx?.setOpen(true)
+      if (!e.defaultPrevented) {
+        ctx?.setOpen(true)
+      }
     }
 
     if (asChild && React.isValidElement(children)) {
@@ -66,6 +73,7 @@ const SheetTrigger = React.forwardRef<HTMLButtonElement, SheetTriggerProps>(
         "aria-haspopup": "dialog",
         "aria-expanded": ctx?.open,
         className: cn(className, (children.props as any).className),
+        type: (children.props as any).type ?? "button",
       })
     }
 
@@ -87,16 +95,16 @@ const SheetTrigger = React.forwardRef<HTMLButtonElement, SheetTriggerProps>(
 SheetTrigger.displayName = "SheetTrigger"
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-background p-6 shadow-xl transition-transform duration-300 ease-in-out",
+  "fixed z-[101] flex flex-col bg-background shadow-xl transition-transform duration-300 ease-in-out touch-manipulation",
   {
     variants: {
       side: {
         top: "inset-x-0 top-0 border-b data-[state=open]:translate-y-0 data-[state=closed]:-translate-y-full",
         bottom:
           "inset-x-0 bottom-0 border-t data-[state=open]:translate-y-0 data-[state=closed]:translate-y-full",
-        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=open]:translate-x-0 data-[state=closed]:-translate-x-full sm:max-w-sm",
+        left: "inset-y-0 left-0 h-full w-[min(100vw,20rem)] border-r data-[state=open]:translate-x-0 data-[state=closed]:-translate-x-full sm:max-w-xs",
         right:
-          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=open]:translate-x-0 data-[state=closed]:translate-x-full sm:max-w-sm",
+          "inset-y-0 right-0 h-full w-[min(100vw,20rem)] border-l data-[state=open]:translate-x-0 data-[state=closed]:translate-x-full sm:max-w-xs",
       },
     },
     defaultVariants: {
@@ -113,6 +121,11 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
   ({ side = "right", className, children, ...props }, ref) => {
     const ctx = React.useContext(SheetContext)
     const open = Boolean(ctx?.open)
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+      setMounted(true)
+    }, [])
 
     React.useEffect(() => {
       if (!open) return
@@ -132,43 +145,35 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
       }
     }, [open, ctx])
 
-    if (!open) return null
+    if (!open || !mounted) return null
 
-    return (
-      <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true">
-        {/* Backdrop overlay */}
+    return createPortal(
+      <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true">
         <div
           onClick={() => ctx?.setOpen(false)}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in-0"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm"
           aria-hidden="true"
         />
 
-        {/* Drawer panel */}
         <div
           ref={ref}
           data-state={open ? "open" : "closed"}
-          className={cn(
-            sheetVariants({ side }),
-            "animate-in",
-            side === "right" && "slide-in-from-right",
-            side === "left" && "slide-in-from-left",
-            side === "top" && "slide-in-from-top",
-            side === "bottom" && "slide-in-from-bottom",
-            className
-          )}
+          onClick={(e) => e.stopPropagation()}
+          className={cn(sheetVariants({ side }), className)}
           {...props}
         >
           <button
             type="button"
             onClick={() => ctx?.setOpen(false)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-            aria-label="Close"
+            className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-md opacity-80 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label="Close menu"
           >
             <X className="h-5 w-5" />
           </button>
           {children}
         </div>
-      </div>
+      </div>,
+      document.body
     )
   }
 )

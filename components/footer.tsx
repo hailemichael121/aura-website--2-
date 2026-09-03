@@ -3,13 +3,13 @@ import Link from "next/link";
 import {
   HeartHandshake,
   Mail,
-  MapPin,
   PhoneCall,
 } from "lucide-react";
-import { InstagramIcon, MailIcon, TelegramIcon } from "@/components/brand-icons";
+import { InstagramIcon, LinkedInIcon, MailIcon, TelegramIcon } from "@/components/brand-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SITE_EMAILS } from "@/lib/site-contact";
+import { SITE_SOCIAL } from "@/lib/site-social";
 
 const quickLinks = [
   { href: "/about", label: "About" },
@@ -84,7 +84,19 @@ export default function Footer() {
                 </span>
               </a>
               <a
-                href="https://www.instagram.com/red8_fe"
+                href={SITE_SOCIAL.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-300 hover:w-auto hover:border-white/40 hover:bg-white/20 hover:px-3 hover:shadow-md"
+              >
+                <LinkedInIcon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-medium opacity-0 transition-all duration-300 ease-out group-hover:max-w-xs group-hover:pl-2 group-hover:opacity-100">
+                  AURA on LinkedIn
+                </span>
+              </a>
+              <a
+                href={SITE_SOCIAL.instagram}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
@@ -96,7 +108,7 @@ export default function Footer() {
                 </span>
               </a>
               <a
-                href="https://t.me/AURA_MHP"
+                href={SITE_SOCIAL.telegram}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram Community"
@@ -136,10 +148,6 @@ export default function Footer() {
               Contact Info
             </h4>
             <ul className="space-y-2.5 text-sm text-white/85">
-              <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/70" />
-                <span>Bole Sub-City, Addis Ababa, Ethiopia</span>
-              </li>
               <li className="flex items-center gap-2">
                 <MailIcon className="h-4 w-4 shrink-0 text-white/70" />
                 <a
@@ -150,9 +158,20 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2">
+                <LinkedInIcon className="h-4 w-4 shrink-0 text-white/70" />
+                <a
+                  href={SITE_SOCIAL.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white"
+                >
+                  AURA on LinkedIn
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
                 <TelegramIcon className="h-4 w-4 shrink-0 text-white/70" />
                 <a
-                  href="https://t.me/AURA_MHP"
+                  href={SITE_SOCIAL.telegram}
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-white"

@@ -23,7 +23,7 @@ export function LanguageSwitcher({ overHero = false }: { overHero?: boolean }) {
           variant="ghost"
           size="sm"
           className={cn(
-            "h-9 w-9 rounded-full px-0 transition-colors",
+            "h-10 w-10 touch-manipulation rounded-full px-0 transition-colors",
             overHero
               ? "text-white hover:bg-white/15 hover:text-white"
               : "text-muted-foreground hover:bg-muted hover:text-foreground"
