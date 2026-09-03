@@ -5,7 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import FloatingTelegram from "@/components/floating-telegram";
-import WelcomeModal from "@/components/welcome-modal";
+import SiteEntryOverlay from "@/components/site-entry-overlay";
 import { LanguageProvider } from "@/contexts/language-context";
 import { ThemeProvider } from "@/contexts/theme-context";
 import ErrorBoundary from "@/components/error-boundary";
@@ -74,7 +74,6 @@ export const metadata: Metadata = {
     "mental health Ethiopia",
     "AURA",
     "AURA Ethiopia",
-    "mental wellness Addis Ababa",
     "peer support Ethiopia",
     "mental health stigma reduction",
     "youth mental health",
@@ -171,7 +170,7 @@ export default function RootLayout({
                   </main>
                   <Footer />
                   <FloatingTelegram />
-                  <WelcomeModal />
+                  <SiteEntryOverlay />
                 </div>
               </BrandDockProvider>
             </LanguageProvider>

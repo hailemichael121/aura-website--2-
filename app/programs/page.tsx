@@ -1,130 +1,193 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { CalendarDays, GraduationCap, HeartPulse, Laptop, Megaphone, UsersRound, Users } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  CalendarDays,
+  GraduationCap,
+  Laptop,
+  Megaphone,
+  Users,
+  UsersRound,
+} from "lucide-react";
+import EmptyFeedState from "@/components/empty-feed-state";
+import PromotionCard from "@/components/promotion-card";
+import { getActivePromotions, type SitePromotion } from "@/lib/site-campaigns";
+import { SITE_URL } from "@/lib/site-contact";
 
 export const metadata: Metadata = {
   title: "Programs & Community Initiatives",
   description:
-    "Explore AURA mental health programs: youth wellness, community workshops, peer support circles, Family Time, and stigma-reduction campaigns.",
+    "AURA programs and events: Weekly Family Time, trainings, community gatherings, and awareness campaigns.",
   alternates: {
     canonical: "/programs",
   },
   openGraph: {
     title: "AURA Programs & Community Initiatives",
-    description:
-      "Accessible mental wellness programs, workshops, and peer groups across Ethiopian communities.",
-    url: "https://www.auramentalhealth.org/programs",
+    url: `${SITE_URL}/programs`,
   },
+};
+
+type ProgramCategory = {
+  id: string;
+  icon: typeof Users;
+  label: string;
+  match: (items: SitePromotion[]) => SitePromotion[];
+};
+
+const programCategories: ProgramCategory[] = [
+  {
+    id: "family-time",
+    icon: Users,
+    label: "Weekly Family Time",
+    match: (items) => items.filter((item) => item.id.includes("family-time")),
+  },
+  {
+    id: "virtual-trainings",
+    icon: Laptop,
+    label: "Virtual trainings",
+    match: (items) =>
+      items.filter(
+        (item) =>
+          item.id.includes("virtual") ||
+          item.title.toLowerCase().includes("virtual"),
+      ),
+  },
+  {
+    id: "in-person-trainings",
+    icon: GraduationCap,
+    label: "In-person trainings",
+    match: () => [],
+  },
+  {
+    id: "community-workshops",
+    icon: UsersRound,
+    label: "Community workshops",
+    match: () => [],
+  },
+];
+
+const programLinks = [
+  { icon: Users, label: "Weekly Family Time", href: "#family-time" },
+  { icon: Laptop, label: "Virtual trainings", href: "#virtual-trainings" },
+  { icon: Megaphone, label: "Campaign", href: "/campaign" },
+  { icon: GraduationCap, label: "In-person trainings", href: "#in-person-trainings" },
+  { icon: CalendarDays, label: "Events", href: "#events" },
+  { icon: UsersRound, label: "Community workshops", href: "#community-workshops" },
+] as const;
+
+function CategorySection({
+  category,
+  events,
+}: {
+  category: ProgramCategory;
+  events: SitePromotion[];
+}) {
+  const items = category.match(events);
+  const Icon = category.icon;
+
+  return (
+    <section id={category.id} className="scroll-mt-24 border-b border-border py-8">
+      <div className="flex items-center gap-2">
+        <Icon className="h-4 w-4 text-primary" />
+        <h2 className="text-lg font-bold text-foreground">{category.label}</h2>
+      </div>
+      {items.length > 0 ? (
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item) => (
+            <PromotionCard key={item.id} item={item} />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-5">
+          <EmptyFeedState
+            title="Coming soon"
+            eyebrow={category.label}
+          />
+        </div>
+      )}
+    </section>
+  );
 }
 
-const programs = [
-  {
-    id: 1,
-    name: "Mental health awareness campaigns",
-    description: "Public conversations in schools, campuses, and neighborhoods that challenge stigma and encourage early support-seeking.",
-    impact: "Reached 1,000+ people through talks, social campaigns, and community sessions.",
-    join: "Join as an outreach volunteer or host partner.",
-    icon: Megaphone,
-  },
-  {
-    id: 2,
-    name: "Community workshops",
-    description: "Facilitated learning sessions on stress regulation, communication, and emotional wellbeing for families and local groups.",
-    impact: "Supported safer conversations in homes, youth circles, and community institutions.",
-    join: "Register your group for a monthly workshop.",
-    icon: UsersRound,
-  },
-  {
-    id: 3,
-    name: "Youth mental wellness programs",
-    description: "Student-focused spaces addressing academic pressure, identity, anxiety, and transitions to adulthood.",
-    impact: "Helped youth participants build coping practices and peer support networks.",
-    join: "Sign up as a participant or campus coordinator.",
-    icon: GraduationCap,
-  },
-  {
-    id: 4,
-    name: "Recovery support groups",
-    description: "Ongoing support circles for people in recovery, centered on hope, accountability, and community care.",
-    impact: "Created consistent support pathways for participants navigating healing journeys.",
-    join: "Contact AURA for referral and orientation details.",
-    icon: HeartPulse,
-  },
-]
-
 export default function ProgramsPage() {
+  const events = getActivePromotions("event");
+  const campaigns = getActivePromotions("campaign");
+
   return (
-    <div className="min-h-screen bg-background pt-24">
-      <section className="border-b border-border bg-muted/50 py-14">
-        <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-          <Badge variant="outline" className="w-fit">Programs</Badge>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">Community-centered programs</h1>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            AURA programs are practical and accessible, designed to make mental wellness support more visible and actionable across Ethiopia.
+    <div className="min-h-screen bg-background pt-[4.75rem]">
+      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+        <header className="border-b border-border py-6">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+            Programs &amp; events
           </p>
-        </div>
-      </section>
+          <h1 className="mt-2 text-2xl font-bold text-foreground md:text-3xl">
+            Programs and events
+          </h1>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Family conversations, trainings, public events, and awareness
+            campaigns across Ethiopian communities.
+          </p>
+        </header>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8">
-        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { icon: Users, label: "Weekly Family Time" },
-            { icon: Laptop, label: "Virtual Trainings" },
-            { icon: GraduationCap, label: "In-Person trainings" },
-            { icon: CalendarDays, label: "Events" },
-          ].map((item) => (
-            <div
+        <nav
+          aria-label="Program categories"
+          className="grid gap-2 border-b border-border py-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {programLinks.map((item) => (
+            <Link
               key={item.label}
-              className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-4"
+              href={item.href}
+              className="flex items-center gap-2.5 border border-border px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted/40"
             >
-              <item.icon className="h-5 w-5 shrink-0 text-primary" />
-              <p className="text-sm font-medium">{item.label}</p>
-            </div>
+              <item.icon className="h-4 w-4 shrink-0 text-primary" />
+              {item.label}
+            </Link>
           ))}
-        </div>
-        <div className="grid gap-5 md:grid-cols-2">
-          {programs.map((program) => (
-            <Card key={program.name} className="border-border">
-              <CardHeader>
-                <div className="flex size-10 items-center justify-center rounded-md bg-muted text-muted-foreground">
-                  <program.icon className="size-5" />
-                </div>
-                <CardTitle className="pt-3 text-2xl text-foreground">{program.name}</CardTitle>
-                <CardDescription className="text-base">{program.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <p><span className="font-semibold text-foreground">Impact:</span> {program.impact}</p>
-                <p><span className="font-semibold text-foreground">How to participate:</span> {program.join}</p>
-                <div className="pt-4">
-                  <Button asChild>
-                    <Link href={`/programs/${program.id}`}>View program details</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        </nav>
 
-        <Card className="mt-10 border-border">
-          <CardContent className="flex flex-col gap-5 p-6 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h3 className="text-2xl font-medium text-foreground">Ready to join a program?</h3>
-              <p className="mt-2 text-muted-foreground">We welcome participants, volunteers, schools, and partners.</p>
+        {programCategories.map((category) => (
+          <CategorySection
+            key={category.id}
+            category={category}
+            events={events}
+          />
+        ))}
+
+        <section id="events" className="scroll-mt-24 border-b border-border py-8">
+          <h2 className="text-lg font-bold text-foreground">All events</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Upcoming sessions, dialogues, and virtual gatherings.
+          </p>
+          {events.length > 0 ? (
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {events.map((item) => (
+                <PromotionCard key={item.id} item={item} />
+              ))}
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href="/programs/register">Register interest</Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/contact">Contact team</Link>
-              </Button>
+          ) : (
+            <div className="mt-5">
+              <EmptyFeedState title="Nothing found" eyebrow="All events" />
             </div>
-          </CardContent>
-        </Card>
-      </section>
+          )}
+        </section>
+
+        <section id="campaigns" className="scroll-mt-24 py-8">
+          <h2 className="text-lg font-bold text-foreground">Campaigns</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Active awareness drives and public calls to action.
+          </p>
+          {campaigns.length > 0 ? (
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {campaigns.map((item) => (
+                <PromotionCard key={item.id} item={item} detailHref="/campaign" />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-5">
+              <EmptyFeedState title="Nothing found" eyebrow="Campaigns" />
+            </div>
+          )}
+        </section>
+      </div>
     </div>
-  )
+  );
 }

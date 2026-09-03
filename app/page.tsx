@@ -6,7 +6,9 @@ import {
   Users,
 } from "lucide-react";
 import HeroSection from "@/components/hero-section";
+import HomeActivitySection from "@/components/home-activity-section";
 import ImpactCounters from "@/components/impact-counters";
+import { getActivePromotions } from "@/lib/site-campaigns";
 
 const focusAreas = [
   {
@@ -27,6 +29,9 @@ const focusAreas = [
 ];
 
 export default function HomePage() {
+  const events = getActivePromotions("event");
+  const campaigns = getActivePromotions("campaign");
+
   return (
     <div className="bg-background text-foreground">
       <HeroSection />
@@ -50,6 +55,8 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <HomeActivitySection events={events} campaigns={campaigns} />
 
       <section className="pb-16">
         <div className="mx-auto grid max-w-6xl auto-rows-fr gap-3 px-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 md:px-6 lg:px-8">

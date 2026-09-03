@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
+import { hasSeenWelcome, setWelcomeSeen } from "@/lib/welcome-dismiss"
+
 export default function WelcomeModal() {
   const [isOpen, setIsOpen] = useState(false)
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -11,12 +13,11 @@ export default function WelcomeModal() {
 
   const handleClose = () => {
     setIsOpen(false)
-    sessionStorage.setItem("aura-welcome-shown", "true")
+    setWelcomeSeen()
   }
 
   useEffect(() => {
-    const hasShownWelcome = sessionStorage.getItem("aura-welcome-shown")
-    if (hasShownWelcome) return
+    if (hasSeenWelcome()) return
     const timer = setTimeout(() => setIsOpen(true), 700)
     return () => clearTimeout(timer)
   }, [])
