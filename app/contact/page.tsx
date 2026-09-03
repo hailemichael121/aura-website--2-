@@ -4,6 +4,7 @@ import { TelegramIcon } from "@/components/brand-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { SITE_EMAILS } from "@/lib/site-contact";
 
 export const metadata: Metadata = {
   title: "Contact Us | Get in Touch with AURA",
@@ -89,7 +90,15 @@ export default function ContactPage() {
               </p>
               <p className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary" />
-                contact@auramentalhealth.com
+                <a href={`mailto:${SITE_EMAILS.info}`} className="hover:text-foreground">
+                  {SITE_EMAILS.info}
+                </a>
+              </p>
+              <p className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-primary" />
+                <a href={`mailto:${SITE_EMAILS.support}`} className="hover:text-foreground">
+                  {SITE_EMAILS.support}
+                </a>
               </p>
               <p className="flex items-center gap-3">
                 <TelegramIcon className="h-4 w-4 text-primary" />

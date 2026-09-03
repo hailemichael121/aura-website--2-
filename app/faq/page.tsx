@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
+import { SITE_EMAILS } from "@/lib/site-contact";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions (FAQ)",
@@ -23,7 +24,7 @@ const faqs = [
   },
   {
     q: "Where is AURA based?",
-    a: "Bole Sub-City, Addis Ababa, Ethiopia. Email contact@auramentalhealth.com or join the Telegram hub @AURA_MHP.",
+    a: `Bole Sub-City, Addis Ababa, Ethiopia. Email ${SITE_EMAILS.info} or join the Telegram hub @AURA_MHP.`,
   },
   {
     q: "How do I become a member?",

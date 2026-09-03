@@ -1,4 +1,5 @@
 import React from "react"
+import { SITE_EMAILS } from "@/lib/site-contact"
 
 interface JsonLdProps {
   data: Record<string, any>
@@ -50,7 +51,7 @@ export function OrganizationJsonLd() {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      email: "contact@auramentalhealth.com",
+      email: SITE_EMAILS.info,
       contactType: "customer support",
       availableLanguage: ["English", "Amharic", "Oromo"],
     },
