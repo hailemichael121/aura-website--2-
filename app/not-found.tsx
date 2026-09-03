@@ -1,14 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Home, Heart } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="max-w-lg w-full text-center">
-        <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-6">
-          <span className="text-primary-foreground font-bold text-2xl">A</span>
-        </div>
+        <Image
+          src="/images/aura-logo.webp"
+          alt="AURA logo"
+          width={64}
+          height={64}
+          className="mx-auto mb-6 h-16 w-16 rounded-full object-cover"
+          priority
+        />
 
         <h1 className="text-7xl font-bold text-muted/60 mb-2">404</h1>
         <h2 className="text-2xl font-semibold mb-3">Page Not Found</h2>
