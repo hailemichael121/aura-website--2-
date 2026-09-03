@@ -141,9 +141,114 @@
   animation: counter-brake 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@keyframes aura-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes aura-line-grow {
+  from {
+    transform: scaleX(0);
+    opacity: 0.4;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes aura-soft-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+.about-intro-line {
+  transform-origin: left center;
+  animation: aura-line-grow 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.about-word-in {
+  display: inline-block;
+  opacity: 0;
+  animation: aura-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.about-card-hover {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.about-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px -18px hsl(var(--primary) / 0.35);
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(1.35rem);
+  filter: blur(3px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.75s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.about-outro-panel {
+  background:
+    linear-gradient(135deg, hsl(var(--primary) / 0.06), transparent 55%),
+    hsl(var(--card));
+}
+
+.about-glow-orb {
+  animation: aura-soft-glow 8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-slide-layer--active img {
     animation: none;
+  }
+
+  .about-intro-line,
+  .about-word-in,
+  .about-glow-orb {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .about-card-hover:hover {
+    transform: none;
   }
 
   *,
