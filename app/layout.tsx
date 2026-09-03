@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { Poppins, Noto_Sans_Ethiopic } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -13,26 +13,49 @@ import { BrandDockProvider } from "@/hooks/use-brand-dock";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/json-ld";
 import ScrollToTop from "@/components/scroll-to-top";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+const poppins = localFont({
+  src: [
+    {
+      path: "./fonts/poppins/Poppins-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/poppins/Poppins-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/poppins/Poppins-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/poppins/Poppins-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-poppins",
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
-const notoSansEthiopic = Noto_Sans_Ethiopic({
-  subsets: ["ethiopic"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-ethiopic",
+/** AURA guidelines name this face "Nokia" (Nokia Pure Headline). That family is proprietary, so the site self-hosts Noto Sans Ethiopic (OFL) for Amharic, with Nokia as a local() fallback if present. */
+const nokia = localFont({
+  src: "./fonts/ethiopic/NotoSansEthiopic-Variable.ttf",
+  variable: "--font-nokia",
   display: "swap",
+  weight: "100 900",
+  fallback: ["Nokia Pure Headline", "Nokia", "sans-serif"],
 });
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.auramentalhealth.org";
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#1a7a28" },
-    { media: "(prefers-color-scheme: dark)", color: "#145c1e" },
+    { media: "(prefers-color-scheme: light)", color: "#31960F" },
+    { media: "(prefers-color-scheme: dark)", color: "#31960F" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -133,7 +156,9 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className={`${poppins.variable} ${notoSansEthiopic.variable} font-sans antialiased`}>
+      <body
+        className={`${poppins.variable} ${nokia.variable} font-sans antialiased`}
+      >
         <ErrorBoundary>
           <ThemeProvider>
             <LanguageProvider>

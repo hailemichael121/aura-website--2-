@@ -13,9 +13,9 @@ const config: Config = {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: ['var(--font-poppins)', 'var(--font-ethiopic)', 'Poppins', 'system-ui', 'sans-serif'],
-  			heading: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
-  			amharic: ['var(--font-ethiopic)', 'Nokia', 'sans-serif'],
+  			sans: ['var(--font-poppins)', 'var(--font-nokia)', 'Poppins', 'Nokia', 'system-ui', 'sans-serif'],
+  			heading: ['var(--font-poppins)', 'var(--font-nokia)', 'Poppins', 'Nokia', 'sans-serif'],
+  			amharic: ['var(--font-nokia)', 'Nokia', 'sans-serif'],
   		},
   		colors: {
   			'brand-green': '#31960F',
