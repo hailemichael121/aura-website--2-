@@ -1,77 +1,154 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { HeartHandshake, ShieldCheck, Users, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function WelcomeModal() {
   const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    const hasShownWelcome = sessionStorage.getItem("aura-welcome-shown")
-    if (!hasShownWelcome) {
-      const timer = setTimeout(() => setIsOpen(true), 1200)
-      return () => clearTimeout(timer)
-    }
-  }, [])
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
 
   const handleClose = () => {
     setIsOpen(false)
     sessionStorage.setItem("aura-welcome-shown", "true")
   }
 
+  useEffect(() => {
+    const hasShownWelcome = sessionStorage.getItem("aura-welcome-shown")
+    if (hasShownWelcome) return
+    const timer = setTimeout(() => setIsOpen(true), 700)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    closeRef.current?.focus()
+    document.body.style.overflow = "hidden"
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") handleClose()
+      if (event.key !== "Tab" || !dialogRef.current) return
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        "a[href], button:not([disabled])",
+      )
+      if (!focusable.length) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener("keydown", onKey)
+    return () => {
+      document.body.style.overflow = ""
+      document.removeEventListener("keydown", onKey)
+    }
+  }, [isOpen])
+
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-      <Card className="w-full max-w-xl border-border bg-card shadow-lg">
-        <CardHeader className="relative space-y-3 pb-2 text-center">
-          <Button variant="ghost" size="sm" onClick={handleClose} className="absolute right-2 top-2 text-muted-foreground hover:text-foreground">
-            <X className="size-4" />
-          </Button>
-          <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <HeartHandshake className="size-6" />
-          </div>
-          <CardTitle className="text-xl font-semibold">Welcome to AURA</CardTitle>
-          <p className="text-sm text-muted-foreground">Alliance for Understanding Recovery & Awareness</p>
-        </CardHeader>
+    <div className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center">
+      <button
+        type="button"
+        className="absolute inset-0 bg-foreground/20"
+        aria-label="Dismiss welcome"
+        onClick={handleClose}
+      />
 
-        <CardContent className="space-y-5">
-          <p className="text-center text-muted-foreground">
-            We provide safe spaces, practical tools, and trusted support for your mental wellness journey.
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="aura-welcome-title"
+        className="relative z-10 w-full max-w-[26rem] bg-background px-6 py-7 shadow-[0_18px_48px_rgba(0,0,0,0.12)] sm:px-8 sm:py-8"
+      >
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={handleClose}
+          className="absolute right-4 top-4 text-xs text-muted-foreground underline-offset-2 hover:text-foreground hover:underline sm:right-5 sm:top-5"
+        >
+          Close
+        </button>
+
+        <div className="pr-10">
+          <Image
+            src="/images/aura-logo.webp"
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-full object-cover"
+          />
+
+          <p className="mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            Alliance for Understanding Recovery &amp; Awareness
           </p>
 
-          <div className="space-y-3">
-            <div className="flex items-start gap-3 rounded-md border border-border bg-background p-3">
-              <ShieldCheck className="mt-0.5 size-5 text-primary" />
-              <div>
-                <p className="font-medium text-foreground">Private and respectful</p>
-                <p className="text-sm text-muted-foreground">Your privacy and wellbeing are protected.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-md border border-border bg-background p-3">
-              <Users className="mt-0.5 size-5 text-primary" />
-              <div>
-                <p className="font-medium text-foreground">Peer community support</p>
-                <p className="text-sm text-muted-foreground">Connect with people who understand your experience.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 rounded-md border border-border bg-background p-3">
-              <HeartHandshake className="mt-0.5 size-5 text-primary" />
-              <div>
-                <p className="font-medium text-foreground">Professional resources</p>
-                <p className="text-sm text-muted-foreground">Access trusted guidance from trained contributors.</p>
-              </div>
-            </div>
-          </div>
+          <h2
+            id="aura-welcome-title"
+            className="mt-2 text-[1.625rem] font-bold leading-[1.2] text-foreground"
+          >
+            Welcome to AURA
+          </h2>
 
-          <div className="flex gap-3">
-            <Button onClick={handleClose} variant="outline" className="flex-1">Explore Later</Button>
-            <Button onClick={handleClose} className="flex-1">Get Started</Button>
+          <p className="mt-4 text-[15px] leading-[1.65] text-foreground/85">
+            We provide safe spaces, practical tools, and trusted support for
+            your mental wellness journey.
+          </p>
+
+          <div className="mt-5 space-y-3 text-sm leading-relaxed text-muted-foreground">
+            <p>
+              <span className="text-foreground">Private and respectful.</span>{" "}
+              Your privacy and wellbeing are protected.
+            </p>
+            <p>
+              <span className="text-foreground">Peer community support.</span>{" "}
+              Connect with people who understand your experience.
+            </p>
+            <p>
+              <span className="text-foreground">Professional resources.</span>{" "}
+              Access trusted guidance from trained contributors.
+            </p>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <button
+            type="button"
+            onClick={handleClose}
+            className="inline-flex h-10 items-center justify-center bg-primary px-5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+          >
+            Get Started
+          </button>
+          <button
+            type="button"
+            onClick={handleClose}
+            className="text-left text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+          >
+            Explore later
+          </button>
+        </div>
+
+        <p className="mt-6 border-t border-border/70 pt-4 text-[11px] leading-relaxed text-muted-foreground">
+          Registered Ethiopian Civil Society Organization · Proclamation No.
+          1113/2011.{" "}
+          <Link
+            href="/get-help"
+            onClick={handleClose}
+            className="text-foreground/70 underline-offset-2 hover:text-foreground hover:underline"
+          >
+            Need support now?
+          </Link>
+        </p>
+      </div>
     </div>
   )
 }

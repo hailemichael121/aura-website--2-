@@ -150,8 +150,8 @@ export default function HeroSection() {
   }, [index]);
 
   return (
-    <section className="relative isolate min-h-[100svh] bg-[#1a7a28] text-white">
-      <div className="absolute inset-0 overflow-hidden bg-[#145c1e]">
+    <section className="relative isolate min-h-[100svh] bg-primary text-white">
+      <div className="absolute inset-0 overflow-hidden bg-primary">
         {slides.map((slide, i) => {
           const isActive = i === index;
           const isLeaving = i === leaving;
@@ -231,7 +231,7 @@ export default function HeroSection() {
           <AuraHeroLockup />
         </div>
 
-        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-[#e8f5e9]/90 sm:text-sm">
+        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-pearl-white/90 sm:text-sm">
           Alliance for Understanding Recovery &amp; Awareness
         </p>
 
@@ -245,21 +245,20 @@ export default function HeroSection() {
           Mental Wellbeing for All!
         </h1>
 
-        <p className="mt-4 max-w-2xl text-balance text-sm leading-relaxed text-[#f4faf4] sm:text-base md:text-lg">
-          Alliance for Understanding Recovery &amp; Awareness (AURA) creates
-          accessible, culturally attuned safe spaces for mental health support
-          and stigma reduction by empowering youth, leveraging digital
-          innovation, and driving multi-stakeholder action across Ethiopian
-          communities.
+        <p className="mt-4 max-w-2xl text-balance text-sm leading-relaxed text-pearl-white sm:text-base md:text-lg">
+          AURA creates safe spaces for open conversation, recovery support, and
+          mental wellness awareness across Ethiopian communities. We break stigma
+          and foster healing through peer circles, public dialogues, and community
+          care.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button
             asChild
-            className="hero-cta h-11 shrink-0 whitespace-nowrap rounded-full bg-white px-5 text-sm font-semibold text-[#1a7a28] shadow-md hover:bg-white/90 sm:text-base"
+            className="hero-cta h-11 shrink-0 whitespace-nowrap rounded-full bg-pearl-white px-5 text-sm font-semibold text-primary shadow-md hover:bg-pearl-white/90 sm:text-base"
           >
             <Link href="/resources">
-              <Library className="h-4 w-4 text-[#1a7a28]" />
+              <Library className="h-4 w-4 text-primary" />
               Resources
             </Link>
           </Button>

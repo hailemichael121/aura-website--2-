@@ -35,15 +35,15 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6 lg:px-8">
         <h2 className="text-2xl font-semibold md:text-3xl">How AURA supports wellness</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-6 grid auto-rows-fr gap-4 sm:mt-8 sm:grid-cols-3 sm:gap-5">
           {focusAreas.map((item) => (
             <article
               key={item.title}
-              className="rounded-2xl border border-border bg-card p-6 shadow-sm"
+              className="flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5"
             >
-              <item.icon className="mb-3 h-6 w-6 text-primary" aria-hidden />
-              <h3 className="text-lg font-medium">{item.title}</h3>
-              <p className="mt-2 leading-relaxed text-muted-foreground">
+              <item.icon className="mb-2.5 h-5 w-5 text-primary" aria-hidden />
+              <h3 className="text-base font-semibold leading-snug sm:text-lg">{item.title}</h3>
+              <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {item.text}
               </p>
             </article>
@@ -52,40 +52,40 @@ export default function HomePage() {
       </section>
 
       <section className="pb-16">
-        <div className="mx-auto grid max-w-6xl gap-4 px-4 sm:grid-cols-3 md:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-6xl auto-rows-fr gap-3 px-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 md:px-6 lg:px-8">
           <Link
             href="/get-help"
-            className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            className="group flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-sm transition hover:border-primary/30 hover:shadow-md sm:p-5"
           >
-            <h3 className="text-lg font-medium">Need support?</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <h3 className="text-base font-semibold sm:text-lg">Need support?</h3>
+            <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
               Immediate options, peer listening, and trusted referrals.
             </p>
-            <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">
+            <span className="mt-3 inline-flex items-center text-sm font-medium text-primary">
               Get Help <ArrowRight className="ml-1 h-4 w-4" />
             </span>
           </Link>
           <Link
             href="/programs"
-            className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            className="group flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-sm transition hover:border-primary/30 hover:shadow-md sm:p-5"
           >
-            <h3 className="text-lg font-medium">Join a program</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <h3 className="text-base font-semibold sm:text-lg">Join a program</h3>
+            <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
               Family Time, trainings, youth sessions, and events.
             </p>
-            <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">
+            <span className="mt-3 inline-flex items-center text-sm font-medium text-primary">
               Explore programs <ArrowRight className="ml-1 h-4 w-4" />
             </span>
           </Link>
           <Link
             href="/community"
-            className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+            className="group flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-sm transition hover:border-primary/30 hover:shadow-md sm:col-span-2 sm:p-5 lg:col-span-1"
           >
-            <h3 className="text-lg font-medium">Build community</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <h3 className="text-base font-semibold sm:text-lg">Build community</h3>
+            <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
               Forum, stories, and spaces built on privacy and care.
             </p>
-            <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">
+            <span className="mt-3 inline-flex items-center text-sm font-medium text-primary">
               Visit community <ArrowRight className="ml-1 h-4 w-4" />
             </span>
           </Link>

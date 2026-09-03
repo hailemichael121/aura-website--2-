@@ -81,6 +81,7 @@ const navigation: NavItem[] = [
       },
     ],
   },
+  { name: "Resource", href: "/resources" },
   {
     name: "Get Involved",
     href: "/get-involved",
@@ -164,10 +165,10 @@ export default function Navbar() {
               className="h-9 w-9 rounded-full object-cover"
             />
             <div className="min-w-0">
-              <p className="text-base font-semibold leading-none text-foreground">
+              <p className="text-base font-bold leading-none text-foreground">
                 AURA
               </p>
-              <p className="mt-0.5 hidden text-[11px] text-[#678ee6] xl:block">
+              <p className="mt-0.5 hidden text-[11px] font-medium text-brand-azure xl:block">
                 Alliance for Understanding Recovery &amp; Awareness
               </p>
             </div>
@@ -180,7 +181,7 @@ export default function Navbar() {
                 linkBase,
                 overHero
                   ? active
-                    ? "bg-white px-4 font-medium text-[#369319] hover:bg-white/90"
+                    ? "bg-white px-4 font-medium text-primary hover:bg-white/90"
                     : "text-white/85 hover:bg-white/10 hover:text-white"
                   : active
                     ? "font-semibold text-primary"
