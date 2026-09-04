@@ -12,6 +12,7 @@ import ErrorBoundary from "@/components/error-boundary";
 import { BrandDockProvider } from "@/hooks/use-brand-dock";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/json-ld";
 import ScrollToTop from "@/components/scroll-to-top";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = localFont({
   src: [
@@ -176,6 +177,7 @@ export default function RootLayout({
             </LanguageProvider>
           </ThemeProvider>
         </ErrorBoundary>
+        <Analytics />
       </body>
     </html>
   );
