@@ -106,10 +106,18 @@ export const metadata: Metadata = {
     siteName: "AURA — Alliance for Understanding Recovery & Awareness",
     images: [
       {
-        url: "/images/mental-health-hero.webp",
+        url: "/images/aura-og-card.png",
         width: 1200,
         height: 630,
-        alt: "AURA Community Gathering for Mental Health Awareness",
+        alt: "AURA — Alliance for Understanding Recovery & Awareness",
+        type: "image/png",
+      },
+      {
+        url: "/images/aura-logo.png",
+        width: 512,
+        height: 512,
+        alt: "AURA Logo",
+        type: "image/png",
       },
     ],
     locale: "en_US",
@@ -120,7 +128,7 @@ export const metadata: Metadata = {
     title: "AURA — Mental Wellness for All",
     description:
       "Community-centered mental health awareness, safe support pathways, and stigma reduction in Ethiopia.",
-    images: ["/images/mental-health-hero.webp"],
+    images: ["/images/aura-og-card.png"],
     creator: "@AURA_MHP",
   },
   robots: {

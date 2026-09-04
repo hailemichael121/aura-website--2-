@@ -22,8 +22,8 @@ export function OrganizationJsonLd() {
     name: "AURA — Alliance for Understanding Recovery & Awareness",
     alternateName: ["AURA", "AURA Ethiopia", "AURA Mental Health Portal"],
     url: "https://www.auramentalhealth.org",
-    logo: "https://www.auramentalhealth.org/images/aura-logo.webp",
-    image: "https://www.auramentalhealth.org/images/aura-stationery.webp",
+    logo: "https://www.auramentalhealth.org/images/aura-logo.png",
+    image: "https://www.auramentalhealth.org/images/aura-og-card.png",
     description:
       "Alliance for Understanding Recovery & Awareness (AURA) is an Ethiopian Civil Society Organization providing community-centered mental health awareness, safe support pathways, and stigma reduction.",
     foundingDate: "2024",
