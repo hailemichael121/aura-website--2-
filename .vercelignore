@@ -1,0 +1,5 @@
+docs/
+scripts/
+*.md
+!README.md
+public/images/unused/
