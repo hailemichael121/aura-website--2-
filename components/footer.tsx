@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { InstagramIcon, LinkedInIcon, MailIcon, TelegramIcon } from "@/components/brand-icons";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import NewsletterForm from "@/components/newsletter-form";
 import { SITE_EMAILS } from "@/lib/site-contact";
 import { SITE_SOCIAL } from "@/lib/site-social";
 
@@ -196,36 +196,7 @@ export default function Footer() {
               send irrelevant information.
             </p>
 
-            <form className="space-y-2" action={`mailto:${SITE_EMAILS.newsletter}`} method="post" encType="text/plain">
-              <Input
-                type="email"
-                name="email"
-                required
-                aria-label="Email"
-                placeholder="your.email@example.com"
-                className="h-10 rounded-md border-white/20 bg-white/10 text-sm text-white placeholder:text-white/50 focus:border-white focus:bg-white/15"
-              />
-              <div className="grid grid-cols-2 gap-2">
-                <Input
-                  name="firstName"
-                  aria-label="First name"
-                  placeholder="First name"
-                  className="h-9 rounded-md border-white/20 bg-white/10 text-xs text-white placeholder:text-white/50"
-                />
-                <Input
-                  name="lastName"
-                  aria-label="Last name"
-                  placeholder="Last name"
-                  className="h-9 rounded-md border-white/20 bg-white/10 text-xs text-white placeholder:text-white/50"
-                />
-              </div>
-              <Button
-                type="submit"
-                className="w-full rounded-md bg-pearl-white font-medium text-primary hover:bg-pearl-white/90"
-              >
-                Subscribe
-              </Button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </div>
