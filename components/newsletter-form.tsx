@@ -44,10 +44,23 @@ export default function NewsletterForm({
     );
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      let res: Response | null = null;
+
+      try {
+        res = await fetch("/api/newsletter", {
+          method: "POST",
+          body: formData,
+        });
+      } catch {
+        res = null;
+      }
+
+      if (!res || !res.ok) {
+        res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        });
+      }
 
       const data = await res.json();
 
@@ -60,7 +73,7 @@ export default function NewsletterForm({
       }
     } catch {
       setStatus("error");
-      setMessage("Network error. Please try again later.");
+      setMessage("Network error. Please try again.");
     }
   };
 

@@ -41,10 +41,25 @@ export default function ContactForm({
     }
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      let response: Response | null = null;
+
+      // 1. Try first-party server route (avoids localhost CORS domain mismatch & adblockers)
+      try {
+        response = await fetch("/api/contact", {
+          method: "POST",
+          body: formData,
+        });
+      } catch {
+        response = null;
+      }
+
+      // 2. Fallback to direct Web3Forms API if server route is unavailable
+      if (!response || !response.ok) {
+        response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        });
+      }
 
       const data = await response.json();
 
@@ -57,10 +72,10 @@ export default function ContactForm({
           data.message || "Unable to send your message at this time. Please try again."
         );
       }
-    } catch (err) {
+    } catch (err: any) {
       setStatus("error");
       setErrorMessage(
-        "A network error occurred while submitting the form. Please check your connection or contact us directly at info@auramentalhealth.org."
+        "A network error occurred while submitting the form. If testing locally, Web3Forms may restrict submissions to the registered production domain (auramentalhealth.org). You can also email us directly at info@auramentalhealth.org."
       );
     }
   };
