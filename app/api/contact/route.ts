@@ -1,7 +1,28 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+
+    // Enforce IP Rate Limiting & Cooldown: 60s cooldown, max 5 per 10 mins
+    const limitCheck = checkRateLimit(ip, "contact", {
+      cooldownSeconds: 60,
+      maxRequests: 5,
+      windowSeconds: 600,
+    });
+
+    if (!limitCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: limitCheck.message,
+          cooldownRemaining: limitCheck.remainingSeconds,
+        },
+        { status: 429 }
+      );
+    }
+
     const formData = await request.formData();
 
     if (!formData.get("access_key")) {

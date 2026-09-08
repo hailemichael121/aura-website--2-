@@ -1,25 +1,72 @@
 "use client";
 
-import { useState } from "react";
-import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import ModernCaptcha from "@/components/modern-captcha";
 
 interface ContactFormProps {
   accessKey?: string;
 }
+
+const COOLDOWN_SECONDS = 60;
+const STORAGE_KEY = "aura_contact_cooldown_until";
 
 export default function ContactForm({
   accessKey = "3d128a47-d696-46ef-8dc1-8094ee35f175",
 }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [captchaVerified, setCaptchaVerified] = useState<boolean>(false);
+  const [cooldownRemaining, setCooldownRemaining] = useState<number>(0);
+
+  // Check and countdown cooldown timer
+  useEffect(() => {
+    const updateCooldown = () => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const expiresAt = parseInt(stored, 10);
+          const remaining = Math.ceil((expiresAt - Date.now()) / 1000);
+          if (remaining > 0) {
+            setCooldownRemaining(remaining);
+            return;
+          } else {
+            localStorage.removeItem(STORAGE_KEY);
+          }
+        }
+      } catch {
+        // localStorage unavailable
+      }
+      setCooldownRemaining(0);
+    };
+
+    updateCooldown();
+    const interval = setInterval(updateCooldown, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (cooldownRemaining > 0) {
+      setErrorMessage(
+        `Anti-spam cooldown active. Please wait ${cooldownRemaining} second(s) before sending another message.`
+      );
+      setStatus("error");
+      return;
+    }
+
+    if (!captchaVerified) {
+      setErrorMessage("Please complete the anti-abuse verification before sending.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("submitting");
     setErrorMessage("");
 
@@ -28,7 +75,6 @@ export default function ContactForm({
 
     // Ensure access key is attached
     formData.set("access_key", accessKey);
-    // Include website metadata
     formData.set("from_name", "AURA Website Contact Form");
 
     const firstName = (formData.get("firstName") as string) || "";
@@ -43,7 +89,7 @@ export default function ContactForm({
     try {
       let response: Response | null = null;
 
-      // 1. Try first-party server route (avoids localhost CORS domain mismatch & adblockers)
+      // 1. Submit through internal server route (enforces server IP rate limiting & bypasses browser CORS)
       try {
         response = await fetch("/api/contact", {
           method: "POST",
@@ -53,8 +99,8 @@ export default function ContactForm({
         response = null;
       }
 
-      // 2. Fallback to direct Web3Forms API if server route is unavailable
-      if (!response || !response.ok) {
+      // 2. Fallback to direct Web3Forms endpoint if server route was unavailable
+      if (!response || (!response.ok && response.status !== 429)) {
         response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           body: formData,
@@ -63,9 +109,32 @@ export default function ContactForm({
 
       const data = await response.json();
 
+      if (response.status === 429) {
+        setStatus("error");
+        setErrorMessage(
+          data.message || "Rate limit reached. Please wait before submitting again."
+        );
+        const retrySec = data.cooldownRemaining || 60;
+        setCooldownRemaining(retrySec);
+        try {
+          localStorage.setItem(STORAGE_KEY, String(Date.now() + retrySec * 1000));
+        } catch {}
+        return;
+      }
+
       if (response.ok && data.success) {
         setStatus("success");
+        setCaptchaVerified(false);
         form.reset();
+
+        // Activate 60s cooldown in browser
+        setCooldownRemaining(COOLDOWN_SECONDS);
+        try {
+          localStorage.setItem(
+            STORAGE_KEY,
+            String(Date.now() + COOLDOWN_SECONDS * 1000)
+          );
+        } catch {}
       } else {
         setStatus("error");
         setErrorMessage(
@@ -92,7 +161,7 @@ export default function ContactForm({
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
           Thank you for reaching out to AURA. Our team has received your submission and will review it and reply as soon as possible.
         </p>
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex flex-col items-center justify-center gap-2">
           <Button
             type="button"
             variant="outline"
@@ -102,6 +171,12 @@ export default function ContactForm({
             <RefreshCw className="mr-2 h-4 w-4" />
             Send another message
           </Button>
+          {cooldownRemaining > 0 && (
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <Clock className="h-3 w-3" />
+              Cooldown active: {cooldownRemaining}s before next submission
+            </p>
+          )}
         </div>
       </div>
     );
@@ -109,7 +184,7 @@ export default function ContactForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Botcheck honeypot for spam protection */}
+      {/* Botcheck honeypot for automated spam bots */}
       <input
         type="checkbox"
         name="botcheck"
@@ -122,7 +197,7 @@ export default function ContactForm({
       {status === "error" && (
         <Alert variant="destructive" className="border-destructive/40 bg-destructive/10">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Submission Error</AlertTitle>
+          <AlertTitle>Submission Notice</AlertTitle>
           <AlertDescription className="text-xs sm:text-sm">
             {errorMessage}
           </AlertDescription>
@@ -225,23 +300,46 @@ export default function ContactForm({
         />
       </div>
 
-      <Button
-        type="submit"
-        disabled={status === "submitting"}
-        className="w-full sm:w-auto px-8"
-      >
-        {status === "submitting" ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Sending Message...
-          </>
-        ) : (
-          <>
-            <Send className="mr-2 h-4 w-4" />
-            Send Message
-          </>
-        )}
-      </Button>
+      {/* Anti-Abuse Human Verification Captcha */}
+      <div className="pt-1">
+        <ModernCaptcha onVerified={setCaptchaVerified} />
+      </div>
+
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-2">
+        <Button
+          type="submit"
+          disabled={status === "submitting" || !captchaVerified || cooldownRemaining > 0}
+          className="w-full sm:w-auto px-8 transition-all"
+        >
+          {status === "submitting" ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Sending Message...
+            </>
+          ) : cooldownRemaining > 0 ? (
+            <>
+              <Clock className="mr-2 h-4 w-4 animate-pulse" />
+              Cooldown ({cooldownRemaining}s)
+            </>
+          ) : (
+            <>
+              <Send className="mr-2 h-4 w-4" />
+              Send Message
+            </>
+          )}
+        </Button>
+
+        {cooldownRemaining > 0 ? (
+          <p className="text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1">
+            <Clock className="h-3.5 w-3.5" />
+            Please wait {cooldownRemaining}s before sending another message.
+          </p>
+        ) : !captchaVerified ? (
+          <p className="text-xs text-muted-foreground">
+            Complete the verification above to enable the submit button.
+          </p>
+        ) : null}
+      </div>
     </form>
   );
 }
