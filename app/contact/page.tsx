@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, PhoneCall, ExternalLink, MessageSquare, ShieldAlert } from "lucide-react";
-import { TelegramIcon, LinkedInIcon, InstagramIcon } from "@/components/brand-icons";
+import { Mail, PhoneCall, ExternalLink, ShieldAlert } from "lucide-react";
+import { TelegramIcon, LinkedInIcon } from "@/components/brand-icons";
 import ContactForm from "@/components/contact-form";
 import { SITE_EMAILS } from "@/lib/site-contact";
 import { SITE_SOCIAL } from "@/lib/site-social";
@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/json-ld";
 export const metadata: Metadata = {
   title: "Contact Us | Get in Touch with AURA",
   description:
-    "Get in touch with AURA in Addis Ababa, Ethiopia. Connect via our online contact form, official email, or Telegram (@AURA_MHP) for community inquiries, partnerships, or volunteer support.",
+    "Get in touch with AURA in Ethiopia. Connect via our online contact form, official email, or Telegram (@AURA_MHP) for community inquiries, partnerships, or volunteer support.",
   alternates: {
     canonical: "/contact",
   },
@@ -28,17 +28,11 @@ export default function ContactPage() {
     name: "Contact AURA",
     url: "https://www.auramentalhealth.org/contact",
     description:
-      "Get in touch with AURA in Addis Ababa, Ethiopia for mental health peer support, partnerships, and community awareness.",
+      "Get in touch with AURA in Ethiopia for mental health peer support, partnerships, and community awareness.",
     mainEntity: {
       "@type": "Organization",
       name: "AURA — Alliance for Understanding Recovery & Awareness",
       email: SITE_EMAILS.info,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Addis Ababa",
-        addressRegion: "Bole Sub-City",
-        addressCountry: "ET",
-      },
     },
   };
 
@@ -47,13 +41,9 @@ export default function ContactPage() {
       <JsonLd data={contactSchema} />
 
       {/* Header Banner */}
-      <section className="border-b border-border bg-muted/20 py-16">
+      <section className="border-b border-border bg-muted/20 py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-medium text-primary">
-            <MessageSquare className="h-3.5 w-3.5" />
-            <span>Community Support &bull; Not a Crisis Clinic</span>
-          </div>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
             Contact Us
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -78,7 +68,7 @@ export default function ContactPage() {
           <ContactForm accessKey="3d128a47-d696-46ef-8dc1-8094ee35f175" />
         </div>
 
-        {/* Right Column: Contact Details, Socials, Crisis Disclaimer, Map */}
+        {/* Right Column: Contact Details, Socials, Crisis Disclaimer */}
         <div className="space-y-6">
           {/* Direct Channels Card */}
           <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
@@ -86,14 +76,6 @@ export default function ContactPage() {
               Direct Channels
             </h2>
             <div className="mt-5 space-y-4 text-sm text-muted-foreground">
-              <div className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <div>
-                  <p className="font-medium text-foreground">Location</p>
-                  <p>Bole Sub-City, Addis Ababa, Ethiopia</p>
-                </div>
-              </div>
-
               <div className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
@@ -161,15 +143,6 @@ export default function ContactPage() {
                 >
                   <LinkedInIcon className="h-4 w-4" />
                 </a>
-                <a
-                  href={SITE_SOCIAL.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition hover:border-primary/50 hover:text-primary"
-                  aria-label="Instagram"
-                >
-                  <InstagramIcon className="h-4 w-4" />
-                </a>
               </div>
             </div>
           </div>
@@ -189,17 +162,6 @@ export default function ContactPage() {
                 <span>National Emergency Crisis Helpline: Call <strong>952</strong> (Ethiopia)</span>
               </div>
             </div>
-          </div>
-
-          {/* Interactive Map */}
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-            <iframe
-              title="AURA Location - Bole Sub-City, Addis Ababa"
-              src="https://www.google.com/maps?q=Bole%20Sub-City%2C%20Addis%20Ababa&output=embed"
-              className="h-64 w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
           </div>
         </div>
       </section>
