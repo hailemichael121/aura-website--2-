@@ -1,30 +1,30 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw, Clock } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw, Clock, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import ModernCaptcha from "@/components/modern-captcha";
+import ModernCaptcha, { CaptchaData } from "@/components/modern-captcha";
 
 interface ContactFormProps {
   accessKey?: string;
 }
 
-const COOLDOWN_SECONDS = 60;
+const COOLDOWN_SECONDS = 45;
 const STORAGE_KEY = "aura_contact_cooldown_until";
 
 export default function ContactForm({
   accessKey = "3d128a47-d696-46ef-8dc1-8094ee35f175",
 }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [captchaVerified, setCaptchaVerified] = useState<boolean>(false);
+  const [notice, setNotice] = useState<{ message: string; type: "info" | "error" | "warning" } | null>(null);
+  const [captchaData, setCaptchaData] = useState<CaptchaData>({ token: "", answer: "", isFilled: false });
+  const [highlightCaptcha, setHighlightCaptcha] = useState<boolean>(false);
   const [cooldownRemaining, setCooldownRemaining] = useState<number>(0);
 
-  // Check and countdown cooldown timer
+  // Monitor client cooldown timer
   useEffect(() => {
     const updateCooldown = () => {
       try {
@@ -39,9 +39,7 @@ export default function ContactForm({
             localStorage.removeItem(STORAGE_KEY);
           }
         }
-      } catch {
-        // localStorage unavailable
-      }
+      } catch {}
       setCooldownRemaining(0);
     };
 
@@ -53,29 +51,36 @@ export default function ContactForm({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // 1. If cooldown is active, inform user with smooth rounded info
     if (cooldownRemaining > 0) {
-      setErrorMessage(
-        `Anti-spam cooldown active. Please wait ${cooldownRemaining} second(s) before sending another message.`
-      );
-      setStatus("error");
+      setNotice({
+        type: "warning",
+        message: `Anti-spam cooldown active. Please wait ${cooldownRemaining} second(s) before sending another inquiry.`,
+      });
       return;
     }
 
-    if (!captchaVerified) {
-      setErrorMessage("Please complete the anti-abuse verification before sending.");
-      setStatus("error");
+    // 2. If captcha is not answered, highlight it and show helpful guidance
+    if (!captchaData.isFilled || !captchaData.answer) {
+      setHighlightCaptcha(true);
+      setNotice({
+        type: "info",
+        message: "Please complete the quick security check above to verify your submission.",
+      });
       return;
     }
 
+    setHighlightCaptcha(false);
     setStatus("submitting");
-    setErrorMessage("");
+    setNotice(null);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    // Ensure access key is attached
     formData.set("access_key", accessKey);
     formData.set("from_name", "AURA Website Contact Form");
+    formData.set("captchaAnswer", captchaData.answer);
+    formData.set("captchaToken", captchaData.token);
 
     const firstName = (formData.get("firstName") as string) || "";
     const lastName = (formData.get("lastName") as string) || "";
@@ -89,7 +94,6 @@ export default function ContactForm({
     try {
       let response: Response | null = null;
 
-      // 1. Submit through internal server route (enforces server IP rate limiting & bypasses browser CORS)
       try {
         response = await fetch("/api/contact", {
           method: "POST",
@@ -99,8 +103,7 @@ export default function ContactForm({
         response = null;
       }
 
-      // 2. Fallback to direct Web3Forms endpoint if server route was unavailable
-      if (!response || (!response.ok && response.status !== 429)) {
+      if (!response) {
         response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           body: formData,
@@ -110,49 +113,57 @@ export default function ContactForm({
       const data = await response.json();
 
       if (response.status === 429) {
-        setStatus("error");
-        setErrorMessage(
-          data.message || "Rate limit reached. Please wait before submitting again."
-        );
-        const retrySec = data.cooldownRemaining || 60;
+        setStatus("idle");
+        const retrySec = data.cooldownRemaining || COOLDOWN_SECONDS;
         setCooldownRemaining(retrySec);
         try {
           localStorage.setItem(STORAGE_KEY, String(Date.now() + retrySec * 1000));
         } catch {}
+        setNotice({
+          type: "warning",
+          message: data.message || `Please wait ${retrySec}s before submitting again.`,
+        });
+        return;
+      }
+
+      if (response.status === 400) {
+        setStatus("idle");
+        setHighlightCaptcha(true);
+        setNotice({
+          type: "warning",
+          message: data.message || "Security verification was incorrect. Please try again.",
+        });
         return;
       }
 
       if (response.ok && data.success) {
         setStatus("success");
-        setCaptchaVerified(false);
         form.reset();
 
-        // Activate 60s cooldown in browser
         setCooldownRemaining(COOLDOWN_SECONDS);
         try {
-          localStorage.setItem(
-            STORAGE_KEY,
-            String(Date.now() + COOLDOWN_SECONDS * 1000)
-          );
+          localStorage.setItem(STORAGE_KEY, String(Date.now() + COOLDOWN_SECONDS * 1000));
         } catch {}
       } else {
-        setStatus("error");
-        setErrorMessage(
-          data.message || "Unable to send your message at this time. Please try again."
-        );
+        setStatus("idle");
+        setNotice({
+          type: "error",
+          message: data.message || "Unable to send your message. Please try again or contact info@auramentalhealth.org.",
+        });
       }
-    } catch (err: any) {
-      setStatus("error");
-      setErrorMessage(
-        "A network error occurred while submitting the form. If testing locally, Web3Forms may restrict submissions to the registered production domain (auramentalhealth.org). You can also email us directly at info@auramentalhealth.org."
-      );
+    } catch {
+      setStatus("idle");
+      setNotice({
+        type: "error",
+        message: "A network issue occurred. Please check your connection or email info@auramentalhealth.org directly.",
+      });
     }
   };
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-emerald-500/30 bg-emerald-50/70 p-8 text-center dark:bg-emerald-950/20">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400">
+      <div className="rounded-3xl border border-emerald-500/30 bg-emerald-50/70 p-8 text-center dark:bg-emerald-950/20 shadow-sm transition-all duration-300">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400">
           <CheckCircle2 className="h-8 w-8" />
         </div>
         <h3 className="mt-4 text-2xl font-semibold text-foreground">
@@ -165,15 +176,18 @@ export default function ContactForm({
           <Button
             type="button"
             variant="outline"
-            onClick={() => setStatus("idle")}
-            className="border-border hover:bg-background"
+            onClick={() => {
+              setStatus("idle");
+              setNotice(null);
+            }}
+            className="rounded-xl border-border hover:bg-background"
           >
             <RefreshCw className="mr-2 h-4 w-4" />
             Send another message
           </Button>
           {cooldownRemaining > 0 && (
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              <Clock className="h-3 w-3" />
+            <p className="text-xs text-muted-foreground flex items-center gap-1.5 mt-1">
+              <Clock className="h-3.5 w-3.5" />
               Cooldown active: {cooldownRemaining}s before next submission
             </p>
           )}
@@ -184,7 +198,7 @@ export default function ContactForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Botcheck honeypot for automated spam bots */}
+      {/* Botcheck honeypot for automated scrapers */}
       <input
         type="checkbox"
         name="botcheck"
@@ -194,14 +208,26 @@ export default function ContactForm({
         autoComplete="off"
       />
 
-      {status === "error" && (
-        <Alert variant="destructive" className="border-destructive/40 bg-destructive/10">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Submission Notice</AlertTitle>
-          <AlertDescription className="text-xs sm:text-sm">
-            {errorMessage}
-          </AlertDescription>
-        </Alert>
+      {/* Smooth rounded feedback notice */}
+      {notice && (
+        <div
+          className={`flex items-start gap-3 rounded-2xl border p-4 text-sm transition-all duration-300 ${
+            notice.type === "warning"
+              ? "border-amber-500/30 bg-amber-50/80 text-amber-900 dark:bg-amber-950/25 dark:text-amber-200"
+              : notice.type === "info"
+              ? "border-primary/25 bg-primary/5 text-foreground"
+              : "border-rose-500/30 bg-rose-50/80 text-rose-900 dark:bg-rose-950/25 dark:text-rose-200"
+          }`}
+        >
+          {notice.type === "warning" ? (
+            <Clock className="h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400 mt-0.5" />
+          ) : notice.type === "info" ? (
+            <Info className="h-4 w-4 shrink-0 text-primary mt-0.5" />
+          ) : (
+            <AlertCircle className="h-4 w-4 shrink-0 text-rose-600 dark:text-rose-400 mt-0.5" />
+          )}
+          <p className="text-xs sm:text-sm leading-relaxed">{notice.message}</p>
+        </div>
       )}
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -216,7 +242,7 @@ export default function ContactForm({
             required
             placeholder="Abebe"
             disabled={status === "submitting"}
-            className="border-border bg-background"
+            className="border-border bg-background rounded-xl"
           />
         </div>
         <div className="space-y-1.5">
@@ -230,7 +256,7 @@ export default function ContactForm({
             required
             placeholder="Kebede"
             disabled={status === "submitting"}
-            className="border-border bg-background"
+            className="border-border bg-background rounded-xl"
           />
         </div>
       </div>
@@ -247,7 +273,7 @@ export default function ContactForm({
             required
             placeholder="abebe@example.com"
             disabled={status === "submitting"}
-            className="border-border bg-background"
+            className="border-border bg-background rounded-xl"
           />
         </div>
         <div className="space-y-1.5">
@@ -260,7 +286,7 @@ export default function ContactForm({
             type="tel"
             placeholder="+251 91 234 5678"
             disabled={status === "submitting"}
-            className="border-border bg-background"
+            className="border-border bg-background rounded-xl"
           />
         </div>
       </div>
@@ -273,7 +299,7 @@ export default function ContactForm({
           id="topic"
           name="topic"
           disabled={status === "submitting"}
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           defaultValue="General Inquiry"
         >
           <option value="General Inquiry">General Inquiry</option>
@@ -296,30 +322,28 @@ export default function ContactForm({
           rows={5}
           placeholder="How can we assist you or collaborate with you? Share details here..."
           disabled={status === "submitting"}
-          className="min-h-[140px] border-border bg-background resize-y"
+          className="min-h-[140px] border-border bg-background rounded-xl resize-y"
         />
       </div>
 
-      {/* Anti-Abuse Human Verification Captcha */}
+      {/* Dynamic Security Verification Card */}
       <div className="pt-1">
-        <ModernCaptcha onVerified={setCaptchaVerified} />
+        <ModernCaptcha
+          onChange={setCaptchaData}
+          highlight={highlightCaptcha}
+        />
       </div>
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-2">
         <Button
           type="submit"
-          disabled={status === "submitting" || !captchaVerified || cooldownRemaining > 0}
-          className="w-full sm:w-auto px-8 transition-all"
+          disabled={status === "submitting"}
+          className="w-full sm:w-auto px-8 rounded-xl transition-all"
         >
           {status === "submitting" ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Sending Message...
-            </>
-          ) : cooldownRemaining > 0 ? (
-            <>
-              <Clock className="mr-2 h-4 w-4 animate-pulse" />
-              Cooldown ({cooldownRemaining}s)
             </>
           ) : (
             <>
@@ -329,16 +353,12 @@ export default function ContactForm({
           )}
         </Button>
 
-        {cooldownRemaining > 0 ? (
-          <p className="text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1">
+        {cooldownRemaining > 0 && (
+          <span className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-1.5 font-medium">
             <Clock className="h-3.5 w-3.5" />
-            Please wait {cooldownRemaining}s before sending another message.
-          </p>
-        ) : !captchaVerified ? (
-          <p className="text-xs text-muted-foreground">
-            Complete the verification above to enable the submit button.
-          </p>
-        ) : null}
+            Cooldown: {cooldownRemaining}s remaining
+          </span>
+        )}
       </div>
     </form>
   );

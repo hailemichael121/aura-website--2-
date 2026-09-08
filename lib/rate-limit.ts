@@ -1,34 +1,35 @@
-interface RateLimitRecord {
-  lastSubmission: number;
-  count: number;
-  resetTime: number;
+interface TokenBucket {
+  tokens: number;
+  lastLeak: number;
+  lastRequest: number;
 }
 
-// Global in-memory cache for IP tracking
-const ipCache = new Map<string, RateLimitRecord>();
+// Global IP token bucket registry
+const bucketStore = new Map<string, TokenBucket>();
 
 const CLEANUP_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
-let lastCleanup = Date.now();
+let lastStoreCleanup = Date.now();
 
-function cleanupStaleRecords() {
+function cleanupStaleBuckets() {
   const now = Date.now();
-  if (now - lastCleanup < CLEANUP_INTERVAL_MS) return;
-  lastCleanup = now;
+  if (now - lastStoreCleanup < CLEANUP_INTERVAL_MS) return;
+  lastStoreCleanup = now;
 
-  for (const [ip, record] of ipCache.entries()) {
-    if (now > record.resetTime && now - record.lastSubmission > 60 * 60 * 1000) {
-      ipCache.delete(ip);
+  for (const [key, bucket] of bucketStore.entries()) {
+    // If inactive for > 1 hour, safely delete
+    if (now - bucket.lastRequest > 60 * 60 * 1000) {
+      bucketStore.delete(key);
     }
   }
 }
 
-export interface RateLimitOptions {
-  /** Minimum seconds between consecutive requests from the same IP */
-  cooldownSeconds?: number;
-  /** Maximum allowed requests in window */
-  maxRequests?: number;
-  /** Window duration in seconds */
-  windowSeconds?: number;
+export interface LeakyBucketOptions {
+  /** Maximum burst capacity of tokens */
+  capacity?: number;
+  /** Seconds needed to replenish 1 token */
+  refillSecondsPerToken?: number;
+  /** Absolute minimum seconds between consecutive requests */
+  minSpacingSeconds?: number;
 }
 
 export interface RateLimitResult {
@@ -37,34 +38,39 @@ export interface RateLimitResult {
   message?: string;
 }
 
+/**
+ * Token Bucket with continuous linear refill.
+ * Solves fixed window reset bursts, sliding log memory leaks, and boundary spikes.
+ */
 export function checkRateLimit(
   ip: string,
   scope: string = "general",
-  options: RateLimitOptions = {}
+  options: LeakyBucketOptions = {}
 ): RateLimitResult {
-  cleanupStaleRecords();
+  cleanupStaleBuckets();
 
   const key = `${scope}:${ip}`;
-  const cooldownSeconds = options.cooldownSeconds ?? 60; // 60s cooldown between requests
-  const maxRequests = options.maxRequests ?? 5; // max 5 submissions in 10 mins
-  const windowSeconds = options.windowSeconds ?? 600; // 10 minutes window
+  const capacity = options.capacity ?? 3; // Max tokens that can be accumulated
+  const refillSeconds = options.refillSecondsPerToken ?? 45; // 1 token every 45 seconds
+  const minSpacing = options.minSpacingSeconds ?? 30; // Minimum 30s between consecutive submissions
   const now = Date.now();
 
-  const record = ipCache.get(key);
+  let bucket = bucketStore.get(key);
 
-  if (!record) {
-    ipCache.set(key, {
-      lastSubmission: now,
-      count: 1,
-      resetTime: now + windowSeconds * 1000,
-    });
+  if (!bucket) {
+    bucket = {
+      tokens: capacity - 1, // First request consumes 1 token
+      lastLeak: now,
+      lastRequest: now,
+    };
+    bucketStore.set(key, bucket);
     return { allowed: true };
   }
 
-  // 1. Check per-request cooldown
-  const elapsedSinceLast = (now - record.lastSubmission) / 1000;
-  if (elapsedSinceLast < cooldownSeconds) {
-    const remaining = Math.ceil(cooldownSeconds - elapsedSinceLast);
+  // 1. Check strict spacing cooldown (prevents rapid double-clicks/sub-second spam)
+  const elapsedSinceLast = (now - bucket.lastRequest) / 1000;
+  if (elapsedSinceLast < minSpacing) {
+    const remaining = Math.ceil(minSpacing - elapsedSinceLast);
     return {
       allowed: false,
       remainingSeconds: remaining,
@@ -72,41 +78,42 @@ export function checkRateLimit(
     };
   }
 
-  // 2. Check sliding window limit
-  if (now > record.resetTime) {
-    record.count = 1;
-    record.resetTime = now + windowSeconds * 1000;
-    record.lastSubmission = now;
-    return { allowed: true };
-  }
+  // 2. Continuous refill of tokens based on elapsed time (no abrupt window drops)
+  const elapsedSinceRefill = (now - bucket.lastLeak) / 1000;
+  const tokensToAdd = elapsedSinceRefill / refillSeconds;
+  bucket.tokens = Math.min(capacity, bucket.tokens + tokensToAdd);
+  bucket.lastLeak = now;
 
-  if (record.count >= maxRequests) {
-    const remaining = Math.ceil((record.resetTime - now) / 1000);
-    const mins = Math.max(1, Math.ceil(remaining / 60));
+  // 3. Check if we have at least 1 token
+  if (bucket.tokens < 1) {
+    // Time until at least 1 full token is available
+    const tokensNeeded = 1 - bucket.tokens;
+    const waitSeconds = Math.ceil(tokensNeeded * refillSeconds);
     return {
       allowed: false,
-      remainingSeconds: remaining,
-      message: `Too many submissions from your connection. Please wait ${mins} minute${mins === 1 ? "" : "s"} before trying again.`,
+      remainingSeconds: waitSeconds,
+      message: `Rate limit active. Please wait ${waitSeconds} second${waitSeconds === 1 ? "" : "s"} before trying again.`,
     };
   }
 
-  record.count += 1;
-  record.lastSubmission = now;
+  // Deduct 1 token and update request timestamp
+  bucket.tokens -= 1;
+  bucket.lastRequest = now;
+
   return { allowed: true };
 }
 
 export function getClientIp(request: Request): string {
+  const cfIp = request.headers.get("cf-connecting-ip");
+  if (cfIp) return cfIp.trim();
+
   const forwardedFor = request.headers.get("x-forwarded-for");
   if (forwardedFor) {
     return forwardedFor.split(",")[0].trim();
   }
+
   const realIp = request.headers.get("x-real-ip");
-  if (realIp) {
-    return realIp.trim();
-  }
-  const cfIp = request.headers.get("cf-connecting-ip");
-  if (cfIp) {
-    return cfIp.trim();
-  }
+  if (realIp) return realIp.trim();
+
   return "127.0.0.1";
 }
