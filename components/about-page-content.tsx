@@ -140,7 +140,7 @@ function CoreValuesCarousel() {
         onScroll={handleScroll}
         onTouchStart={pauseAuto}
         onPointerDown={pauseAuto}
-        className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden"
+        className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-x-visible md:px-0 [&::-webkit-scrollbar]:hidden"
         aria-roledescription="carousel"
         aria-label="Core values"
       >
@@ -149,7 +149,7 @@ function CoreValuesCarousel() {
           return (
             <article
               key={value.title}
-              className="about-card-hover flex min-w-[min(88vw,20rem)] shrink-0 snap-center flex-col rounded-xl border border-border bg-card p-5 shadow-sm sm:min-w-[18rem] md:min-w-[calc(33.333%-0.75rem)] lg:min-w-[calc(20%-0.8rem)]"
+              className="about-card-hover flex min-w-[min(88vw,20rem)] shrink-0 snap-center flex-col rounded-xl border border-border bg-card p-5 shadow-sm sm:min-w-[18rem] md:min-w-0 md:flex-1 lg:min-w-0 lg:flex-1"
             >
               <Icon className="h-4 w-4 text-primary" strokeWidth={1.75} />
               <h3 className="mt-3 text-sm font-semibold leading-snug text-foreground">
@@ -163,7 +163,7 @@ function CoreValuesCarousel() {
         })}
       </div>
 
-      <div className="mt-5 flex items-center justify-center gap-2">
+      <div className="mt-5 flex items-center justify-center gap-2 md:hidden">
         {values.map((value, i) => (
           <button
             key={value.title}
@@ -226,13 +226,13 @@ const board: Profile[] = [
   },
   {
     name: "Ms. Rediet Dadi Tafa",
-    role: "Board Member",
+    role: "Vice Chair",
     photo: teamPhoto("rediet-dadi"),
     bio: "Senior Psychologist, Training Director, and Psychotherapist with over 5 years of experience leading nationwide personal development and psychological training initiatives. She leverages her background in trauma-focused therapy and capacity building to ensure our initiatives deliver measurable behavioral change and community impact.",
   },
   {
     name: "Asst. Prof. Anteneh Fikrie Tekola",
-    role: "Board Member",
+    role: "Board Secretary",
     photo: teamPhoto("anteneh-tekola"),
     bio: "Assistant Professor of Public Health, Director of Research & International Partnerships at Bule Hora University, external PhD candidate (Maastricht University), and PLoS ONE editor. He ensures our public health and research methodologies are ethically sound, rigorous, and positioned for international institutional partnerships.",
   },
@@ -415,7 +415,7 @@ export default function AboutPageContent() {
       <section className="border-b border-border bg-muted/25">
         <div className="mx-auto max-w-[1200px] px-4 py-14 md:px-6 md:py-16 lg:px-8">
           <ScrollReveal>
-            <div className="about-card-hover max-w-3xl rounded-xl border border-border/80 bg-card p-6 shadow-sm md:p-8">
+            <div className="about-card-hover rounded-xl border border-border/80 bg-card p-6 shadow-sm md:p-8">
               <div className="flex items-start gap-3">
                 <Landmark
                   className="mt-0.5 h-5 w-5 shrink-0 text-primary"
@@ -430,7 +430,7 @@ export default function AboutPageContent() {
                   </p>
                 </div>
               </div>
-              <p className="mt-6 leading-relaxed text-muted-foreground">
+              <p className="mt-6 max-w-3xl leading-relaxed text-muted-foreground">
                 AURA (Alliance for Understanding Recovery &amp; Awareness) is
                 officially registered as an Ethiopian Civil Society Organization
                 (CSO) under Proclamation No. 1113/2011. We adhere to national

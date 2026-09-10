@@ -139,16 +139,18 @@ export default function HomeActivitySection({
   campaigns,
 }: HomeActivitySectionProps) {
   const tabs: TabConfig[] = useMemo(
-    () => [
-      { id: "events", label: "Events", count: events.length },
-      { id: "campaigns", label: "Campaigns", count: campaigns.length },
-      { id: "forum", label: "Forum", count: FORUM_FEED.length },
-      { id: "programs", label: "Programs", count: PROGRAMS_FEED.length },
-    ],
+    () =>
+      [
+        { id: "events", label: "Events", count: events.length },
+        { id: "campaigns", label: "Campaigns", count: campaigns.length },
+        { id: "forum", label: "Forum", count: FORUM_FEED.length },
+        { id: "programs", label: "Programs", count: PROGRAMS_FEED.length },
+      ].sort((a, b) => (b.count > 0 ? 1 : 0) - (a.count > 0 ? 1 : 0) || b.count - a.count),
     [events.length, campaigns.length],
   );
 
-  const [activeTab, setActiveTab] = useState<TabId>("events");
+  const firstWithData = tabs.find((t) => t.count > 0)?.id ?? "events";
+  const [activeTab, setActiveTab] = useState<TabId>(firstWithData);
   const [index, setIndex] = useState(0);
 
   const slides = useMemo(() => {
