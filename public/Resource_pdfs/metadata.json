@@ -1,0 +1,969 @@
+{
+  "schema_version": 2,
+  "collection": "AURA mental health resources",
+  "last_rights_reviewed": "2026-10-13",
+  "publication_guidance": {
+    "purpose": "Bibliographic and rights-review metadata for the PDFs in this directory.",
+    "important": "This metadata is not legal advice and does not grant permission to redistribute any work.",
+    "public_directory_warning": "Files under Next.js public/ are directly accessible over the web. A rights warning in this JSON does not restrict access to a PDF.",
+    "cover_thumbnail_policy": "The site shows only small, low-resolution first-page previews for resources whose cover image is cleared for non-commercial educational use. Resources with unresolved cover-image rights use an original typographic placeholder instead. A cover preview does not grant permission to host the full PDF.",
+    "hosting_status_options": {
+      "host": "AURA may serve the local_file listed for this resource, subject to the stated license and attribution conditions.",
+      "link": "Do not serve a local copy; send visitors to the official source_url.",
+      "permission-pending": "Do not serve a local copy until permission is confirmed; link to source_url in the meantime."
+    },
+    "catalog_maintenance": "To change a resource's button, update hosting_status and source_url. For hosting, also add local_file and place the cleared PDF at public/Resource_pdfs/<local_file>. Remove local_file when switching to link or permission-pending.",
+    "ethical_hosting": [
+      "Host a complete PDF only when the applicable license permits it or the copyright holder has granted permission for public online distribution.",
+      "For works marked permission-required or rights-unverified, keep the PDF out of public/ until permission is documented; link to an official publisher or organization page instead.",
+      "Keep attribution with each resource, do not imply endorsement by the authors or publishers, and do not remove copyright or license notices.",
+      "Use non-commercial resources only in a genuinely non-commercial context, and comply with any attribution, ShareAlike, adaptation, logo, and third-party-image conditions in the stated license.",
+      "These are health and mental-health resources, not a substitute for individualized professional care. Check dates and official sources before presenting them as current guidance.",
+      "For self-harm and suicide materials, provide a content notice, avoid sensational presentation, and include support contacts appropriate to the audience's location."
+    ]
+  },
+  "resources": [
+    {
+      "id": "anxiety-disorders-information-guide-camh-2024",
+      "hosting_status": "link",
+      "category": "Anxiety",
+      "cover_image": "/resource-covers/anxiety-disorders-information-guide-camh-2024.jpg",
+      "cover_alt": "First page preview of Anxiety Disorders: An Information Guide",
+      "title": "Anxiety Disorders: An Information Guide",
+      "creators": [
+        {
+          "name": "Neil A. Rector",
+          "role": "author"
+        },
+        {
+          "name": "Danielle Bourdeau",
+          "role": "author"
+        },
+        {
+          "name": "Kate Kitchen",
+          "role": "author"
+        },
+        {
+          "name": "Linda Joseph-Massiah",
+          "role": "author"
+        },
+        {
+          "name": "Judith M. Laposa",
+          "role": "author"
+        },
+        {
+          "name": "Centre for Addiction and Mental Health (CAMH)",
+          "role": "publisher"
+        },
+        {
+          "name": "Carolynne Cooper",
+          "role": "editor"
+        },
+        {
+          "name": "Karen Fournier",
+          "role": "editor"
+        },
+        {
+          "name": "Ali Shahrami",
+          "role": "editor"
+        },
+        {
+          "name": "Olga Vuksic",
+          "role": "editor"
+        }
+      ],
+      "publication_year": 2024,
+      "pages": 35,
+      "language": "en",
+      "identifiers": {
+        "isbn_print": "9781771144605",
+        "isbn_pdf": "9781771144612",
+        "isbn_html": "9781771144629"
+      },
+      "description": "CAMH patient guide on everyday anxiety versus anxiety disorders, DSM-5 categories (phobias, panic, agoraphobia, GAD, social anxiety, separation anxiety, selective mutism), causes, treatment, recovery, and family support.",
+      "subjects": [
+        "anxiety",
+        "anxiety disorders",
+        "CAMH",
+        "DSM-5",
+        "mental health",
+        "treatment",
+        "family support"
+      ],
+      "source_url": "https://www.camh.ca/-/media/health-info-files/publications/anxiety-disorders-information-guide2024-pdf.pdf",
+      "source_label": "CAMH PDF (2024)",
+      "notes": "Health overview: https://www.camh.ca/en/health-info/mental-illness-and-addiction-index/anxiety-disorders",
+      "content_notice": "If you are in an emergency or crisis, CAMH directs readers to crisis resources on its site; in Canada, 988 offers suicide and crisis support.",
+      "highlights_citation": "Centre for Addiction and Mental Health. Anxiety Disorders: An Information Guide (2024).",
+      "highlights": [
+        "Explains how everyday worry differs from anxiety disorders that are more frequent, intense, and disruptive to work, study, and relationships.",
+        "Describes main DSM-5 categories—including panic disorder, agoraphobia, specific phobia, social anxiety disorder, GAD, separation anxiety disorder, and selective mutism—with typical thoughts, body reactions, and avoidance patterns.",
+        "Notes that anxiety disorders are common and treatable, and that early professional help improves outcomes.",
+        "Points to cognitive-behavioural approaches, recovery, relapse prevention, and support for families and friends."
+      ],
+      "rights": {
+        "copyright_holder": "Centre for Addiction and Mental Health (CAMH)",
+        "license": "All rights reserved; no general redistribution license identified.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": null,
+        "evidence": "The guide states that reproduction requires written permission, except for brief quotations of up to 200 words in a review or professional work.",
+        "hosting_recommendation": "Do not host the full PDF publicly without written permission. Prefer linking to CAMH's official resource page."
+      },
+      "summary": "CAMH 2024 guide—normal anxiety vs. disorders, DSM-5 types, treatment, recovery, and help for families.",
+      "audience": [
+        "People living with anxiety",
+        "Family and friends",
+        "Anyone preparing to speak with a clinician about anxiety"
+      ],
+      "relevance": "Helps name what you are experiencing, learn how disorder categories differ, and see what treatment and family support can involve.",
+      "chapters": [
+        {
+          "title": "Introduction and anxiety resources",
+          "page": "vi"
+        },
+        {
+          "title": "What is normal anxiety?",
+          "page": "1"
+        },
+        {
+          "title": "What are the anxiety disorders?",
+          "page": "1"
+        },
+        {
+          "title": "Panic disorder"
+        },
+        {
+          "title": "Agoraphobia"
+        },
+        {
+          "title": "Specific phobia"
+        },
+        {
+          "title": "Social anxiety disorder"
+        },
+        {
+          "title": "Generalized anxiety disorder"
+        },
+        {
+          "title": "Separation anxiety disorder"
+        },
+        {
+          "title": "Selective mutism"
+        },
+        {
+          "title": "What causes anxiety disorders?",
+          "page": "15"
+        },
+        {
+          "title": "Treatments for individuals with anxiety disorders",
+          "page": "23"
+        },
+        {
+          "title": "Recovery and relapse prevention",
+          "page": "39"
+        },
+        {
+          "title": "Help for families and friends",
+          "page": "43"
+        },
+        {
+          "title": "Self-help and accessible resources",
+          "page": "51"
+        }
+      ]
+    },
+    {
+      "id": "depression-awareness-packet-wfmh-2010",
+      "hosting_status": "link",
+      "category": "Depression",
+      "cover_image": "/resource-covers/depression-awareness-packet-wfmh-2010.jpg",
+      "cover_alt": "Cover page for Depression: What You Know Can Help You",
+      "title": "Depression: What You Know Can Help You",
+      "creators": [
+        {
+          "name": "World Federation for Mental Health",
+          "role": "publisher and issuing organization"
+        },
+        {
+          "name": "Deborah Maguire",
+          "role": "named in embedded PDF metadata; precise contribution should be verified"
+        }
+      ],
+      "publication_year": 2010,
+      "pages": 64,
+      "language": "en",
+      "identifiers": {},
+      "description": "An educational awareness packet about depression for people living with depression and their families.",
+      "subjects": [
+        "depression",
+        "mental health education",
+        "family support"
+      ],
+      "source_url": "https://wfmh.global/img/what-we-do/publications/depression-awareness-packet-english-2010.pdf",
+      "source_label": "WFMH PDF (English)",
+      "rights": {
+        "copyright_holder": "World Federation for Mental Health",
+        "license": "Copyrighted; the packet permits reproduction for non-commercial mental-health education and awareness activities.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": null,
+        "evidence": "The packet expressly allows reproduction for non-commercial educational and awareness activities. It says permission may be requested for translation; whether public online hosting of the complete PDF is covered is not explicit.",
+        "hosting_recommendation": "Before hosting the complete PDF, confirm that the stated non-commercial educational permission covers public online distribution. Attribute WFMH and do not translate or adapt without permission."
+      },
+      "summary": "WFMH international awareness packet on depression for people affected and their families (2010, English).",
+      "audience": [
+        "People living with depression",
+        "Families and carers",
+        "Community educators"
+      ],
+      "relevance": "Helps normalize depression across cultures and walks through recognition, diagnosis, and treatment paths without replacing professional care.",
+      "chapters": [
+        {
+          "title": "Introduction"
+        },
+        {
+          "title": "What is depression?"
+        },
+        {
+          "title": "Types of depression"
+        },
+        {
+          "title": "Depression, worldwide"
+        },
+        {
+          "title": "What causes depression?"
+        },
+        {
+          "title": "Diagnosing depression"
+        },
+        {
+          "title": "Signs and symptoms"
+        },
+        {
+          "title": "Treating depression"
+        },
+        {
+          "title": "Medications"
+        },
+        {
+          "title": "Psychotherapy"
+        },
+        {
+          "title": "Traditional or alternative healing methods"
+        }
+      ]
+    },
+    {
+      "id": "depression-nimh-2024",
+      "hosting_status": "link",
+      "category": "Depression",
+      "cover_image": "/resource-covers/depression-nimh-2024.jpg",
+      "cover_alt": "First page preview of the NIMH Depression publication",
+      "title": "Depression",
+      "creators": [
+        {
+          "name": "National Institute of Mental Health (NIMH)",
+          "role": "author and publisher"
+        },
+        {
+          "name": "National Institutes of Health, U.S. Department of Health and Human Services",
+          "role": "parent organization"
+        }
+      ],
+      "publication_year": 2024,
+      "pages": 8,
+      "language": "en",
+      "identifiers": {
+        "publication_number": "24-MH-8079"
+      },
+      "description": "Official NIMH brochure on depression: types, signs and symptoms, diagnosis, treatment (psychotherapy, medication, brain stimulation), self-care, help for loved ones, and crisis resources.",
+      "subjects": [
+        "depression",
+        "NIMH",
+        "symptoms",
+        "diagnosis",
+        "treatment",
+        "988",
+        "support"
+      ],
+      "source_url": "https://www.nimh.nih.gov/health/publications/depression",
+      "source_label": "Read on NIMH",
+      "highlights_citation": "National Institute of Mental Health. Depression (NIH Publication No. 24-MH-8079, Revised 2024).",
+      "content_notice": "NIMH notes that if you or someone you know is struggling or having thoughts of suicide, you can call or text 988 (U.S.) or chat at 988lifeline.org. In life-threatening situations, call 911.",
+      "highlights": [
+        "Defines depression as persistent symptoms that affect mood, thinking, and daily activities—not the short low moods everyone has sometimes.",
+        "Describes major depression, persistent depressive disorder, seasonal and perinatal forms, and when to seek evaluation.",
+        "Outlines psychotherapy, medication, and brain stimulation options, plus self-care steps while in treatment.",
+        "Includes guidance for supporting a loved one and links to find local mental health services."
+      ],
+      "rights": {
+        "copyright_holder": "U.S. National Institute of Mental Health, except for any separately credited material",
+        "license": "The publication states that its information is in the public domain and may be reused or copied without permission; images may not be reused or copied under that notice.",
+        "license_summary": "Public domain text · cite NIMH · do not reuse images without permission",
+        "license_url": "https://www.nimh.nih.gov/health/publications/depression",
+        "suggested_citation": "National Institute of Mental Health. (2024). Depression (NIH Publication No. 24-MH-8079). U.S. Department of Health and Human Services, National Institutes of Health.",
+        "evidence": "The PDF's reprints notice explicitly describes the information as public domain and excludes images. The PDF contains embedded images.",
+        "hosting_recommendation": "Link to NIMH's official publication page for the current PDF and web version rather than mirroring the file. Attribute NIMH when reusing text; do not reuse cover or inline images without clearance."
+      },
+      "summary": "NIMH patient brochure on depression—symptoms, diagnosis, treatment, self-care, and help for loved ones (Revised 2024).",
+      "audience": [
+        "General public",
+        "People wondering if they might have depression",
+        "Family and friends supporting someone who may be depressed"
+      ],
+      "relevance": "A plain-language U.S. federal health source you can read before an appointment; useful for recognizing symptoms and knowing what questions to ask a clinician.",
+      "chapters": [
+        {
+          "title": "What is depression?"
+        },
+        {
+          "title": "What are the different types of depression?"
+        },
+        {
+          "title": "What are the signs and symptoms of depression?"
+        },
+        {
+          "title": "How is depression diagnosed?"
+        },
+        {
+          "title": "Does depression look the same in everyone?"
+        },
+        {
+          "title": "How is depression treated?"
+        },
+        {
+          "title": "How can I take care of myself?"
+        },
+        {
+          "title": "How can I find help for depression?"
+        },
+        {
+          "title": "How can I help a loved one who is depressed?"
+        },
+        {
+          "title": "What are clinical trials and why are they important?"
+        },
+        {
+          "title": "For more information and reprints"
+        }
+      ]
+    },
+    {
+      "id": "kaplan-sadocks-synopsis-of-psychiatry-12th-edition-2022",
+      "hosting_status": "link",
+      "category": "Clinical reference",
+      "cover_image": "/resource-covers/kaplan-sadocks-synopsis-of-psychiatry-12th-edition-2022.jpg",
+      "cover_alt": "First page preview of Kaplan and Sadock's Synopsis of Psychiatry",
+      "title": "Kaplan & Sadock's Synopsis of Psychiatry",
+      "creators": [
+        {
+          "name": "Robert Joseph Boland",
+          "role": "editor"
+        },
+        {
+          "name": "Marcia L. Verduin",
+          "role": "editor"
+        },
+        {
+          "name": "Pedro Ruiz",
+          "role": "consulting editor"
+        }
+      ],
+      "publication_year": 2022,
+      "edition": "12th",
+      "pages": 3768,
+      "language": "en",
+      "identifiers": {
+        "isbn": "9781975145569"
+      },
+      "description": "A comprehensive clinical reference covering psychiatry, including assessment, diagnosis, and treatment.",
+      "subjects": [
+        "psychiatry",
+        "clinical reference",
+        "mental health"
+      ],
+      "source_url": "https://shop.lww.com/Kaplan---Sadock-s-Synopsis-of-Psychiatry/p/9781975145569",
+      "notes": "The supplied filename says 2021; the PDF's cataloging and copyright pages identify the 12th edition as Philadelphia, Wolters Kluwer, 2022. The normalized filename follows the document itself.",
+      "rights": {
+        "copyright_holder": "Wolters Kluwer",
+        "license": "All rights reserved; the book states that reproduction, including scanned or electronic copies, requires written permission, except brief quotations in critical articles and reviews.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": null,
+        "evidence": "The copyright page expressly restricts reproduction and directs permission requests to Wolters Kluwer.",
+        "hosting_recommendation": "Do not host the full book publicly without written permission. Remove it from public/ or replace it with an official publisher link until distribution rights are confirmed."
+      },
+      "summary": "Large clinical synopsis of psychiatry—assessment, disorders, and treatment for professionals.",
+      "audience": [
+        "Psychiatry trainees",
+        "Physicians and advanced clinicians",
+        "Clinical educators"
+      ],
+      "relevance": "Reference when you need structured, in-depth clinical coverage rather than a short patient guide.",
+      "chapters": [
+        {
+          "title": "Neural sciences"
+        },
+        {
+          "title": "Contributions of the psychosocial sciences"
+        },
+        {
+          "title": "Clinical psychiatry: assessment and interviewing"
+        },
+        {
+          "title": "Signs and symptoms in psychiatry"
+        },
+        {
+          "title": "Classification in psychiatry"
+        },
+        {
+          "title": "Psychiatric disorders in adults"
+        },
+        {
+          "title": "Psychiatric disorders in children and adolescents"
+        },
+        {
+          "title": "Psychopharmacology and other somatic therapies"
+        },
+        {
+          "title": "Psychotherapy"
+        }
+      ]
+    },
+    {
+      "id": "mental-health-care-limited-resources-pamela-smith-2014",
+      "hosting_status": "link",
+      "category": "Community care",
+      "cover_image": "/resource-covers/mental-health-care-limited-resources-pamela-smith-2014.jpg",
+      "cover_alt": "First page preview of Mental Health Care in Settings Where Mental Health Resources Are Limited",
+      "title": "Mental Health Care in Settings Where Mental Health Resources Are Limited: An Easy-Reference Guidebook for Healthcare Providers in Developed and Developing Countries",
+      "creators": [
+        {
+          "name": "Pamela Smith, MD",
+          "role": "author"
+        },
+        {
+          "name": "Archway Publishing",
+          "role": "publisher"
+        }
+      ],
+      "publication_year": 2014,
+      "pages": 261,
+      "language": "en",
+      "identifiers": {
+        "isbn_ebook": "9781480804883",
+        "isbn_paperback": "9781480804876",
+        "isbn_hardcover": "9781480804890"
+      },
+      "description": "A practical guide for healthcare providers delivering mental-health care in settings with limited resources.",
+      "subjects": [
+        "mental health care",
+        "healthcare providers",
+        "resource-limited settings"
+      ],
+      "source_url": "https://books.google.com/books?vid=ISBN9781480804883",
+      "source_label": "Open bibliographic book record",
+      "rights": {
+        "copyright_holder": "Pamela Smith",
+        "license": "All rights reserved; the book requires written permission from the publisher for reproduction, apart from brief quotations in critical articles and reviews.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": null,
+        "evidence": "The copyright page names Pamela Smith and reserves reproduction rights.",
+        "hosting_recommendation": "Do not host the complete PDF publicly without written permission. Prefer an official publisher or author link."
+      },
+      "summary": "Field guide for delivering mental health care where specialist services are scarce.",
+      "audience": [
+        "Primary care and general clinicians",
+        "Providers in low-resource settings",
+        "Program planners"
+      ],
+      "relevance": "Practical when you need quick, context-aware steps for common mental health presentations outside specialist centres.",
+      "chapters": [
+        {
+          "title": "Core concepts in mental health care"
+        },
+        {
+          "title": "Assessment and diagnosis"
+        },
+        {
+          "title": "Common mental disorders"
+        },
+        {
+          "title": "Psychiatric emergencies"
+        },
+        {
+          "title": "Treatment and psychopharmacology basics"
+        },
+        {
+          "title": "Special populations"
+        },
+        {
+          "title": "Health systems and community approaches"
+        }
+      ]
+    },
+    {
+      "id": "new-oxford-textbook-of-psychiatry-3rd-edition-2020",
+      "hosting_status": "link",
+      "category": "Clinical reference",
+      "cover_image": "/resource-covers/new-oxford-textbook-of-psychiatry-3rd-edition-2020.jpg",
+      "cover_alt": "First page preview of New Oxford Textbook of Psychiatry",
+      "title": "New Oxford Textbook of Psychiatry (3 edn)",
+      "creators": [
+        {
+          "name": "John R. Geddes",
+          "role": "editor"
+        },
+        {
+          "name": "Nancy C. Andreasen",
+          "role": "editor"
+        },
+        {
+          "name": "Guy M. Goodwin",
+          "role": "editor"
+        },
+        {
+          "name": "Oxford University Press",
+          "role": "publisher"
+        }
+      ],
+      "publication_year": 2020,
+      "edition": "3rd",
+      "pages": 1535,
+      "language": "en",
+      "identifiers": {
+        "isbn_print": "9780198713005",
+        "isbn_online": "9780191836428",
+        "doi": "10.1093/med/9780198713005.001.0001"
+      },
+      "notes": "Published March 2020; Oxford Academic notes some content updated 1 January 2024.",
+      "description": "Third-edition Oxford textbook presenting psychiatry as a medical specialty—patient perspective, ethics, scientific bases of aetiology and treatment, and disorder chapters aligned with DSM-5, plus service provision and forensic psychiatry.",
+      "subjects": [
+        "psychiatry",
+        "neuroscience",
+        "psychology",
+        "neuroimaging",
+        "genetics",
+        "mental health",
+        "epidemiology",
+        "ethics",
+        "psychopharmacology",
+        "psychotherapy"
+      ],
+      "source_url": "https://academic.oup.com/book/35444",
+      "source_label": "Oxford Academic",
+      "highlights_citation": "Geddes, J. R., Andreasen, N. C., & Goodwin, G. M. (Eds.). New Oxford Textbook of Psychiatry (3rd ed.). Oxford University Press (2020).",
+      "highlights": [
+        "Frames psychiatry as a medical discipline grounded in science, phenomenology, and the patient’s perspective.",
+        "Covers diagnosis, psychopathology, evidence, and the scientific basis of aetiology and treatment.",
+        "Disorder sections follow DSM-5 structure, with additional material on genetics, imaging, and neurobiological targets.",
+        "Includes sections on service provision and forensic psychiatry as context for clinical care."
+      ],
+      "rights": {
+        "copyright_holder": "Oxford University Press, except for separately credited material",
+        "license": "All rights reserved; the book prohibits circulation in another form without prior permission, except where expressly permitted by law or license.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": null,
+        "evidence": "The copyright page prohibits reproduction and circulation without permission. It identifies a government-work exception for Chapter 35 only.",
+        "hosting_recommendation": "Do not host the full textbook publicly without written permission. The limited Chapter 35 exception does not authorize redistribution of the book. Prefer an official publisher link."
+      },
+      "summary": "Oxford’s third-edition psychiatry textbook—DSM-5–aligned disorder sections, neuroscience, ethics, and services (2020; partial updates noted 2024).",
+      "audience": [
+        "Psychiatrists and researchers",
+        "Advanced trainees and educators",
+        "Academic and hospital libraries"
+      ],
+      "relevance": "Reference for disorder-level science and clinical structure when you need Oxford’s edited coverage rather than a short patient guide.",
+      "chapters": [
+        {
+          "title": "Section 1 — The subject matter and approach to psychiatry"
+        },
+        {
+          "title": "Section 2 — The scientific basis of psychiatric aetiology and treatment"
+        },
+        {
+          "title": "Section 3 — Intellectual disabilities"
+        },
+        {
+          "title": "Section 4 — Autism spectrum disorders"
+        },
+        {
+          "title": "Section 5 — Attention-deficit/hyperactivity disorder"
+        },
+        {
+          "title": "Section 6 — Motor disorders"
+        },
+        {
+          "title": "Section 7 — Delirium, dementia, and other cognitive disorders"
+        },
+        {
+          "title": "Section 8 — Substance use disorders"
+        },
+        {
+          "title": "Section 9 — Schizophrenia and psychotic disorders"
+        },
+        {
+          "title": "Section 10 — Mood disorders"
+        },
+        {
+          "title": "Section 11 — Bipolar disorder"
+        },
+        {
+          "title": "Section 12 — Depressive disorders"
+        },
+        {
+          "title": "Section 13 — Trauma- and stress-related and adjustment disorders"
+        },
+        {
+          "title": "Section 14 — Anxiety disorders"
+        },
+        {
+          "title": "Section 15 — Obsessive–compulsive and related disorders"
+        },
+        {
+          "title": "Section 16 — Feeding, eating, and metabolic disorders"
+        },
+        {
+          "title": "Section 17 — Sleep–wake disorders"
+        },
+        {
+          "title": "Section 18 — Gender dysphoria and sexual dysfunction"
+        },
+        {
+          "title": "Section 19 — Personality disorders"
+        },
+        {
+          "title": "Section 20 — Impulse-control and conduct disorders"
+        },
+        {
+          "title": "Section 21 — Suicide"
+        },
+        {
+          "title": "Section 22 — Somatic symptoms and related disorders"
+        },
+        {
+          "title": "Section 23 — Service provision"
+        },
+        {
+          "title": "Section 24 — Forensic psychiatry"
+        }
+      ]
+    },
+    {
+      "id": "psychiatry-a-clinical-handbook-azam-qureshi-kinnair-2016",
+      "hosting_status": "link",
+      "category": "Clinical reference",
+      "cover_image": "/resource-covers/psychiatry-a-clinical-handbook-azam-qureshi-kinnair-2016.jpg",
+      "cover_alt": "Cover preview for Psychiatry: A Clinical Handbook",
+      "title": "Psychiatry: A Clinical Handbook",
+      "creators": [
+        {
+          "name": "Mohsin Azam",
+          "role": "author"
+        },
+        {
+          "name": "Mohammed Qureshi",
+          "role": "author"
+        },
+        {
+          "name": "Daniel Kinnair",
+          "role": "author"
+        },
+        {
+          "name": "Scion Publishing Ltd",
+          "role": "publisher and copyright holder"
+        }
+      ],
+      "publication_year": 2016,
+      "pages": 330,
+      "language": "en",
+      "identifiers": {
+        "isbn": "9781907904813"
+      },
+      "description": "A clinical handbook introducing psychiatric assessment and common disorders, with practical guidance for healthcare trainees and practitioners.",
+      "subjects": [
+        "psychiatry",
+        "clinical handbook",
+        "assessment",
+        "mental health"
+      ],
+      "source_url": "https://www.scionpublishing.com/?s=9781907904813",
+      "rights": {
+        "copyright_holder": "Scion Publishing Ltd",
+        "license": "All rights reserved; the book requires permission for reproduction or transmission.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": null,
+        "evidence": "The copyright page expressly reserves all rights and requires permission.",
+        "hosting_recommendation": "Do not host the full PDF publicly without permission. Prefer an official publisher link."
+      },
+      "summary": "Introductory clinical handbook on psychiatric assessment and common disorders.",
+      "audience": [
+        "Medical students",
+        "Junior doctors",
+        "Early-career mental health trainees"
+      ],
+      "relevance": "Handy when learning structured psychiatric interviews and core disorder frameworks in clinical training.",
+      "chapters": [
+        {
+          "title": "Psychiatric assessment and history-taking"
+        },
+        {
+          "title": "Mental state examination"
+        },
+        {
+          "title": "Organic and substance-related disorders"
+        },
+        {
+          "title": "Mood and anxiety disorders"
+        },
+        {
+          "title": "Psychotic disorders"
+        },
+        {
+          "title": "Personality and neurodevelopmental disorders"
+        },
+        {
+          "title": "Management and legal aspects"
+        }
+      ]
+    },
+    {
+      "id": "substance-use-atlas-2021-who-emro-2023",
+      "hosting_status": "host",
+      "category": "Substance use",
+      "cover_image": "/resource-covers/substance-use-atlas-cover.jpg",
+      "cover_alt": "Cover preview for Substance Use Atlas 2021; the WHO logo is omitted",
+      "local_file": "substance-use-atlas-2021-who-emro-2023.pdf",
+      "title": "Substance use atlas 2021",
+      "creators": [
+        {
+          "name": "World Health Organization, Regional Office for the Eastern Mediterranean",
+          "role": "author and publisher"
+        }
+      ],
+      "publication_year": 2023,
+      "work_year": 2021,
+      "pages": 69,
+      "language": "en",
+      "identifiers": {
+        "isbn_print": "9789292740757",
+        "isbn_online": "9789292740764"
+      },
+      "description": "WHO EMRO atlas on implementation of the regional framework for action on substance use: regional aggregates, country profiles, resources, capacities, challenges, and gaps in the Eastern Mediterranean Region (publication date 2023).",
+      "subjects": [
+        "substance use",
+        "public health",
+        "Eastern Mediterranean Region",
+        "WHO EMRO",
+        "atlas"
+      ],
+      "source_url": "https://applications.emro.who.int/docs/9789292740764-eng.pdf?ua=1",
+      "source_label": "WHO EMRO PDF (English)",
+      "highlights_citation": "World Health Organization, Regional Office for the Eastern Mediterranean. Substance use atlas 2021 (2023).",
+      "highlights": [
+        "Reports progress on the regional framework for action to strengthen the public health response to substance use.",
+        "Maps country-level resources and capacities to respond to substance use problems.",
+        "Highlights challenges and gaps where the public health response needs to be strengthened.",
+        "Provides regional summaries and individual country profiles with detailed capacity information."
+      ],
+      "rights": {
+        "copyright_holder": "World Health Organization",
+        "license": "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO (CC BY-NC-SA 3.0 IGO).",
+        "license_summary": "CC BY-NC-SA 3.0 IGO · non-commercial sharing with attribution",
+        "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/igo/",
+        "suggested_citation": "World Health Organization, Regional Office for the Eastern Mediterranean. Substance use atlas 2021. Cairo; 2023.",
+        "evidence": "The PDF explicitly permits copying and redistribution for non-commercial purposes with appropriate citation; adaptations must use the same or an equivalent license. WHO logo use is not permitted.",
+        "hosting_recommendation": "Public hosting is permitted only when the use is non-commercial and the license conditions are met. Preserve the license and citation, do not imply WHO endorsement, and do not use the WHO logo."
+      },
+      "summary": "WHO EMRO 2023 atlas mapping substance-use resources, capacities, and gaps across Eastern Mediterranean countries.",
+      "audience": [
+        "Public health planners",
+        "Policy makers and programme leads",
+        "Researchers and clinicians working on substance use in the Region"
+      ],
+      "relevance": "Useful for comparing national systems against regional benchmarks and locating where prevention, treatment, or surveillance capacity is missing.",
+      "chapters": [
+        {
+          "title": "Executive summary",
+          "page": "1"
+        },
+        {
+          "title": "Introduction",
+          "page": "5"
+        },
+        {
+          "title": "Survey methods",
+          "page": "7"
+        },
+        {
+          "title": "Governance (policy, financing, legislation)",
+          "page": "8"
+        },
+        {
+          "title": "Health sector response",
+          "page": "17"
+        },
+        {
+          "title": "Promotion and prevention programmes",
+          "page": "44"
+        },
+        {
+          "title": "Monitoring and surveillance",
+          "page": "46"
+        },
+        {
+          "title": "International cooperation",
+          "page": "51"
+        },
+        {
+          "title": "Annexes (tables and glossary)",
+          "page": "54"
+        }
+      ]
+    },
+    {
+      "id": "self-harm-suicide-mhgap-supporting-material",
+      "hosting_status": "link",
+      "category": "Suicide support",
+      "cover_image": "/resource-covers/self-harm-suicide-mhgap-supporting-material.jpg",
+      "cover_alt": "First page preview of Self-harm/Suicide mhGAP supporting material",
+      "title": "Self-harm/Suicide: mhGAP Training of Health-care Providers — Supporting Material",
+      "creators": [
+        {
+          "name": "World Health Organization",
+          "role": "publisher"
+        }
+      ],
+      "publication_year": 2017,
+      "pages": 19,
+      "language": "en",
+      "identifiers": {},
+      "description": "WHO mhGAP supporting material for self-harm and suicide training—personal stories, role plays, multiple-choice questions, video links, and facilitation guidance for non-specialist health workers.",
+      "subjects": [
+        "self-harm",
+        "suicide prevention",
+        "mhGAP",
+        "healthcare training",
+        "WHO"
+      ],
+      "source_url": "https://cdn.who.int/media/docs/default-source/brain-health/mhgap-training-manuals/sui_supporting_material.pdf?sfvrsn=92ef4c5f_5",
+      "source_label": "WHO PDF (mhGAP)",
+      "notes": "mhGAP programme: https://www.who.int/teams/mental-health-and-substance-use/mental-health-gap-action-programme",
+      "highlights_citation": "World Health Organization. Self-harm/Suicide: mhGAP Training of Health-care Providers — Supporting Material.",
+      "highlights": [
+        "Companion material for the mhGAP self-harm and suicide module used in training non-specialist health-care providers.",
+        "Includes personal stories, role plays, and multiple-choice questions for classroom practice.",
+        "References video activities for assessment and management of self-harm and suicide.",
+        "Intended for trainers and facilitators running structured mhGAP sessions—not general browsing."
+      ],
+      "content_notice": "Contains discussion of self-harm and suicide, including personal stories.",
+      "rights": {
+        "copyright_holder": "Not established from the PDF",
+        "license": "No clear reuse license identified in the PDF; some included stories are attributed to third-party sources.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": null,
+        "evidence": "The inspected PDF contains attribution links for some materials but no clear general license or redistribution permission.",
+        "hosting_recommendation": "Treat rights as unverified and do not host the complete PDF publicly until the issuing organization and permissions, including third-party story rights, are confirmed. Link to an official WHO resource if available."
+      },
+      "summary": "Training support for mhGAP self-harm and suicide modules—stories, role plays, and checks.",
+      "audience": [
+        "Primary care trainers",
+        "Non-specialist health workers",
+        "mhGAP facilitators"
+      ],
+      "relevance": "Supports structured training on assessment and compassionate care—includes sensitive personal stories; not for casual browsing.",
+      "chapters": [
+        {
+          "title": "Module overview and video activity"
+        },
+        {
+          "title": "Personal stories (self-harm and suicide)"
+        },
+        {
+          "title": "Role plays"
+        },
+        {
+          "title": "Multiple-choice questions"
+        },
+        {
+          "title": "Facilitation notes"
+        }
+      ]
+    },
+    {
+      "id": "civil-code-amharic-ethiopia-chilot",
+      "hosting_status": "link",
+      "category": "Legal reference",
+      "cover_image": "/resource-covers/civil-code-amharic-chilot-2011.jpg",
+      "cover_alt": "First page preview of the Ethiopian Civil Code in Amharic",
+      "title": "Ethiopian Civil Code (Amharic)",
+      "creators": [
+        {
+          "name": "Federal Democratic Republic of Ethiopia",
+          "role": "issuing authority"
+        },
+        {
+          "name": "Chilot.me (mirror)",
+          "role": "online host of scanned PDF"
+        }
+      ],
+      "publication_year": 1960,
+      "pages": 742,
+      "language": "am",
+      "identifiers": {},
+      "description": "Amharic text of Ethiopia's Civil Code (scanned PDF), useful for legal and clinical contexts involving capacity, guardianship, contracts, and related civil matters.",
+      "subjects": [
+        "Ethiopian law",
+        "civil code",
+        "Amharic",
+        "legal reference"
+      ],
+      "source_url": "https://chilot.wordpress.com/wp-content/uploads/2011/01/civil-code-amharic.pdf",
+      "source_label": "Open PDF at Chilot",
+      "rights": {
+        "copyright_holder": "Federal Democratic Republic of Ethiopia (statutory text); scan hosted by a third-party site",
+        "license": "Statutory law; this listing links to a third-party scanned copy. Do not assume permission to republish the scan.",
+        "license_summary": null,
+        "license_url": null,
+        "suggested_citation": "Ethiopian Civil Code (Amharic). Scanned PDF via Chilot.me mirror; verify against official consolidated publications.",
+        "evidence": "PDF is served from chilot.wordpress.com; AURA does not host the file locally.",
+        "hosting_recommendation": "Link to the stated URL rather than mirroring the 742-page scan unless official redistribution permission is confirmed."
+      },
+      "summary": "Amharic Civil Code scan—contracts, persons, property, and succession under Ethiopian law.",
+      "audience": [
+        "Ethiopian clinicians and social workers",
+        "Legal aid and community advocates",
+        "Amharic readers needing primary legal text"
+      ],
+      "relevance": "Helpful when capacity, guardianship, or civil obligations come up in mental health practice and you need the Amharic statute text—not a substitute for current legal advice.",
+      "chapters": [
+        {
+          "title": "Book I — General Part (persons, family, absence)"
+        },
+        {
+          "title": "Book II — Obligations in general"
+        },
+        {
+          "title": "Book III — Special contracts"
+        },
+        {
+          "title": "Book IV — Non-contractual liability"
+        },
+        {
+          "title": "Book V — Property and rights in rem"
+        },
+        {
+          "title": "Book VI — Successions"
+        },
+        {
+          "title": "Book VII — Prescription"
+        }
+      ]
+    }
+  ]
+}

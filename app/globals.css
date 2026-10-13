@@ -216,6 +216,82 @@
   filter: blur(0);
 }
 
+.resource-hero-in {
+  animation: resource-hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.resource-route-in {
+  animation: resource-route-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.resource-list-swap {
+  animation: resource-list-swap 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.resource-hero-shapes .resource-shape {
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.55s ease;
+}
+
+.resource-hero-shapes:hover .resource-shape--card {
+  transform: translate(1.25rem, -0.85rem) rotate(9deg);
+}
+
+.resource-hero-shapes:hover .resource-shape--green {
+  transform: translate(-1.75rem, 0.65rem) rotate(-16deg);
+}
+
+.resource-hero-shapes:hover .resource-shape--azure {
+  transform: translate(2rem, 1.15rem) rotate(22deg);
+}
+
+@keyframes resource-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes resource-route-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.65rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes resource-list-swap {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (view-transition-name: none) {
+  ::view-transition-group(*) {
+    animation-duration: 0.55s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.42s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
 .about-outro-panel {
   background:
     linear-gradient(135deg, hsl(var(--primary) / 0.06), transparent 55%),
@@ -245,6 +321,18 @@
     transform: none !important;
     filter: none !important;
     transition: none !important;
+  }
+
+  .resource-hero-in,
+  .resource-route-in,
+  .resource-list-swap {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .resource-hero-shapes:hover .resource-shape {
+    transform: none !important;
   }
 
   .about-card-hover:hover {

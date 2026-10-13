@@ -189,6 +189,7 @@ type Profile = {
   role: string;
   photo: string;
   bio: string;
+  photoAspect?: "portrait";
 };
 
 const teamPhoto = (name: string) => `/images/team/architecture/${name}.webp`;
@@ -221,7 +222,8 @@ const board: Profile[] = [
   {
     name: "Prof. Mubarek Abera Mengistie",
     role: "Board Chairman",
-    photo: teamPhoto("mubarek-mengistie"),
+    photo: "/images/team/member-3.webp",
+    photoAspect: "portrait",
     bio: "Full Professor of Mental Health and Nutrition with over 15 years of experience in academia, health system leadership, and international research collaborations. Lead consultant for national strategic initiatives (UNICEF/MoH) and widely published author. He provides overall board stewardship, focusing on institutional strategy, academic alignment, research integrity, and senior advisory leadership.",
   },
   {
@@ -283,14 +285,30 @@ function FeaturedProfile({ person, delay = 0 }: { person: Profile; delay?: numbe
 function ProfileRow({ person, delay = 0 }: { person: Profile; delay?: number }) {
   return (
     <ScrollReveal delay={delay}>
-      <article className="about-card-hover grid gap-5 rounded-xl border border-border/70 bg-card/40 p-5 sm:grid-cols-[120px_1fr] sm:gap-8 md:rounded-none md:border-0 md:border-b md:border-border md:bg-transparent md:p-0 md:py-8 md:last:border-b-0">
-        <div className="relative mx-auto aspect-square w-[120px] overflow-hidden rounded-lg bg-muted shadow-sm sm:mx-0">
+      <article
+        className={`about-card-hover grid gap-5 rounded-xl border border-border/70 bg-card/40 p-5 sm:gap-8 md:rounded-none md:border-0 md:border-b md:border-border md:bg-transparent md:p-0 md:py-8 md:last:border-b-0 ${
+          person.photoAspect === "portrait"
+            ? "sm:grid-cols-[160px_1fr]"
+            : "sm:grid-cols-[120px_1fr]"
+        }`}
+      >
+        <div
+          className={`relative mx-auto w-[120px] overflow-hidden rounded-lg bg-muted shadow-sm sm:mx-0 ${
+            person.photoAspect === "portrait"
+              ? "aspect-[3/4] w-[160px]"
+              : "aspect-square"
+          }`}
+        >
           <Image
             src={person.photo}
             alt={person.name}
             fill
-            sizes="120px"
-            className="object-cover transition-transform duration-500 hover:scale-[1.03]"
+            sizes={person.photoAspect === "portrait" ? "160px" : "120px"}
+            className={
+              person.photoAspect === "portrait"
+                ? "object-contain"
+                : "object-cover transition-transform duration-500 hover:scale-[1.03]"
+            }
           />
         </div>
         <div>
@@ -468,7 +486,7 @@ export default function AboutPageContent() {
         <div className="mx-auto max-w-[1200px] px-4 py-14 md:px-6 md:py-16 lg:px-8">
           <ScrollReveal>
             <h2 className="text-xl font-bold text-foreground md:text-2xl">
-              The board
+              Board Members
             </h2>
           </ScrollReveal>
           <div className="mt-8 space-y-4 md:space-y-0">
