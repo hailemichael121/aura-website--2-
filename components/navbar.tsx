@@ -13,7 +13,13 @@ import { AuraHeroLockup } from "@/components/aura-hero-lockup";
 import { TelegramIcon } from "@/components/brand-icons";
 import { cn } from "@/lib/utils";
 
-type NavChild = { name: string; href: string; description: string };
+type NavChild = {
+  name: string;
+  href?: string;
+  description: string;
+  status?: "coming-soon";
+  children?: NavChild[];
+};
 
 type NavItem = {
   name: string;
@@ -86,7 +92,28 @@ const navigation: NavItem[] = [
       },
     ],
   },
-  { name: "Resource", href: "/resources" },
+  {
+    name: "Resources",
+    href: "/resources",
+    children: [
+      {
+        name: "Books",
+        href: "/resources",
+        description: "Browse mental health guides and professional references.",
+      },
+      {
+        name: "Blog",
+        href: "/blog",
+        description: "Articles and stories from the AURA community.",
+        status: "coming-soon",
+      },
+      {
+        name: "Media",
+        description: "Podcasts, audiobooks, and mental wellness apps.",
+        status: "coming-soon",
+      },
+    ],
+  },
   {
     name: "Get Involved",
     href: "/get-involved",
@@ -192,21 +219,56 @@ function NavDropdown({
                 : "border-border bg-popover",
             )}
           >
-            {item.children.map((child) => (
-              <Link
-                key={child.href + child.name}
-                href={child.href}
-                onClick={close}
-                className="px-3 py-2.5 text-left hover:bg-muted"
-              >
-                <p className="text-sm font-medium text-foreground">
-                  {child.name}
-                </p>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                  {child.description}
-                </p>
-              </Link>
-            ))}
+            {item.children.map((child) => {
+              const content = (
+                <>
+                  <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                    {child.name}
+                    {child.status === "coming-soon" ? (
+                      <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                        Coming soon
+                      </span>
+                    ) : null}
+                  </p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+                    {child.description}
+                  </p>
+                  {child.children?.length ? (
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {child.children.map((nested) => (
+                        <span
+                          key={nested.name}
+                          className="rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground"
+                        >
+                          {nested.name}
+                          <span className="ml-1 text-primary">· Coming soon</span>
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+                </>
+              );
+
+              const className = "block px-3 py-2.5 text-left hover:bg-muted";
+              if (child.href) {
+                return (
+                  <Link
+                    key={child.name}
+                    href={child.href}
+                    onClick={close}
+                    className={className}
+                  >
+                    {content}
+                  </Link>
+                );
+              }
+
+              return (
+                <div key={child.name} className={className}>
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
       ) : null}

@@ -15,7 +15,13 @@ import { Button } from "@/components/ui/button";
 import { SITE_SOCIAL } from "@/lib/site-social";
 import { cn } from "@/lib/utils";
 
-type NavChild = { name: string; href: string; description: string };
+type NavChild = {
+  name: string;
+  href?: string;
+  description: string;
+  status?: "coming-soon";
+  children?: NavChild[];
+};
 
 type NavItem = {
   name: string;
@@ -27,6 +33,14 @@ function isActivePath(pathname: string, href: string) {
   const path = href.split("#")[0];
   if (path === "/") return pathname === "/";
   return pathname === path || pathname.startsWith(`${path}/`);
+}
+
+function hasActiveChild(pathname: string, children: NavChild[] = []): boolean {
+  return children.some(
+    (child) =>
+      (child.href ? isActivePath(pathname, child.href) : false) ||
+      hasActiveChild(pathname, child.children),
+  );
 }
 
 function MobileNavLink({
@@ -64,7 +78,7 @@ function MobileNavSection({
   onNavigate: () => void;
 }) {
   const [expanded, setExpanded] = useState(
-    () => item.children?.some((c) => isActivePath(pathname, c.href)) ?? false,
+    () => hasActiveChild(pathname, item.children),
   );
   const active = isActivePath(pathname, item.href);
 
@@ -114,7 +128,31 @@ function MobileNavSection({
       {expanded ? (
         <div className="space-y-0.5 border-t border-border/80 px-2 py-2">
           {item.children.map((child) => {
-            const childActive = isActivePath(pathname, child.href);
+            const childActive = child.href
+              ? isActivePath(pathname, child.href)
+              : hasActiveChild(pathname, child.children);
+            const statusBadge =
+              child.status === "coming-soon" ? (
+                <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                  Coming soon
+                </span>
+              ) : null;
+
+            if (!child.href) {
+              return (
+                <div
+                  key={child.name}
+                  className="flex min-h-11 flex-col items-start justify-center gap-0.5 rounded-md px-3 py-2.5 text-sm text-muted-foreground"
+                >
+                  <span className="flex items-center gap-2 font-medium text-foreground">
+                    {child.name}
+                    {statusBadge}
+                  </span>
+                  <span className="text-xs leading-snug">{child.description}</span>
+                </div>
+              );
+            }
+
             return (
               <MobileNavLink
                 key={child.href + child.name}
@@ -125,7 +163,10 @@ function MobileNavSection({
                   childActive && "bg-primary/10 text-primary",
                 )}
               >
-                <span className="font-medium text-foreground">{child.name}</span>
+                <span className="flex items-center gap-2 font-medium text-foreground">
+                  {child.name}
+                  {statusBadge}
+                </span>
                 <span className="text-xs leading-snug">{child.description}</span>
               </MobileNavLink>
             );

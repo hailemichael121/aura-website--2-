@@ -310,7 +310,7 @@ function ResourceCard({
           <div className="flex flex-col sm:flex-row">
             <TransitionLink
               href={`/resources/${resource.id}`}
-              className="relative block aspect-[5/4] w-full shrink-0 overflow-hidden bg-muted sm:aspect-auto sm:h-auto sm:w-[42%] sm:min-h-[11rem]"
+              className="relative block aspect-[3/4] w-full shrink-0 overflow-hidden bg-muted/70 sm:aspect-[2/3] sm:w-[36%] sm:min-w-[12rem] sm:max-w-[15rem]"
               style={coverTransition}
             >
               {resource.cover_image ? (
@@ -319,7 +319,7 @@ function ResourceCard({
                   alt={resource.cover_alt ?? resource.title}
                   fill
                   sizes="(max-width: 640px) 100vw, 240px"
-                  className="object-cover object-top"
+                  className="object-contain"
                 />
               ) : (
                 <div className="flex h-full min-h-[10rem] flex-col justify-end p-5">
